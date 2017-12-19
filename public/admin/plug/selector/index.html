@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>PopupSelector示例</title>
+		<link rel="stylesheet" href="dialog.css">
+	</head>
+	<body>
+		<input type="text" placeholder="" id="field" />
+		<script src="http://cdnjscn.b0.upaiyun.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="dot.js"></script>
+		<script src="event.js"></script>
+		<script src="popupSelector.js"></script>
+		<script>
+			$(function(){
+				var popupSelector = PopupSelector.create({
+				  	search: true,
+			        title: '选择用户',
+			        className: 'image-popup',
+			        tabs: [
+			          {
+			              name: '数据示例',
+			              data: [{ text: '1'}, { text: '2'}, {text: '3'}, { text: '4'}] // 这里可以是个url
+			          },
+			          {
+			              name: 'Url示例',
+			              data: 'data.json' // 这里可以是个url
+			          }
+			        ],
+			        onItemSelected: function(v){
+			        	console.log(arguments);
+			        	alert(v);
+			        }
+				});
+
+				$('#field').on('focus', function(){
+					popupSelector.show(this);
+				});
+			});
+		</script>
+	</body>
+</html>

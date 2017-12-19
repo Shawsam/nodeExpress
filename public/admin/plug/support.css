@@ -1,0 +1,226 @@
+/*v2版本的样式*/
+.breadcrumb{
+	padding-left: 10px !important;
+}
+.breadcrumb a{
+	color: #2196f3 !important;
+}
+
+/**
+ * 系统后台扩展的CSS 样式文件
+ **/
+.none{
+text-align: center;
+padding-top:80px;
+padding-bottom:80px;
+font-size: 25px;
+font-weight: bold;
+
+}
+#preloader {
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color:#fff; /* change if the mask should have another color then white */
+	z-index:99; /* makes sure it stays on top */
+}
+
+#status {
+	width:200px;
+	height:200px;
+	position:absolute;
+	left:50%; /* centers the loading animation horizontally one the screen */
+	top:50%; /* centers the loading animation vertically one the screen */
+	background-image:url(http://img.weizhi.so/status.gif); /* path to your loading animation */
+	background-repeat:no-repeat;
+	background-position:center;
+	margin:-100px 0 0 -100px; /* is width and height divided by two */
+}
+
+#customizer
+{
+    position: fixed;
+    z-index: 10000;
+    bottom: 20px;
+    width: 235px;
+    left: -236px;
+    background-color: #fff;
+    padding: 5px;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+
+    -webkit-border-radius: 0 3px 0 0;
+    -moz-border-radius: 0 3px 0 0;
+    border-radius: 0 3px 0 0;
+
+    border: 1px solid #ccc;
+    border-left: 0;
+}
+
+#customizer #showButton
+{
+    cursor: pointer;
+    width: 40px; height: 40px;
+    background-color: #fff;
+    position: absolute;
+    right: -41px;
+    bottom: -1px;
+    border: 1px solid #ccc;
+    border-left: 0;
+    font-size: 24px;
+    text-align: center;
+    line-height: 40px;
+
+    -webkit-border-radius: 0 3px 3px 0;
+    -moz-border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;
+}
+
+#customizer #layoutMode
+{
+    display: block;
+    padding: 5px 0;
+}
+
+#customizer #pattern-list
+{
+    background: url(http://img.weizhi.so/static/system/assets/images/preloaders/1.gif) no-repeat center center;
+}
+
+#customizer #pattern-list.patterns-loaded
+{
+    background-image: none;
+}
+
+#customizer #pattern-list ul, 
+#customizer #pattern-list li
+{
+    margin: 0;
+    list-style: none;
+}
+
+#customizer #pattern-list ul
+{
+    display: none;
+    float: left;
+}
+
+#customizer #pattern-list.patterns-loaded ul
+{
+    display: block;
+}
+
+#customizer #pattern-list ul li
+{
+    float: left;
+    width: 22px;
+    height: 22px;
+    margin: 2px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    display: block;
+}
+
+@media (max-width: 979px)
+{
+    #customizer
+    {
+        display: none;
+    }
+
+    body
+    {
+        padding-top: 0 !important;
+    }
+}
+
+ 
+ul.icons-list, 
+ul.icons-list li
+{
+    list-style-type: none;
+    margin: 0;
+}
+
+ul.icons-list li
+{
+    float: left;
+    display: block;
+    width: 33.3333%;
+    margin-bottom: 15px;
+}
+
+ul.icons-list li code
+{
+    color: #555;
+}
+
+ul.icons-list li > span
+{
+    font-size: 0;
+    color: #555;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    margin-right: 6px;
+}
+
+ul.icons-list.inverse li > span
+{
+    background-color: #444;
+    padding: 4px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+ul.icons-list li > span [class^="icon-"]
+{
+    font-size: 32px;
+    line-height: 1;
+}
+
+/*!
+ laypage默认样式
+*/
+.laypage_main a,.laypage_main input,.laypage_main span{height:26px;line-height:26px}.laypage_main button,.laypage_main input,.laypageskin_default a{border:1px solid #ccc;background-color:#fff}.laypage_main{font-size:0;clear:both;color:#666}.laypage_main *{display:inline-block;vertical-align:top;font-size:12px}.laypage_main a{text-decoration:none;color:#666}.laypage_main a,.laypage_main span{margin:0 3px 6px;padding:0 10px}.laypage_main input{width:40px;margin:0 5px;padding:0 5px}.laypage_main button{height:28px;line-height:28px;margin-left:5px;padding:0 10px;color:#666}.laypageskin_default span{height:28px;line-height:28px;color:#999}.laypageskin_default .laypage_curr{font-weight:700;color:#666}.laypageskin_molv a,.laypageskin_molv span{padding:0 12px;border-radius:2px}.laypageskin_molv a{background-color:#f1eff0}.laypageskin_molv .laypage_curr{background-color:#00AA91;color:#fff}.laypageskin_molv input{height:24px;line-height:24px}.laypageskin_molv button{height:26px;line-height:26px}.laypageskin_yahei{color:#333}.laypageskin_yahei a,.laypageskin_yahei span{padding:0 13px;border-radius:2px;color:#333}.laypageskin_yahei .laypage_curr{background-color:#333;color:#fff}.laypageskin_flow{text-align:center}.laypageskin_flow .page_nomore{color:#999}
+
+
+/*!
+ laypage通用样式
+*/
+body{ font-size:14px!important; }
+a{ cursor: pointer; }
+*{ font-family:"微软雅黑"; }
+#header { background:#0042AF; }
+ul{ list-style:none; padding-left:0; }
+.sidebar{ background:#474849!important; }
+.main-menu{ margin:45px 0 0 0!important; }
+.main-menu li a{ color:#c6c6c6!important; }
+.main-menu > li.active > a { color: #262626!important; background: #3D3E40!important;}
+
+.sub-menu ul > li > a.active{ color:#fff!important; }
+.main-menu > li.active > a{ background:#262626; color:#fff!important;}
+.main-menu > li > a:hover{ background:#262626; color:#999!important;}
+.sub-menu > a:before, .sub-menu > a:after { color:#fff!important; }
+.sub-menu ul > li > a:hover{ color:#e8e8e8!important; }
+
+.table thead tr th.sort{ cursor:pointer!important;  } 
+.table thead tr th.sort .zmdi{ font-size:18px; vertical-align:bottom; }
+
+.logo { padding-left:100px; position:relative; }
+.logo img{ position:absolute; left:10px; top:0px; height:40px; }
+.logo a.title{ font-size:18px; }
+#footer{ height:70px; }
+
+.searchBox i:active{ opacity:0.6; }
+.header-inner .top-menu .toggle-switch{ display: none; }
+.header-inner .top-menu .dropdown{ margin:0 15px; }
+.header-inner .top-menu .dropdown{ font-size:13px; }
+
+.cardContent{ padding:25px; }

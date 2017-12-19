@@ -1,0 +1,42 @@
+
+
+
+引用文件：
+
+1. qn_jssdk/plupload/plupload.full.min.js
+2. qn_jssdk/qiniu.dev.js
+
+
+
+
+
+配置（qn_jssdk/qiniu.dev.js）：
+
+qn_config = {
+	qiniu_url:'http://7xnv4q.com1.z0.glb.clouddn.com/',		// 七牛存储空间地址
+	token_url:'../pub/qn_phpsdk/uptoken.php?bucket=temp',	// 七牛令牌地址
+	flash_url:'../pub/qn_jssdk/plupload/Moxie.swf'}			// 插件 flash 地址，用于PC浏览器低版本，注意路径
+
+
+
+
+调用：
+
+imgupload({
+	elm : ".img1",		// 标签，类名或 ID 不能重复
+	thumb_w : 500,		// 返回缩略图的宽度
+	thumb_h : 250,		// 返回缩略图的高度
+	multi : true,		// 上传多张
+	fsize : 50,			// 图片大小限制（MB），默认 100MB
+	rery : 3,			// 上传失败重试次数，默认 1
+	multi : true,		// 上传多张
+	UploadProgress : function(up,file){ console.log(file.percent); }		// up：对象实例，file：文件上传信息
+	FileUploaded : function(img,thumb){ $(this.elm).attr({"src":thumb}); }	// img：图片原图，thumb：缩略图
+});
+
+
+
+
+
+
+

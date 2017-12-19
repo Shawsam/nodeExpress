@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}-SKY工作室</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="/public/web/res/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/public/web/style/common.css" />
+    {% block css %}{% endblock  %}
+    <script src="/public/web/script/support.js"></script>
+    {% block js %}{% endblock  %}
+</head>
+<body>
+    {% include "./header.html" %}
+    {% block content %}{% endblock  %}
+	{% include "./footer.html" %}
+</body>
+</html>
+

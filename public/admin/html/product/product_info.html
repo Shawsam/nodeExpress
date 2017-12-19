@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>产品详情</title>
+        <!-- Vendor CSS -->
+        <link href="../../v2/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+        <link href="../../v2/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="../../v2/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="../../v2/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
+         <link rel="stylesheet" href="../../plug/support.css" media="screen">
+        <!-- CSS -->
+        <link href="../../v2/css/app.min.1.css" rel="stylesheet">
+        <link href="../../v2/css/app.min.2.css" rel="stylesheet">
+        <script src="../../v2/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../../plug/support.js"></script>
+        <style>
+            #main .card .card-header{ padding:15px 25px 15px 15px; }
+            .form-horizontal{ margin-top:15px; }
+            #main .card .card-header .btn-gp{ margin-top:5px; }
+            #main .card .card-header .btn-gp .btn{ margin-right:10px; }
+
+            #main .card .card-header i{ margin-right:8px; color:#FFB50B; font-size:18px;}
+            #main .card .card-header h2{ font-weight:bold; font-size:16px;}
+            #main .card .card-body table th{ color:#000; background:#EEF8FA; }
+            #main .card .card-body table th,td{ text-align:center;  }
+            #main .card-body ul.list{ list-style:none; padding:6px 0 12px 0; }
+            #main .card-body ul.list li{ padding:7px 25px; }
+            #main .card-body ul.list li a{ color:#666; }
+            #main .card-body ul.list li a:hover{ color:#000; border-bottom:1px solid #333; }
+            #main .card-body ul.list li .desp{ color:#999;  }
+            #main .card .product_name{ padding:0 30px; }
+            #main .card .product_name .btn-gp .btn{ margin-right:10px; }
+            #main .card .product_name .name{ color:#000; font-size:15px;  }
+            .label-title{ background:#2196F3; color:#fff; padding:7px 22px;margin-left:-15px; }
+            .product_main{ padding:0 25px 20px 25px; }
+            .product_content{ border:1px solid #E5E5E5; padding:12px 25px 5px 25px; border-radius:3px; }
+            .product_content .title{ color:#0042AF; font-size:15px; }
+            .product_content .title a{ color:#0042AF; font-size:14px; }
+            .product_content .content.hasimg{ padding:10px 0 0 180px; position: relative; }
+            .product_content .content.hasimg img{ position:absolute; left:0; top:0; width:150px;}
+            .product_content .content p span{ margin-right:30px; }
+            .product_content .content p.notFirst span{ width:240px; display:inline-block; }
+            .product_content .content p.notFirst1 span{ width:150px; display:inline-block; }
+
+
+            .contentText{ width:100%; padding:5px 10px;}
+        </style>
+    </head>
+    <body>
+        <header id="header" class="clearfix">
+            <ul class="header-inner">
+                <li id="menu-trigger" data-trigger="#sidebar">
+                    <div class="line-wrap">
+                        <div class="line top"></div>
+                        <div class="line center"></div>
+                        <div class="line bottom"></div>
+                    </div>
+                </li>
+                <li class="logo hidden-xs">
+                    <img src="../../img/logo.png" />
+                    <a class="title" href="index.html">欧普照明家居产品信息管理系统（MPS）</a>
+                </li>
+            
+                <li class="pull-right">
+                    <ul class="top-menu">
+                        <li id="toggle-width">
+                            <div class="toggle-switch">
+                                <input id="tw-switch" type="checkbox" hidden="hidden">
+                                <label title="侧边栏" for="tw-switch" class="ts-helper"></label>
+                            </div>
+                        </li>
+
+                        <li class="dropdown">
+                            <a title="消息" data-toggle="dropdown" href="">
+                                <i class="tm-icon zmdi zmdi-notifications"></i>
+                                <i class="tmn-counts">9</i>
+                            </a>
+                        </li>
+
+                        <li class="dropdown" >
+                            <a href="login.html" data-toggle="dropdown" class="userCenter">
+                                <i style="font-size:29px; vertical-align:middle; margin-right:8px;" class="tm-icon zmdi zmdi-account"></i>韩美美
+                            </a>
+                        </li>
+
+                        <li class="dropdown" >
+                            <a title="退出登录" href="../login.html" class="exit_system">
+                                <i style="vertical-align:middle; margin-right:8px;" class="tm-icon zmdi zmdi-power m-r-8"></i>退出
+                            </a>
+                        </li>
+                        <li class="dropdown hide">
+                            <a title="更多" data-toggle="dropdown" href=""><i class="tm-icon zmdi zmdi-more-vert"></i></a>
+                            <ul class="dropdown-menu dm-icon pull-right">
+                                <!-- <li class="skin-switch hidden-xs">
+                                    <span class="ss-skin bgm-lightblue" data-skin="lightblue"></span>
+                                    <span class="ss-skin bgm-bluegray" data-skin="bluegray"></span>
+                                    <span class="ss-skin bgm-cyan" data-skin="cyan"></span>
+                                    <span class="ss-skin bgm-teal" data-skin="teal"></span>
+                                    <span class="ss-skin bgm-orange" data-skin="orange"></span>
+                                    <span class="ss-skin bgm-blue" data-skin="blue"></span>
+                                </li>
+                                <li class="divider hidden-xs"></li> -->
+                                <li class="hidden-xs">
+                                    <a data-action="fullscreen" href=""><i class="zmdi zmdi-fullscreen"></i>全屏</a>
+                                </li>
+                                <li>
+                                    <a data-action="clear-localstorage" href=""><i class="zmdi zmdi-delete"></i>清理本地缓存</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </header>
+        
+        <section id="main" data-layout="layout-1">
+            <!-- 左侧菜单开始 -->
+              <aside id="sidebar" class="sidebar c-overflow">
+                <div class="profile-menu">
+                    <ul class="main-menu">
+                        <li>
+                            <a href="/system/member"><i class="zmdi zmdi-account"></i>个人资料</a>
+                        </li>
+                        <li>
+                            <a href="/system/member/repass"><i class="zmdi zmdi-input-antenna"></i> 修改登陆密码</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;"><i class="zmdi zmdi-settings"></i>资料设置</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="exit_system"><i class="zmdi zmdi-time-restore"></i>退出登陆</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <ul class="main-menu">
+                    <li>
+                        <a href="../index.html"><i class="zmdi zmdi-home"></i> 首页</a>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-laptop-mac"></i>系统管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="../system/user_list.html">用户管理</a></li>
+                              <li ><a id="" href="../system/login_log_list.html">日志管理</a></li>
+                              <li ><a id="" href="../system/menu_list.html">菜单管理</a></li>
+                              <li ><a id="" href="../system/email_template_list.html">邮件设置</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-usb"></i>主数据管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="javascript:;">SKU品类</a></li>
+                              <li ><a>产品线设置</a></li>
+                              <li ><a id="" href="../data/data_check_regulate.html">物料级别管理</a></li>
+                              <li ><a id="" href="../data/data_files_list.html">物料文件管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu active toggled" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-storage"></i>产品管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="product_list.html">产品列表</a></li>
+                              <li ><a id="" href="unpulish_product_list.html">未发布列表</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-view-dashboard"></i>库存管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="../store/store_list.html">库存管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-assignment"></i>推广系列管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="../popularize/popularize_list.html">系列列表</a></li>
+                              <li ><a id="" href="../popularize/popularize_add.html">创建系列</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-time"></i>审批管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="../check/check_list.html">待审系列</a></li>
+                              <li ><a id="" href="../check/already_check_list.html">已审系列</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-email"></i>消息与提醒</a>
+                        <ul class="">      
+                              <li ><a id="" href="javascript:;">消息列表</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+            <!--菜单结束  -->
+            
+
+            <!--内容结束  -->
+            <section id="content">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-header">
+                           <ul class="breadcrumb">位置：
+                              <li>产品管理</li>
+                              <li>产品详情</li>
+                          </ul>
+                        </div>
+                        <div class="product_name card-body row">
+                            <p class="col-md-8 name">产品名称：LED球泡-心锐3S-A70-12W-E27-3000K-E</p>
+                            <p class="col-md-4 btn-gp">
+                                <a><button class="btn btn-warning">确认发布</button></a>
+                                <a><button class="btn btn-primary">不发布</button></a>
+                             </p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                           <label class="label-title">重要参数</label>
+                        </div>
+                        <div class="card-body product_main">
+                            <div class="product_content">
+                                <p class="title">重要参数<a class="pull-right">编辑</a></p>
+                                <div class="content">
+<!--                                     <img src="../../img/product.png" /> -->
+                                    <p><span>产品物料编码：140049305</span><span>产品名称：MZX920-D0.2*432-SD-品冠-3000K+5700K</span></p>
+                                    <p class="notFirst"><span>功率：90W</span><span>色温：3000K+5700K</span><span>光通量：**Lm</span><span>显色指数：≥80 </span><span>光效：**lm/w</span></p>
+                                    <p class="notFirst"><span>产品尺寸：920*600*120</span><span>适用面积：** </span><span>安装方式: **</span><span>是否智能: 否</span><span>质保期限：3年</span><span>产品功能：三段分控</span></p>
+                                    <p class="notFirst"><span>产品品类：家居 Consumer Solution</span><span>产品小类: 现代装饰灯</span><span>产品物料组：客厅装饰灯</span><span>产品系列：客厅装饰灯</span></p> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                           <label class="label-title">产品介绍</label>
+                        </div>
+                        <div class="card-body product_main">
+                            <div class="product_content">
+                                <p class="title">产品介绍<a class="pull-right introduceEiit">编辑</a></p>
+                                <div class="content">
+                                    <p class="contentArticle">暂无</p>
+                                    <textarea class="contentText hide" rows="5" placeholder="请输入产品介绍"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                           <label class="label-title">名称标识</label>
+                        </div>
+                        <div class="card-body product_main">
+                            <div class="product_content">
+                                <p class="title">名称标识<a class="pull-right">编辑</a></p>
+                                <div class="content">
+                                    <p class="notFirst"><span>产品SPA代码：**</span><span>规格型号：**</span><span>产品使用场所：客厅</span></p>
+                                    <p class="notFirst"><span>生产模式：中山OEM</span><span>所属事业部：家居事业部专用</span><span>项目编号：**</span></p>
+                                    <p class="notFirst"><span>产品生效日期：2016-03-15</span><span>创建日期：2016-03-15</span></p>
+                                    <p>产品描述：此产品性能极好，价格优良。</p>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                           <label class="label-title">技术参数</label>
+                        </div>
+
+                        <div class="card-body product_main">
+                            <div class="product_content">
+                                <p class="title">结构属性<a class="pull-right">编辑</a></p>
+                                <div class="content">
+                                    <p class="notFirst1"><span>防触电保护等级：高级</span><span>IP等级：一般</span><span>环境温度：37摄氏度</span><span>产品寿命：3年</span></p>
+                                    <p class="notFirst1"><span>安装方式：**</span><span>主体材质：PMMA+铁</span><span>灯座型号：**</span><span>开孔尺寸：**</span></p>
+                                    <p class="notFirst1"><span>创建日期：2015/4/1</span></p>      
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body product_main">
+                            <div class="product_content">
+                                <p class="title">电子属性<a class="pull-right">编辑</a></p>
+                                <div class="content">
+                                    <p class="notFirst1"><span>功率因素：**</span><span>输入电压范围：**</span><span>额定功率：90W</span><span>输入频率：50Hz</span></p>
+                                    <p class="notFirst1"><span>输入功率：**</span><span>Ta：**</span><span>Tc：**</span><span>符合标准：**</span></p>
+                                    <p class="notFirst1"><span>遥控器通讯模式：**</span><span>创建时间：2015/4/1</span></p>      
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body product_main">
+                            <div class="product_content">
+                                <p class="title">光热属性<a class="pull-right">编辑</a></p>
+                                <div class="content">
+                                    <p class="notFirst1"><span>色温：**</span><span>光通量：**</span><span>光通维持率：**</span><span>显色指数：**</span></p>
+                                    <p class="notFirst1"><span>中心光强：**</span><span>发光面面积：**</span><span>光效：**</span><span>炫光指数：**</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                           <label class="label-title">包装信息</label>
+                        </div>
+
+                        <div class="card-body product_main">
+                            <div class="product_content">
+                                <p class="title">包装信息<a class="pull-right">编辑</a></p>
+                                <div class="content">
+                                    <p class="notFirst1"><span>色温：**</span><span>光通量：**</span><span>光通维持率：**</span><span>显色指数：**</span></p>
+                                    <p class="notFirst1"><span>中心光强：**</span><span>发光面面积：**</span><span>光效：**</span><span>炫光指数：**</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+            <!--内容结束  -->
+
+
+
+
+        </section>
+        
+        <footer id="footer">
+            Copyright &copy; 沪ICP备15050103号-2
+            
+<!--        <ul class="f-menu">
+                <li><a href="">首页</a></li>
+                <li><a href="">测试2</a></li>
+                <li><a href="">小测试是否</a></li>
+                <li><a href="">斧头哥</a></li>
+                <li><a href="">多大的</a></li>
+            </ul> -->
+        </footer>
+
+        <!-- Page Loader -->
+        <div class="page-loader">
+            <div class="preloader pls-blue">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20" />
+                </svg>
+                <p>正在载入...</p>
+            </div>
+        </div>
+        
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1 class="c-white">Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="iew-container">
+                    <ul class="iew-download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>   
+        <![endif]-->
+        
+        <!-- Javascript Libraries -->
+
+        <script src="../../v2/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../../plug/layer/layer.js"></script>   
+        <script src="../../plug/validator-nice/jquery.validator.admin.js"></script> 
+        <script src="../../plug/laydate/laydate.js"></script>   
+        
+        <script src="../../v2/vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+        <script src="../../v2/vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="../../v2/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="../../v2/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> 
+        
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+        
+<!--         <script src="../../v2/js/flot-charts/curved-line-chart.js"></script>
+        <script src="../../v2/js/flot-charts/line-chart.js"></script>
+
+        <script src="../../v2/js/charts.js"></script>-->
+        <script src="../../v2/js/charts.js"></script>
+        <script src="../../v2/js/functions.js"></script>
+        <script src="../../v2/js/demo.js"></script> 
+    </body>
+    <script type="text/javascript">
+$(function(){
+    $("#main").css("min-height",$(window).height()-230+"px");//跳转默认的高度窗口
+
+    $(".introduceEiit").on("click",function(){
+        This=$(this);
+        if(This.text()=="编辑"){
+           $(this).text("确定");
+           $(".contentArticle").addClass("hide");
+           $(".contentText").removeClass("hide").val($(".contentArticle").text()); 
+        }else{
+           $(this).text("编辑");
+           $(".contentText").addClass("hide"); 
+           $(".contentArticle").removeClass("hide").text($(".contentText").val());;
+        } 
+    })
+})
+</script>
+  </html>

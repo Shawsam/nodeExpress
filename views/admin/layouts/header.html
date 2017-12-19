@@ -1,0 +1,66 @@
+<header id="header" class="clearfix">
+    <ul class="header-inner">
+        <li id="menu-trigger" data-trigger="#sidebar">
+            <div class="line-wrap">
+                <div class="line top"></div>
+                <div class="line center"></div>
+                <div class="line bottom"></div>
+            </div>
+        </li>
+        <li class="logo hidden-xs">
+            <img src="/public/admin/img/admin1.png" />
+            <a class="title" href="index.html">后台管理系统</a>
+        </li>
+    
+        <li class="pull-right">
+            <ul class="top-menu">
+                <li id="toggle-width">
+                    <div class="toggle-switch">
+                        <input id="tw-switch" type="checkbox" hidden="hidden">
+                        <label title="侧边栏" for="tw-switch" class="ts-helper"></label>
+                    </div>
+                </li>
+
+<!--                 <li class="dropdown">
+                    <a title="消息" data-toggle="dropdown" href="">
+                        <i class="tm-icon zmdi zmdi-notifications"></i>
+                        <i class="tmn-counts">2</i>
+                    </a>
+                </li> -->
+
+                <li class="dropdown" >
+                    <a href="login.html" data-toggle="dropdown" class="userCenter">
+                        <i style="font-size:29px; vertical-align:middle; margin-right:8px;" class="tm-icon zmdi zmdi-account"></i>{{userInfo.username}}
+                    </a>
+                </li>
+
+                <li class="dropdown" >
+                    <a title="退出登录" href="/admin/login" class="exit_system">
+                        <i style="vertical-align:middle; margin-right:8px;" class="tm-icon zmdi zmdi-power m-r-8"></i>退出
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a title="更多" data-toggle="dropdown" href=""><i class="tm-icon zmdi zmdi-more-vert"></i></a>
+                    <ul class="dropdown-menu dm-icon pull-right">
+                        <!-- <li class="skin-switch hidden-xs">
+                            <span class="ss-skin bgm-lightblue" data-skin="lightblue"></span>
+                            <span class="ss-skin bgm-bluegray" data-skin="bluegray"></span>
+                            <span class="ss-skin bgm-cyan" data-skin="cyan"></span>
+                            <span class="ss-skin bgm-teal" data-skin="teal"></span>
+                            <span class="ss-skin bgm-orange" data-skin="orange"></span>
+                            <span class="ss-skin bgm-blue" data-skin="blue"></span>
+                        </li>
+                        <li class="divider hidden-xs"></li> -->
+                        <li class="hidden-xs">
+                            <a data-action="fullscreen" href=""><i class="zmdi zmdi-fullscreen"></i>全屏</a>
+                        </li>
+                        <li>
+                            <a data-action="clear-localstorage" href=""><i class="zmdi zmdi-delete"></i>清理本地缓存</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</header>

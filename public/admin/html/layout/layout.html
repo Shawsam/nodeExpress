@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>layout</title>
+        <!-- Vendor CSS -->
+        <link href="../../v2/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+        <link href="../../v2/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="../../v2/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="../../v2/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
+         <link rel="stylesheet" href="../../plug/support.css" media="screen">
+        <!-- CSS -->
+        <link href="../../v2/css/app.min.1.css" rel="stylesheet">
+        <link href="../../v2/css/app.min.2.css" rel="stylesheet">
+        <script src="../../v2/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../../plug/support.js"></script>
+    </head>
+    <body>
+        <header id="header" class="clearfix">
+            <ul class="header-inner">
+                <li id="menu-trigger" data-trigger="#sidebar">
+                    <div class="line-wrap">
+                        <div class="line top"></div>
+                        <div class="line center"></div>
+                        <div class="line bottom"></div>
+                    </div>
+                </li>
+                <li class="logo hidden-xs">
+                    <img src="../../img/logo.png" />
+                    <a class="title" href="index.html">欧普照明家居产品信息管理系统（MPS）</a>
+                </li>
+            
+                <li class="pull-right">
+                    <ul class="top-menu">
+                        <li id="toggle-width">
+                            <div class="toggle-switch">
+                                <input id="tw-switch" type="checkbox" hidden="hidden">
+                                <label title="侧边栏" for="tw-switch" class="ts-helper"></label>
+                            </div>
+                        </li>
+
+                        <li class="dropdown">
+                            <a title="消息" data-toggle="dropdown" href="">
+                                <i class="tm-icon zmdi zmdi-notifications"></i>
+                                <i class="tmn-counts">9</i>
+                            </a>
+                        </li>
+
+                        <li class="dropdown" >
+                            <a href="login.html" data-toggle="dropdown" class="userCenter">
+                                <i style="font-size:29px; vertical-align:middle; margin-right:8px;" class="tm-icon zmdi zmdi-account"></i>韩美美
+                            </a>
+                        </li>
+
+                        <li class="dropdown" >
+                            <a title="退出登录" href="login.html" class="exit_system">
+                                <i style="vertical-align:middle; margin-right:8px;" class="tm-icon zmdi zmdi-power m-r-8"></i>退出
+                            </a>
+                        </li>
+                        <li class="dropdown hide">
+                            <a title="更多" data-toggle="dropdown" href=""><i class="tm-icon zmdi zmdi-more-vert"></i></a>
+                            <ul class="dropdown-menu dm-icon pull-right">
+                                <!-- <li class="skin-switch hidden-xs">
+                                    <span class="ss-skin bgm-lightblue" data-skin="lightblue"></span>
+                                    <span class="ss-skin bgm-bluegray" data-skin="bluegray"></span>
+                                    <span class="ss-skin bgm-cyan" data-skin="cyan"></span>
+                                    <span class="ss-skin bgm-teal" data-skin="teal"></span>
+                                    <span class="ss-skin bgm-orange" data-skin="orange"></span>
+                                    <span class="ss-skin bgm-blue" data-skin="blue"></span>
+                                </li>
+                                <li class="divider hidden-xs"></li> -->
+                                <li class="hidden-xs">
+                                    <a data-action="fullscreen" href=""><i class="zmdi zmdi-fullscreen"></i>全屏</a>
+                                </li>
+                                <li>
+                                    <a data-action="clear-localstorage" href=""><i class="zmdi zmdi-delete"></i>清理本地缓存</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </header>
+        
+        <section id="main" data-layout="layout-1">
+          	<!-- 左侧菜单开始 -->
+          	  <aside id="sidebar" class="sidebar c-overflow">
+                <ul class="main-menu">
+                    <li class="active">
+                        <a href="index.html"><i class="zmdi zmdi-home"></i> 首页</a>
+                    </li>
+      				<li class="sub-menu" id="">
+      					<a href="javascript:;"><i class="zmdi zmdi-laptop-mac"></i>系统管理</a>
+                   	    <ul class="">      
+                              <li ><a id="" href="javascript:;">用户管理</a></li>
+                              <li ><a id="" href="javascript:;">日志管理</a></li>
+                              <li ><a id="" href="javascript:;">菜单管理</a></li>
+                              <li ><a id="" href="javascript:;">邮件设置</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-usb"></i>主数据管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="javascript:;">SKU品类</a></li>
+                              <li ><a>产品线设置</a></li>
+                              <li ><a id="" href="javascript:;">物料级别管理</a></li>
+                              <li ><a id="" href="javascript:;">物料文件管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-storage"></i>产品管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="javascript:;">产品列表</a></li>
+                              <li ><a id="" href="javascript:;">未发布列表</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-view-dashboard"></i>库存管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="javascript:;">库存管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-assignment"></i>推广系列管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="javascript:;">系列列表</a></li>
+                              <li ><a id="" href="javascript:;">创建系列</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-time"></i>审批管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="javascript:;">待审系列</a></li>
+                              <li ><a id="" href="javascript:;">已审系列</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-email"></i>消息与提醒</a>
+                        <ul class="">      
+                              <li ><a id="" href="javascript:;">消息列表</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+            <!--菜单结束  -->
+            <!--内容结束  -->
+<!--       <section id="content">
+                <div class="container">
+                   <div class="block-header">
+                     <h2>首页</h2>
+                   </div>
+                </div>
+            </section> -->
+            <!--内容结束  -->
+
+        </section>
+        
+        <footer id="footer">
+            Copyright &copy; 沪ICP备15050103号-2
+            
+<!--        <ul class="f-menu">
+                <li><a href="">首页</a></li>
+                <li><a href="">测试2</a></li>
+                <li><a href="">小测试是否</a></li>
+                <li><a href="">斧头哥</a></li>
+                <li><a href="">多大的</a></li>
+            </ul> -->
+        </footer>
+
+        <!-- Page Loader -->
+        <div class="page-loader">
+            <div class="preloader pls-blue">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20" />
+                </svg>
+                <p>正在载入...</p>
+            </div>
+        </div>
+        
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1 class="c-white">Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="iew-container">
+                    <ul class="iew-download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>   
+        <![endif]-->
+        
+        <!-- Javascript Libraries -->
+
+        <script src="../../v2/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	    <script src="../../plug/layer/layer.js"></script>	
+	  	<script src="../../plug/validator-nice/jquery.validator.admin.js"></script>	
+		<script src="../../plug/laydate/laydate.js"></script>	
+        
+        <script src="../../v2/vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+        <script src="../../v2/vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="../../v2/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="../../v2/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> 
+        
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+        
+<!--         <script src="../../v2/js/flot-charts/curved-line-chart.js"></script>
+        <script src="../../v2/js/flot-charts/line-chart.js"></script>
+
+        <script src="../../v2/js/charts.js"></script>-->
+        <script src="../../v2/js/charts.js"></script>
+        <script src="../../v2/js/functions.js"></script>
+        <script src="../../v2/js/demo.js"></script> 
+    </body>
+    <script type="text/javascript">
+$(function(){
+	$("#main").css("min-height",$(window).height()-230+"px");//跳转默认的高度窗口
+})
+</script>
+  </html>

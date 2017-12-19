@@ -1,0 +1,35 @@
+{% extends  "./layouts/layout.html" %}
+{% block css %}
+<link rel="stylesheet" href="/public/web/style/login.css" />
+{% endblock %}
+{% block js %}
+<script src="/public/web/script/login.js"></script>
+{% endblock %}
+
+
+{% block content %}
+    <div class="framepage login">
+        <div class="wrapper">
+            {% if userInfo._id %}
+            <form class="form infoPanel">
+                <div class="fm tip"><span class="name">{{userInfo.username}}</span>您好,欢迎登录！</div>
+                <div class="fm tip"><a class="linkTo logoutBtn">退出登录</a></div>
+            </form>
+            {% else %}
+            <form class="form loginFm">
+                <div class="fm fm-input"><input name="username" class="user" placeholder="请输入用户名" /></div>
+                <div class="fm fm-input"><input name="password" class="pswd" placeholder="请输入密码" /></div>
+                <div class="fm tip">没有账号？{{userInfo._id}}<a class="linkTo toRegister">立即注册</a></div>
+                <div class="fm"><a class="btn loginBtn">登录</a></div>
+            </form>
+            <form class="form registerFm hide">
+                <div class="fm fm-input"><input name="username" class="user" placeholder="请输入用户名" /></div>
+                <div class="fm fm-input"><input name="password" class="pswd" placeholder="请输入密码" /></div>
+                <div class="fm fm-input"><input class="repswd" placeholder="请再次输入密码" /></div>
+                <div class="fm tip">已有账号？<a class="linkTo toLogin">马上登录</a></div>
+                <div class="fm"><a class="btn registerBtn">注册</a></div>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

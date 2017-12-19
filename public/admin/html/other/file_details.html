@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>创建系列</title>
+        <!-- Vendor CSS -->
+        <link href="../../v2/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+        <link href="../../v2/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="../../v2/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="../../v2/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">    
+        <link rel="stylesheet" href="../../plug/select2/css/select2.min.css">    
+        <link rel="stylesheet" href="../../plug/support.css" media="screen">
+        <!-- CSS -->
+        <link href="../../v2/css/app.min.1.css" rel="stylesheet">
+        <link href="../../v2/css/app.min.2.css" rel="stylesheet">
+        <script src="../../v2/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../../plug/support.js"></script>
+        <script src="../../plug/select2/js/select2.min.js"></script>
+        <style>
+            #main .card .card-header{ padding:15px 25px 15px 15px; }
+            .form-horizontal{ margin-top:15px; }
+            #main .card .card-header .btn-gp{ margin-top:5px; }
+            #main .card .card-header .btn-gp .btn{ margin-right:10px; }
+
+            #main .card .card-header i{ margin-right:8px; color:#FFB50B; font-size:18px;}
+            #main .card .card-header h2{ font-weight:bold; font-size:16px;}
+            #main .card .card-body table th{ color:#000; background:#EEF8FA; }
+            #main .card .card-body table th,td{ text-align:center;  }
+            #main .card-body ul.list{ list-style:none; padding:6px 0 12px 0; }
+            #main .card-body ul.list li{ padding:7px 25px; }
+            #main .card-body ul.list li a{ color:#666; }
+            #main .card-body ul.list li a:hover{ color:#000; border-bottom:1px solid #333; }
+            #main .card-body ul.list li .desp{ color:#999;  }
+
+            .product_content{ padding:25px;  }
+            .product_content .content p span{ margin-right:30px; }
+
+            #main .card-body.product_content .btn-gp{ margin-top:20px; text-align:center; }
+            #main .card-body.product_content .btn-gp .btn{ margin-right:10px; }
+            .tab_panel{ margin-top:45px; }
+            .tab_panel > .title{ font-size:0; display:inline-block; height:36px; margin-bottom:10px; }
+            .tab_panel > .title a{ color:#fff; background:#C9C9C9; padding:8px 45px; font-size:15px; }
+            .tab_panel > .title a.active{ background:#2196F3; }
+            .tab_panel .tabCon{ padding:0 50px 0 15px; }
+            .tab_panel .tabCon select{ padding-left:15px;  }
+
+            .tab_panel .tabCon > div{ background:#F0F3F6; }
+            .tab_panel .tabCon .leftCon{ padding:15px 25px; }
+            .tab_panel .tabCon .leftCon ul{ border:1px solid #e8e8e8; background:#fff; padding:6px 15px;}
+            .tab_panel .tabCon .leftCon ul li{ padding:6px 0; }
+            .tab_panel .tabCon .rightCon .title{ border-bottom:1px solid #e8e8e8; text-align:center; margin-bottom:0; padding:15px 0; font-size:15px;}
+            .tab_panel .tabCon .rightCon div.ulCon{ padding:15px 15px 15px 40px }
+            .tab_panel .tabCon .rightCon ul li{ padding:6px 0; }
+            
+            .tab_panel .tabCon .leftCon .unchoosed{ height:150px; overflow-y:auto; }
+            .tab_panel .tabCon .rightCon .choosed{ height:150px; overflow-y:auto; }
+
+            .skuFilter{ padding-left:110px; position:relative; padding-right:30px;}
+            .skuFilter label{ position:absolute; left:25px; top:8px;}
+
+
+
+            .agreement{ margin-top:15px; }
+            
+            .tab_panel .filesCon .imgAdd-btn{ cursor:pointer; width:100px; height:100px; margin-right:8px; margin-bottom:10px; }
+            .tab_panel .filesCon img{  width:100px; height:100px; margin-right:8px; margin-bottom:10px; }
+            .tab_panel .filesCon .tips{ vertical-align:bottom; margin-bottom:10px; color:#999;}
+            .imgAdd-btn:active{ opacity: 0.8; }
+            .tab_panel .filesCon > li{ margin-bottom:15px; }
+
+            .groupable .checkbox .input-helper:before { top: 10px; }
+            .groupable .checkbox .input-helper:after { top: 10px; }
+
+            ul li .flagNew{ margin-top:-2px; color:#fff; background:#ff6263; display:inline-block; border-radius:8px; margin-left:15px; padding:0px 8px; vertical-align: middle;}
+            
+            .filesSection{ position:relative; height:600px; }
+            .filesSection .columList{ position:absolute; left:0; top:0;}
+            .filesSection .columList li{ padding:5px 10px; width:160px; margin-bottom:5px; background:#f3f3f3; cursor:pointer; }
+            .filesSection .columList li.active{ background:#2196F3; color:#fff; }
+            .filesSection .columList li .num{ float:right; }
+            .filesSection .columContent .handleBar{ border:1px solid #e8e8e8; padding:8px 15px 5px 15px; }
+            .filesSection .columContent .handleBar .uploadFile{ float:right;padding:3px 12px; }
+            .filesSection .columContent .imgCon{ border:1px solid #e8e8e8; margin-top:15px; height:500px; font-size:0; overflow:hidden; zoom:1; padding:10px; overflow-y:scroll;}
+            .filesSection .columContent .imgCon li{ float:left; width:16.66%; font-size:14px; padding:10px; }
+            .filesSection .columContent .imgCon li img{ width:100%; margin-bottom:8px; }
+            .filesSection .columContent .imgCon li p{ margin:0; }
+            .filesSection .columContent .imgCon li p a.del{ margin-left:25px; }
+
+        </style>
+    </head>
+    <body>
+        <header id="header" class="clearfix">
+            <ul class="header-inner">
+                <li id="menu-trigger" data-trigger="#sidebar">
+                    <div class="line-wrap">
+                        <div class="line top"></div>
+                        <div class="line center"></div>
+                        <div class="line bottom"></div>
+                    </div>
+                </li>
+                <li class="logo hidden-xs">
+                    <img src="../../img/logo.png" />
+                    <a class="title" href="index.html">欧普照明家居产品信息管理系统（MPS）</a>
+                </li>
+            
+                <li class="pull-right">
+                    <ul class="top-menu">
+                        <li id="toggle-width">
+                            <div class="toggle-switch">
+                                <input id="tw-switch" type="checkbox" hidden="hidden">
+                                <label title="侧边栏" for="tw-switch" class="ts-helper"></label>
+                            </div>
+                        </li>
+
+                        <li class="dropdown">
+                            <a title="消息" data-toggle="dropdown" href="">
+                                <i class="tm-icon zmdi zmdi-notifications"></i>
+                                <i class="tmn-counts">9</i>
+                            </a>
+                        </li>
+
+                        <li class="dropdown" >
+                            <a href="login.html" data-toggle="dropdown" class="userCenter">
+                                <i style="font-size:29px; vertical-align:middle; margin-right:8px;" class="tm-icon zmdi zmdi-account"></i>韩美美
+                            </a>
+                        </li>
+
+                        <li class="dropdown" >
+                            <a title="退出登录" href="login.html" class="exit_system">
+                                <i style="vertical-align:middle; margin-right:8px;" class="tm-icon zmdi zmdi-power m-r-8"></i>退出
+                            </a>
+                        </li>
+                        <li class="dropdown hide">
+                            <a title="更多" data-toggle="dropdown" href=""><i class="tm-icon zmdi zmdi-more-vert"></i></a>
+                            <ul class="dropdown-menu dm-icon pull-right">
+                                <!-- <li class="skin-switch hidden-xs">
+                                    <span class="ss-skin bgm-lightblue" data-skin="lightblue"></span>
+                                    <span class="ss-skin bgm-bluegray" data-skin="bluegray"></span>
+                                    <span class="ss-skin bgm-cyan" data-skin="cyan"></span>
+                                    <span class="ss-skin bgm-teal" data-skin="teal"></span>
+                                    <span class="ss-skin bgm-orange" data-skin="orange"></span>
+                                    <span class="ss-skin bgm-blue" data-skin="blue"></span>
+                                </li>
+                                <li class="divider hidden-xs"></li> -->
+                                <li class="hidden-xs">
+                                    <a data-action="fullscreen" href=""><i class="zmdi zmdi-fullscreen"></i>全屏</a>
+                                </li>
+                                <li>
+                                    <a data-action="clear-localstorage" href=""><i class="zmdi zmdi-delete"></i>清理本地缓存</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </header>
+        
+        <section id="main" data-layout="layout-1">
+            <!-- 左侧菜单开始 -->
+              <aside id="sidebar" class="sidebar c-overflow">
+                <div class="profile-menu">
+                    <ul class="main-menu">
+                        <li>
+                            <a href="/system/member"><i class="zmdi zmdi-account"></i>个人资料</a>
+                        </li>
+                        <li>
+                            <a href="/system/member/repass"><i class="zmdi zmdi-input-antenna"></i> 修改登陆密码</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;"><i class="zmdi zmdi-settings"></i>资料设置</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="exit_system"><i class="zmdi zmdi-time-restore"></i>退出登陆</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <ul class="main-menu">
+                    <li>
+                        <a href="../index.html"><i class="zmdi zmdi-home"></i> 首页</a>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-laptop-mac"></i>系统管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="../system/user_list.html">用户管理</a></li>
+                              <li ><a id="" href="../system/login_log_list.html">日志管理</a></li>
+                              <li ><a id="" href="../system/menu_list.html">菜单管理</a></li>
+                              <li ><a id="" href="../system/email_template_list.html">邮件设置</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-usb"></i>主数据管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="javascript:;">SKU品类</a></li>
+                              <li ><a>产品线设置</a></li>
+                              <li ><a id="" href="../data/data_check_regulate.html">物料级别管理</a></li>
+                              <li ><a id="" href="../data/data_files_list.html">物料文件管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-storage"></i>产品管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="../product/product_list.html">产品列表</a></li>
+                              <li ><a id="" href="../product/unpulish_product_list.html">未发布列表</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-view-dashboard"></i>库存管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="../store/store_list.html">库存管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu active toggled" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-assignment"></i>推广系列管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="popularize_list.html">系列列表</a></li>
+                              <li ><a id="" class="active" href="popularize_add.html">创建系列</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-time"></i>审批管理</a>
+                        <ul class="">      
+                              <li ><a id="" href="../check/check_list.html">待审系列</a></li>
+                              <li ><a id="" href="../check/already_check_list.html">已审系列</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-email"></i>消息与提醒</a>
+                        <ul class="">      
+                              <li ><a id="" href="javascript:;">消息列表</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+            <!--菜单结束  -->
+            
+
+            <!--内容结束  -->
+            <section id="content">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-header">
+                           <ul class="breadcrumb">位置：
+                              <li>推广系列管理</li>
+                              <li>创建系列</li>
+                          </ul>
+                        </div>
+                    </div>
+                   
+
+                    <div class="card">
+                        <div class="card-body product_content">
+                            <div class="content">
+                                <div class="form-horizontal" >
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">物料文件名称：</label>
+                                        <div class="col-sm-4">
+                                            <div class="fg-line">
+                                               <input class="form-control input-sm" placeholder="请输入">
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">分类：</label>
+                                        <div class="col-sm-4">
+                                            <div class="fg-line select">
+                                              <select class="form-control">
+                                                    <option>请选择</option>   
+                                             </select>
+                                            </div>
+                                        </div>
+                                    </div>   
+                                    <div class="form-group groupable">
+                                        <label class="col-sm-2 control-label">对应渠道：</label>
+                                        <div class="col-sm-4">
+                                            <div class="fg-line">
+                                              <label class="checkbox checkbox-inline m-r-20">
+                                                  <input type="checkbox" value="option1">
+                                                  <i class="input-helper"></i> 零售
+                                              </label>
+                                              <label class="checkbox checkbox-inline m-r-20">
+                                                  <input type="checkbox" value="option1">
+                                                  <i class="input-helper"></i> 流通
+                                              </label>
+                                              <label class="checkbox checkbox-inline m-r-20">
+                                                  <input type="checkbox" value="option1">
+                                                  <i class="input-helper"></i> KA
+                                              </label>
+                                            </div>
+                                        </div>
+                                    </div>                         
+    
+
+                                    <div class="tab_panel">
+                                        <div class="tab_content">
+                                                <div class="files tab_files tab_item">
+                                                    <div class="filesSection">
+                                                        <div class="columContent">
+                                                            <div class="handleBar">
+                                                                <label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                  <input type="checkbox" value="option1">
+                                                                  <i class="input-helper"></i>全选
+                                                                </label>
+                                                                <a class="downloadAll">批量下载</a>
+                                                                <a class="uploadFile btn btn-primary waves-effect">上传文件</a>
+                                                            </div>
+                                                            <div class="imgCon">
+                                                                <ul>
+                                                                    <li>
+                                                                        <img src="../../img/product.png" />
+                                                                        <p><label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                        <input type="checkbox" value="option1">
+                                                                        <i class="input-helper"></i>文件名称1
+                                                                        </label></p>
+                                                                        <p><a class="download">下载</a><a class="del">删除</a></p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="../../img/product.png" />
+                                                                        <p><label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                        <input type="checkbox" value="option1">
+                                                                        <i class="input-helper"></i>文件名称1
+                                                                        </label></p>
+                                                                        <p><a class="download">下载</a><a class="del">删除</a></p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="../../img/product.png" />
+                                                                        <p><label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                        <input type="checkbox" value="option1">
+                                                                        <i class="input-helper"></i>文件名称1
+                                                                        </label></p>
+                                                                        <p><a class="download">下载</a><a class="del">删除</a></p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="../../img/product.png" />
+                                                                        <p><label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                        <input type="checkbox" value="option1">
+                                                                        <i class="input-helper"></i>文件名称1
+                                                                        </label></p>
+                                                                        <p><a class="download">下载</a><a class="del">删除</a></p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="../../img/product.png" />
+                                                                        <p><label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                        <input type="checkbox" value="option1">
+                                                                        <i class="input-helper"></i>文件名称1
+                                                                        </label></p>
+                                                                        <p><a class="download">下载</a><a class="del">删除</a></p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="../../img/product.png" />
+                                                                        <p><label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                        <input type="checkbox" value="option1">
+                                                                        <i class="input-helper"></i>文件名称1
+                                                                        </label></p>
+                                                                        <p><a class="download">下载</a><a class="del">删除</a></p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="../../img/product.png" />
+                                                                        <p><label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                        <input type="checkbox" value="option1">
+                                                                        <i class="input-helper"></i>文件名称1
+                                                                        </label></p>
+                                                                        <p><a class="download">下载</a><a class="del">删除</a></p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="../../img/product.png" />
+                                                                        <p><label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                        <input type="checkbox" value="option1">
+                                                                        <i class="input-helper"></i>文件名称1
+                                                                        </label></p>
+                                                                        <p><a class="download">下载</a><a class="del">删除</a></p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="../../img/product.png" />
+                                                                        <p><label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                        <input type="checkbox" value="option1">
+                                                                        <i class="input-helper"></i>文件名称1
+                                                                        </label></p>
+                                                                        <p><a class="download">下载</a><a class="del">删除</a></p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="../../img/product.png" />
+                                                                        <p><label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                        <input type="checkbox" value="option1">
+                                                                        <i class="input-helper"></i>文件名称1
+                                                                        </label></p>
+                                                                        <p><a class="download">下载</a><a class="del">删除</a></p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="../../img/product.png" />
+                                                                        <p><label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                        <input type="checkbox" value="option1">
+                                                                        <i class="input-helper"></i>文件名称1
+                                                                        </label></p>
+                                                                        <p><a class="download">下载</a><a class="del">删除</a></p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="../../img/product.png" />
+                                                                        <p><label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                        <input type="checkbox" value="option1">
+                                                                        <i class="input-helper"></i>文件名称1
+                                                                        </label></p>
+                                                                        <p><a class="download">下载</a><a class="del">删除</a></p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="../../img/product.png" />
+                                                                        <p><label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                        <input type="checkbox" value="option1">
+                                                                        <i class="input-helper"></i>文件名称1
+                                                                        </label></p>
+                                                                        <p><a class="download">下载</a><a class="del">删除</a></p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="../../img/product.png" />
+                                                                        <p><label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                        <input type="checkbox" value="option1">
+                                                                        <i class="input-helper"></i>文件名称1
+                                                                        </label></p>
+                                                                        <p><a class="download">下载</a><a class="del">删除</a></p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img src="../../img/product.png" />
+                                                                        <p><label class="checkbox checkbox-inline m-r-20" style="padding-top:0">
+                                                                        <input type="checkbox" value="option1">
+                                                                        <i class="input-helper"></i>文件名称1
+                                                                        </label></p>
+                                                                        <p><a class="download">下载</a><a class="del">删除</a></p>
+                                                                    </li>
+
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="btn-gp" style="margin-top:100px;">
+                                                        <button class="btn btn-primary waves-effect btn-save">保存</button>
+                                                        <button class="btn btn-primary waves-effect">取消</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!--内容结束  -->
+
+
+
+
+        </section>
+        
+        <footer id="footer">
+            Copyright &copy; 沪ICP备15050103号-2
+            
+<!--        <ul class="f-menu">
+                <li><a href="">首页</a></li>
+                <li><a href="">测试2</a></li>
+                <li><a href="">小测试是否</a></li>
+                <li><a href="">斧头哥</a></li>
+                <li><a href="">多大的</a></li>
+            </ul> -->
+        </footer>
+
+        <!-- Page Loader -->
+        <div class="page-loader">
+            <div class="preloader pls-blue">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20" />
+                </svg>
+                <p>正在载入...</p>
+            </div>
+        </div>
+        
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1 class="c-white">Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="iew-container">
+                    <ul class="iew-download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>   
+        <![endif]-->
+        
+        <!-- Javascript Libraries -->
+
+        <script src="../../v2/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../../plug/layer/layer.js"></script>   
+        <script src="../../plug/validator-nice/jquery.validator.admin.js"></script> 
+        <script src="../../plug/laydate/laydate.js"></script>   
+        
+        <script src="../../v2/vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+        <script src="../../v2/vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="../../v2/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="../../v2/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> 
+        
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+        
+<!--         <script src="../../v2/js/flot-charts/curved-line-chart.js"></script>
+        <script src="../../v2/js/flot-charts/line-chart.js"></script>
+
+        <script src="../../v2/js/charts.js"></script>-->
+        <script src="../../v2/js/charts.js"></script>
+        <script src="../../v2/js/functions.js"></script>
+        <script src="../../v2/js/demo.js"></script> 
+    </body>
+    <script type="text/javascript">
+$(function(){
+    $("#main").css("min-height",$(window).height()-230+"px");//跳转默认的高度窗口
+
+    $(".skuSelect").select2({
+        placeholder:'请选择'
+    });
+
+    $(".skuFilter").select2({
+        placeholder:'请选择产品小类',
+        minimumResultsForSearch: Infinity
+    });
+
+    
+    $(".skuSelect").on('select2:open', function (evt) {
+        $(".select2-search__field").attr("placeholder","输入SKU搜索");
+    });
+
+    $(".agreement .agree-btn").on("click",function(){
+        if($(this).prop("checked")){
+            $(this).parents(".tab_item").find(".btn-save").text("保存并提交审核");
+        }else{
+            $(this).parents(".tab_item").find(".btn-save").text("保存");
+        }
+    })
+
+    $(".unchoosed li").on("click",function(){
+         $(".choosed").append('<li>'+$(this).text().replace(/new/g,'')+'</li>');
+    })
+
+    $(".choosed").on("click","li",function(){
+         $(this).remove();
+    })
+
+    //tab 切换
+    $(".tab_menu a").on("click",function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        if($(this).data("id")==1){
+            $(".tab_skus").removeClass("hide"); 
+            $(".tab_files").addClass("hide"); 
+        }else{
+            $(".tab_skus").addClass("hide");
+            $(".tab_files").removeClass("hide"); 
+        }
+    })
+   
+
+    //新增js  处理选择物理类型  图片全选
+    $(".filesSection .columList li").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+    })
+
+    $(".handleBar input[type=checkbox]").on("click",function(){
+        if($(this).prop("checked")){
+            $(".imgCon li").each(function(){
+                $(this).find("input[type=checkbox]").prop("checked","checked")
+            })
+        }else{
+            $(".imgCon li").each(function(){
+                $(this).find("input[type=checkbox]").prop("checked","")
+            })
+        }
+    })
+
+})
+</script>
+  </html>

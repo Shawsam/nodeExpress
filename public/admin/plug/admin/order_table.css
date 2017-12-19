@@ -1,0 +1,292 @@
+/**
+ * 订单表格
+ **/
+.form-horizontal .controls{
+	margin-left: 5px
+}
+.form-horizontal .control-label{
+	width: 70px
+}
+.ui-table .orderby-arrow {
+	font-family: 'sumsim'
+}
+
+.ui-table .orderby-arrow.desc:before {
+	position: absolute;
+	content: '\2193'
+}
+
+.ui-table .orderby-arrow.asc:before {
+	position: absolute;
+	content: '\2191'
+}
+
+.ui-table .input-mini {
+	width: 48px;
+	font-size: 12px;
+	height: 16px;
+	vertical-align: baseline;
+	margin-bottom: 0
+}
+
+.ui-table.ui-table-thead-weight th {
+	color: #000;
+	font-weight: 700
+}
+
+.ui-table.ui-table-list {
+	border: none
+}
+
+.ui-table.ui-table-list tbody tr:nth-child(even) {
+	background: none
+}
+
+.ui-table.ui-table-list tbody tr:hover {
+	background-color: #f8f8f8
+}
+
+.ui-table.ui-table-list tbody tr:last-child td {
+	border-width: 2px
+}
+
+.ui-table.ui-table-simple tbody tr:nth-child(even) {
+	background: none
+}
+
+.ui-table.ui-table-simple tbody tr:hover {
+	background: none
+}
+
+.ui-table-order {
+	width: 100%;
+	font-size: 12px;
+	text-align: left;
+	margin-bottom: 0
+}
+
+.ui-table-order tr {
+	border: 1px solid #f2f2f2
+}
+
+.ui-table-order th {
+	background: #f8f8f8
+}
+
+.ui-table-order th,.ui-table-order td {
+	padding: 10px;
+	vertical-align: top;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box
+}
+
+.ui-table-order th.text-right,.ui-table-order td.text-right {
+	text-align: right;
+	padding-left: 0
+}
+
+.ui-table-order th.text-center,.ui-table-order td.text-center {
+	text-align: center
+}
+
+.ui-table-order p {
+	margin: 0 0 10px
+}
+
+.ui-table-order .orderby-arrow {
+	font-family: 'sumsim'
+}
+
+.ui-table-order .orderby-arrow.desc:before {
+	position: absolute;
+	content: '\2193'
+}
+
+.ui-table-order .orderby-arrow.asc:before {
+	position: absolute;
+	content: '\2191'
+}
+
+.ui-table-order .separation-row {
+	border: none;
+	height: 10px
+}
+
+.ui-table-order .separation-row td {
+	padding: 0
+}
+
+.ui-table-order .header-row {
+	background: #fafafa;
+	height: 30px
+}
+
+.ui-table-order .header-row td {
+	padding: 5px 10px
+}
+
+.ui-table-order .header-row .stared {
+	color: #ff6600 !important
+}
+
+.ui-table-order .content-row .image-cell {
+	width: 60px;
+	height: 60px;
+	text-align: center;
+	padding-right: 0
+}
+
+.ui-table-order .content-row .image-cell img {
+	width: 60px;
+	height: 60px;
+	max-width: 60px;
+	max-height: 60px
+}
+
+.ui-table-order .content-row .aftermarket-cell,.ui-table-order .content-row .customer-cell,.ui-table-order .content-row .time-cell,.ui-table-order .content-row .state-cell,.ui-table-order .content-row .pay-price-cell
+	{
+	border-left: 1px solid #f2f2f2
+}
+
+.ui-table-order .remark-row {
+	height: 25px;
+	line-height: 25px;
+	background: #fffaeb;
+	color: #f90
+}
+
+.ui-table-order .remark-row.buyer-msg {
+	background: #FDEEEE;
+	color: #ED5050
+}
+
+.ui-table-order .remark-row td {
+	padding: 0 10px;
+	word-break: break-all
+}
+
+.ui-table-order .title-cell .goods-title {
+	max-height: 40px;
+	overflow: hidden;
+	line-height: 20px
+}
+
+.ui-table-order .title-cell .goods-sku {
+	color: #666
+}
+
+.ui-table-order .price-cell {
+	width: 130px
+}
+
+.ui-table-order .aftermarket-cell {
+	width: 100px
+}
+
+.ui-table-order .customer-cell {
+	width: 85px
+}
+
+.ui-table-order .time-cell {
+	width: 80px
+}
+
+.ui-table-order .state-cell {
+	width: 100px
+}
+
+.ui-table-order .pay-price-cell {
+	width: 120px
+}
+
+.ui-table-order .price-cell,.ui-table-order .number-cell {
+	text-align: right
+}
+
+.ui-table-order .time-cell {
+	padding: 10px 0px
+}
+
+.ui-table-order .aftermarket-cell,.ui-table-order .customer-cell,.ui-table-order .time-cell,.ui-table-order .state-cell,.ui-table-order .pay-price-cell
+	{
+	text-align: center
+}
+
+.ui-message,.ui-message-warning {
+	padding: 7px 15px;
+	margin-bottom: 15px;
+	color: #333;
+	border: 1px solid #e5e5e5;
+	line-height: 24px
+}
+
+.ui-message-warning {
+	color: #333;
+	background: #ffc;
+	border-color: #fc6
+}
+
+.ui-message-alert {
+	color: #666;
+	padding: 8px 35px 8px 14px;
+	margin-bottom: 20px;
+	background-color: #fcf8e3;
+	border: 1px solid #fbeed5;
+	border-radius: 4px
+}
+
+.ui-message-help {
+	line-height: 30px;
+	font-size: 12px;
+	padding-left: 10px
+}
+
+.ui-message-help .ui-help-icon {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	line-height: 18px;
+	border-radius: 8px;
+	font-size: 12px;
+	color: #fff;
+	background: #3c3;
+	text-align: center
+}
+
+.ui-message-help .ui-help-icon:after {
+	content: "?"
+}
+
+.ui-title {
+	padding: 11px 14px;
+	background: #F8F8F8
+}
+
+.ui-title h1,.ui-title h2,.ui-title h3,.ui-title h4,.ui-title h5,.ui-title h6
+	{
+	display: inline-block;
+	padding: 0 6px;
+	border-left: 3px solid #FF6600;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 16px
+}
+
+.ui-title a {
+	line-height: 16px
+}
+
+.ui-money,.ui-money-income,.ui-money-outlay {
+	font-weight: bold;
+	color: #333
+}
+
+.ui-money-income {
+	color: #55BD47
+}
+
+.ui-money-outlay {
+	color: #f00
+}

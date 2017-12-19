@@ -1,0 +1,126 @@
+{% extends  "../layouts/layout.html" %}
+{% block css %}
+<style>
+    #main .card .card-header{ padding:15px 25px 15px 15px; }
+    .form-horizontal{ margin-top:15px; }
+    #main .card .card-header .btn-gp{ margin-top:5px; }
+    #main .card .card-header .btn-gp .btn{ margin-right:10px; }
+
+    #main .card .card-header i{ margin-right:8px; color:#FFB50B; font-size:18px;}
+    #main .card .card-header h2{ font-weight:bold; font-size:16px;}
+    #main .card .card-body table th{ color:#000; background:#EEF8FA; }
+    #main .card .card-body table th,td{ text-align:center;  }
+    #main .card-body ul.list{ list-style:none; padding:6px 0 12px 0; }
+    #main .card-body ul.list li{ padding:7px 25px; }
+    #main .card-body ul.list li a{ color:#666; }
+    #main .card-body ul.list li a:hover{ color:#000; border-bottom:1px solid #333; }
+    #main .card-body ul.list li .desp{ color:#999;  }
+    #main .btn-create{ padding:5px 25px; }
+    .checkbox .input-helper:before { top: 13px; }
+    .checkbox .input-helper:after { top: 13px; }
+</style>
+{% endblock %}
+{% block js %}
+<script>
+    var elm,val;
+    function submitForm(){
+       elm = $("input[name='username']");
+       val = elm.val();
+       if(val==''){
+           layer.msg('请输入用户名');return;
+       }
+
+       elm = $("input[name='password']");
+       val = elm.val();
+       if(val==''){
+           layer.msg('请输入初始密码');return;
+       }
+
+       elm = $("select[name='adminCode']");
+       val = elm.val();
+       if(val==''){
+           layer.msg('请选择权限');return;
+       }
+
+       elm = $("input[name='age']");
+       val = elm.val();
+       if(val==''){
+           layer.msg('请输入年龄');return;
+       }
+       
+       param = $("form").serialize();
+       url = "/api/admin/user/userAdd";
+       Ajax(url,param,function(ret){
+          if(ret){
+             layer.msg(ret.msg,function(){
+                 location.href="/admin/user/user"
+             });
+          }else{
+             layer.msg(ret.msg);
+          }
+       })
+    }
+</script>
+{% endblock %}
+
+
+{% block content %}
+<!--内容开始  -->
+<section id="content">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+               <ul class="breadcrumb">位置：
+                  <li>用户管理</li>
+                  <li>用户添加</li>
+              </ul>
+            </div>
+        </div>
+        <div class="card cardContent">
+              <div class="form-horizontal" >
+                <form method="post">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">用户名：</label>
+                    <div class="col-sm-4">
+                        <div class="fg-line">
+                           <input name="username" class="form-control input-sm" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>                                         
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">初始密码：</label>
+                    <div class="col-sm-4">
+                        <div class="fg-line">
+                           <input name="password" class="form-control input-sm" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>  
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">权限：</label>
+                    <div class="col-sm-4">
+                        <div class="fg-line select">
+                          <select name="adminCode" class="form-control">
+                                <option value="">请选择</option>
+                                <option value="0">普通用户</option>   
+                                <option value="1">管理员</option>
+                          </select>
+                        </div>
+                    </div>
+                </div>     
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">年龄：</label>
+                    <div class="col-sm-4">
+                        <div class="fg-line">
+                           <input name="age" class="form-control input-sm" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>                            
+                <div class="btn-gp">
+                   <div onclick="submitForm()" class="btn btn-primary waves-effect btn-create col-sm-offset-2">创建</div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends  "../layouts/layout.html" %}
+{% block css %}
+<style>  
+    #main .card .card-header{ padding:15px 25px 15px 15px; }
+    .form-horizontal{ margin-top:15px; }
+    #main .card .card-header .btn-gp{ margin-top:5px; }
+    #main .card .card-header .btn-gp .btn{ margin-right:10px; }
+
+    #main .card .card-header i{ margin-right:8px; color:#FFB50B; font-size:18px;}
+    #main .card .card-header h2{ font-weight:bold; font-size:16px;}
+    #main .card .card-body table th{ color:#000; background:#EEF8FA; }
+    #main .card .card-body table th,td{ text-align:center;  }
+    #main .card-body ul.list{ list-style:none; padding:6px 0 12px 0; }
+    #main .card-body ul.list li{ padding:7px 25px; }
+    #main .card-body ul.list li a{ color:#666; }
+    #main .card-body ul.list li a:hover{ color:#000; border-bottom:1px solid #333; }
+    #main .card-body ul.list li .desp{ color:#999;  }
+</style>
+{% endblock %}
+{% block js %}
+<script src="/public/admin/script/user.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<!--内容开始  -->
+<section id="content">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+               <ul class="breadcrumb">位置：
+                  <li>用户管理</li>
+                  <li>用户列表</li>
+              </ul>
+              <div class="row form-horizontal" >
+                    <div class="col-md-4 col-sm-6">  
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">用户名</label>
+                            <div class="col-sm-9">
+                                <div class="fg-line">
+                                   <input class="form-control input-sm" placeholder="请输入" >
+                                </div>
+                            </div>
+                        </div>                          
+                    </div>
+                    <div class="col-md-4 col-sm-6">  
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">权限</label>
+                            <div class="col-sm-9">
+                                 <div class="fg-line select">
+                                      <select class="form-control">
+                                            <option>请选择</option>
+                                            <option>普通用户</option>
+                                            <option>管理员</option>
+                                     </select>
+                                </div>
+                            </div>
+                        </div>                          
+                    </div>
+                    <div class="col-md-4 col-sm-6 btn-gp text-center">
+                        <button class="btn btn-primary">查询</button>
+                        <a href="/admin/user/user_add"><button class="btn btn-danger">添加用户</button></a>
+                    </div>
+             </div>
+
+
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>用户名</th>
+                            <th>权限</th>
+                            <th class="sort">年龄</th>
+                            <th class="sort">注册时间<i class="m-l-5  zmdi zmdi-chevron-down"></i></th>
+                            <th class="sort">最后登录时间<i class="m-l-5  zmdi zmdi-chevron-down"></i></th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in userList %}
+                        <tr>
+                            <td>{{user.username}}</td>
+                            <td>{% if user.adminCode==1 %} 管理员 {% else %} 普通用户 {% endif %}</td>
+                            <td>{% if user.age %} {{user.age}} {% else %} 暂无 {% endif %}</td>
+                            <td>{{user.registerdate}}</td>
+                            <td>{% if user.logindate %} {{user.logindate}} {% else %} 暂无 {% endif %}</td>
+                            <td><a>编辑</a> | <a>重置密码</a> | <a>删除</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!--内容结束  -->
+{% endblock %}

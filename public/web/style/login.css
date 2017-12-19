@@ -1,0 +1,11 @@
+a{ cursor:pointer; }
+
+.wrapper .form{ width:380px; margin:100px auto; }
+.wrapper .form .fm{ padding:5px 15px; margin:10px 0; overflow:hidden; zoom:1; }
+.wrapper .form .fm-input{ border:1px solid #e8e8e8;  }
+.wrapper .form .fm input{ width:100%; height:35px; line-height:35px; }
+.wrapper .form .fm.focus{ border:1px solid #ccc; }
+.wrapper .form .tip{ color:#333; margin-bottom:20px; }
+.wrapper .form .tip .linkTo{  color:#0557AA; float:right; }
+.wrapper .form .fm .btn{ height:45px; line-height:45px; border-radius:5px; }
+.wrapper .form .fm .name{ font-weight:bold; margin-right:10px; }

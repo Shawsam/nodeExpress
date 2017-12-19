@@ -1,0 +1,181 @@
+{% extends  "../layouts/layout.html" %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/public/admin/plug/fancybox/jquery.fancybox.css">
+<style>  
+#main .card .card-header{ padding:15px 25px 15px 15px; }
+.form-horizontal{ margin-top:15px; }
+#main .card .card-header .btn-gp{ margin-top:5px; }
+#main .card .card-header .btn-gp .btn{ margin-right:10px; }
+#main .card .card-header i{ margin-right:8px; color:#FFB50B; font-size:18px;}
+#main .card .card-header h2{ font-weight:bold; font-size:16px;}
+
+
+.cardContent { position:relative; padding-left:240px; }
+.menu { position:absolute; left:20px; width:200px; height:400px; overflow:auto; border:0px solid #f00; }
+.menu ul { padding:0; margin:0; }
+.menu ul li { position:relative; padding:10px 60px 10px 10px; font:14px/20px "微软雅黑"; word-break:break-all; cursor:pointer; margin:1px 0; background:#f5f5f5; }
+.menu ul li .num{ font-style:normal; color:#999; }
+.menu ul li img { position:absolute; top:12px; width:16px; opacity:0.7; }
+.menu ul li img:hover { opacity:1; }
+.menu ul li img.btn_edit { right:33px; }
+.menu ul li img.btn_del  { right:8px; }
+.menu ul li:hover  { background:#eee; }
+.menu ul li.active { background:#cfcfcf; }
+.menu ul li .btn_create { display:block; margin:-10px -60px -10px -10px; padding:10px; }
+
+.actionsGp { background:#f5f5f5; padding:10px 15px 8px; }
+.actionsGp label { margin-right:10px; }
+.actionsGp input { margin-right:5px; vertical-align:-10%; }
+.actionsGp a { margin-left:5px; }
+.actionsGp .btn_upload { position:absolute; right:0px; top:-25px; margin:1px -4px 0 0; }
+.actionsGp .disable { color:#bbb; }
+
+.imgs { min-height:400px; border:0px solid #f00; }
+.imgs.empty { background:url(/public/admin/img/img_empty.png) no-repeat center; }
+.imgs ul { padding:0; margin:10px -6px; border:0px solid #f00; overflow:hidden; zoom:1; }
+.imgs ul li { float:left; width:150px; }
+.imgs ul li .fancybox { position:relative; display:block; border:0px solid #f00; }
+.imgs ul li .fancybox p { position:absolute; left:0; bottom:0; text-align:center; margin:0; width:100%; color:#fff; background:rgba(0,0,0,0.3); }
+.imgs ul li > div { padding:7px; }
+.imgs ul li img { width:100%; margin:0; }
+.imgs ul li label { margin:8px 0 0px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; position:relative; }
+.imgs ul li input { margin-right:5px; }
+.imgs ul li .btns { margin:0 -1px; }
+.imgs ul li .btns a { margin:0 1px; }
+
+#pagination { min-height:35px; text-align:center; margin-top:20px; border:0px solid #f00; }
+
+.group_panel select { display:block; width:100%; padding:7px; font:15px/40px "微软雅黑"; border:1px solid #ddd; border-radius:3px;  }
+.group_panel .layui-layer-btn0{ border:1px #dedede solid!important; background-color:#f1f1f1!important; color:#333!important;}
+.group_panel .layui-layer-btn1{ border-color:#4898d5; background-color:#2e8ded; color:#fff;}
+
+</style>
+{% endblock %}
+{% block js %}
+<script src="/public/admin/plug/fancybox/jquery.fancybox.js"></script>
+<script src="/public/admin/plug/qn_jssdk/plupload/plupload.full.min.js"></script>
+<script src="/public/admin/plug/qn_jssdk/qiniu.dev.js"></script>
+
+<script src="/public/admin/plug/laytpl.js"></script>
+<script src="/public/admin/script/picture.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<section id="content">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+               <ul class="breadcrumb">位置：
+                  <li>图片管理</li>
+                  <li>图片分类</li>
+              </ul>
+            </div>
+        </div>
+
+        <div class="card cardContent">
+            <div class="menu">
+                <ul>
+<!--            <li data-id="1">
+                  <span>默认分组</span>
+                </li> -->
+                <!--
+                <li data-id="12">
+                  <span>分组 1</span>
+                  <img class="btn_edit" src="/static/vendor/img/btn_edit.png" />
+                  <img class="btn_del" src="/static/vendor/img/btn_delete.png" />
+                </li>
+                <li data-id="13">
+                  <span>分组 2</span>
+                  <img class="btn_edit" src="/static/vendor/img/btn_edit.png" />
+                  <img class="btn_del" src="/static/vendor/img/btn_delete.png" />
+                </li>
+                <li data-id="14">
+                  <span>分组 3</span>
+                  <img class="btn_edit" src="/static/vendor/img/btn_edit.png" />
+                  <img class="btn_del" src="/static/vendor/img/btn_delete.png" />
+                </li>
+                -->
+                <li>
+                  <a class="btn_create">+ 创建</a>
+                </li>
+                </ul>
+            </div>
+            
+            <div class="actionsGp">
+                <label class="btn_select"><input type="checkbox" /><span>全选</span></label>
+                <a href="javascript:;" class="btn_group disable">修改分组</a>
+                <a href="javascript:;" class="btn_delete disable">删除</a>
+                <a href="javascript:;" class="btn_upload btn btn-primary btn-xs">上传照片</a>
+            </div>
+            
+            <div class="imgs">
+                <ul>             
+<!--                <li data-id="35">
+                      <div>
+                      <a class="fancybox" href="/public/admin/img/a1.png" title="图片名称"><img class="lazy" src="/public/admin/img/lazy_200x200.jpg" data-src="/public/admin/img/a1.png" /></a>
+                      <label class="btn_select"><input type="checkbox" /><span>图片名称.jpg</span></label>
+                      <div class="btns">
+                      <a href="javascript:;" class="btn_link">链接</a>
+                      <a href="javascript:;" class="btn_group">分组</a>
+                      <a href="javascript:;" class="btn_delete">删除</a>
+                      </div>
+                      </div>
+                    </li>
+                    <li data-id="36">
+                      <div>
+                      <a class="fancybox" href="/public/admin/img/a1.png" title="图片名称"><img class="lazy" src="/public/admin/img/lazy_200x200.jpg" data-src="/public/admin/img/a1.png" /></a>
+                      <label class="btn_select"><input type="checkbox" /><span>图片名称.jpg</span></label>
+                      <div class="btns">
+                      <a href="javascript:;" class="btn_link">链接</a>
+                      <a href="javascript:;" class="btn_group">分组</a>
+                      <a href="javascript:;" class="btn_delete">删除</a>
+                      </div>
+                      </div>
+                    </li>
+                    <li data-id="45">
+                      <div>
+                      <a class="fancybox" href="/public/admin/img/a1.png" title="图片名称"><img class="lazy" src="/public/admin/img/lazy_200x200.jpg" data-src="/public/admin/img/a1.png" /></a>
+                      <label class="btn_select"><input type="checkbox" /><span>图片名称.jpg</span></label>
+                      <div class="btns">
+                      <a href="javascript:;" class="btn_link">链接</a>
+                      <a href="javascript:;" class="btn_group">分组</a>
+                      <a href="javascript:;" class="btn_delete">删除</a>
+                      </div>
+                      </div>
+                    </li>
+                    <li data-id="1001">
+                      <div>
+                      <a class="fancybox" href="/public/admin/img/a1.png" title="图片名称"><img class="lazy" src="/public/admin/img/lazy_200x200.jpg" data-src="/public/admin/img/a1.png" /></a>
+                      <label class="btn_select"><input type="checkbox" /><span>图片名称.jpg</span></label>
+                      <div class="btns">
+                      <a href="javascript:;" class="btn_link">链接</a>
+                      <a href="javascript:;" class="btn_group">分组</a>
+                      <a href="javascript:;" class="btn_delete">删除</a>
+                      </div>
+                      </div>
+                    </li> -->
+                </ul>
+                <p class="clear"></p>
+            </div>
+            <div id="pagination"></div>
+        </div>
+
+        <div class="hide group_contt">
+          <select>
+          <option value="">请选择</option>
+          <!--
+          <option value="1001">选项 1</option>
+          <option value="1002">选项 2</option>
+          <option value="1003">选项 3</option>
+          <option value="1004">选项 4</option>
+          -->
+          </select>
+        </div>
+
+    </div>
+</section>
+
+
+{% endblock %}
+
