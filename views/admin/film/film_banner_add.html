@@ -1,0 +1,202 @@
+{% extends  "../layouts/layout.html" %}
+{% block css %}
+<link rel="stylesheet" href="/public/admin/plug/album/album.css" />
+<style>  
+#main .card .card-header{ padding:15px 25px 15px 15px; }
+.form-horizontal{ margin-top:15px; }
+#main .card .card-header .btn-gp{ margin-top:5px; }
+#main .card .card-header .btn-gp .btn{ margin-right:10px; }
+
+#main .card .card-header i{ margin-right:8px; color:#FFB50B; font-size:18px;}
+#main .card .card-header h2{ font-weight:bold; font-size:16px;}
+#main .card .card-body table th{ color:#000; background:#EEF8FA; }
+#main .card .card-body table th,td{ text-align:center;  }
+#main .card-body ul.list{ list-style:none; padding:6px 0 12px 0; }
+#main .card-body ul.list li{ padding:7px 25px; }
+#main .card-body ul.list li a{ color:#666; }
+#main .card-body ul.list li a:hover{ color:#000; border-bottom:1px solid #333; }
+#main .card-body ul.list li .desp{ color:#999;  }
+#main .imgGroup .imgList{ font-size:0; }
+#main .imgGroup .imgList li{ display:inline-block; position:relative; }
+#main .imgGroup .imgList li .img{ width:85px; height:85px; margin:0 5px 5px 0; border:1px solid #e8e8e8; }
+#main .imgGroup .imgList li .del{ position:absolute; height:16px; width:16px; top:0; right:2px; cursor:pointer;}
+#main .imgGroup .imgList li .del:hover{ transform:scale(1.1,1.1); -webkit-transform:scale(1.1,1.1); -ms-transform:scale(1.1,1.1);}
+#main .imgGroup .imgList li.imgAdd .img{ cursor:pointer; border:none; }
+.toggle-switch{ margin:10px 0 0 0!important; }
+
+</style>
+{% endblock %}
+{% block js %}
+<script src="/public/admin/plug/qn_jssdk/plupload/plupload.full.min.js"></script>
+<script src="/public/admin/plug/qn_jssdk/qiniu.dev.js"></script>
+<script src="/public/admin/plug/laytpl.js"></script>
+<script src="/public/admin/plug/album/album.js"></script>
+<script>
+$(".imgAdd").click(function(){
+	var val = $(".bannerImg").val();
+	if(val) {
+		layer.msg('只能上传一张图片');
+		return;
+	}
+    album({
+        max:1,
+        thumb_w:100,
+        thumb_h:100,
+        success:function(imgs){
+           var _imgs = []; 
+           for(var i in imgs){
+               $(".imgAdd").before('<li><img class="img" src="'+ imgs[i].thumb +'"><img class="del" src="/public/admin/img/delete.png" /></li>');
+               _imgs.push(imgs[i].img);
+               $(".bannerImg").val(_imgs);
+           }
+        }
+    });
+})
+
+$(".imgList").on("click",".del",function(){
+	var imgs = $(".bannerImg").val().split(',');
+	var index = $(this).parents("li").index();
+	imgs = imgs.splice(0,index);
+	$(".bannerImg").val(imgs);
+	$(this).parents("li").remove();
+})
+
+$(".btn-create").click(function(){
+	//提交数据
+
+	elm = $(".bannerImg");
+	val = elm.val();
+	if(val==''){
+		layer.msg('请上传图片');
+		return;
+	}
+    
+    elm = $(".bannerNo");
+	val = elm.val();
+	if(val==''){
+		layer.msg('请输入序号');
+		return;
+	}
+
+
+    elm = $(".bannerTitle");
+	val = elm.val();
+	if(val==''){
+		layer.msg('请输入标题');
+		return;
+	}
+
+	elm = $(".bannerDesp");
+	val = elm.val();
+	if(val==''){
+		layer.msg('请输入简述');
+		return;
+	}
+
+
+    var url = "/api/admin/film/film_banner/add";
+    var param = $("form").serialize();
+    Ajax(url,param,function(ret){
+       if(ret.state){
+          layer.msg('创建成功');
+          location.href="/admin/film/film_banner"
+       }else{
+       	  layer.msg(ret.msg);
+       }
+    })
+})
+
+
+
+</script>
+{% endblock %}
+
+
+{% block content %}
+<section id="content">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+               <ul class="breadcrumb">位置：
+                  <li>轮播图</li>
+                  <li>轮播图添加</li>
+              </ul>
+             </div>
+        </div>
+
+        <div class="card cardContent">
+            <div class="form-horizontal" >
+                <form method="post">
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">图片：</label>
+	                    <div class="col-sm-10 imgGroup">
+	                    	<input class="bannerImg" name="bannerImg" type="hidden" >
+	                    	<ul class="imgList">
+	                    		<li class="imgAdd"><img class="img" src="/public/admin/img/add_img.png"></li>
+	                    	</ul>
+	                    </div>
+	                </div>  
+
+	                <div class="form-group">
+	                    <label for="ts1" class="col-sm-2 control-label ts-label">是否开启：</label>
+	                    <div class="col-sm-4">
+                            <div class="toggle-switch">
+                                <input name="isOpen" id="ts1" type="checkbox" hidden="hidden" checked="true">
+                                <label for="ts1" class="ts-helper"></label>
+                            </div>
+	                    </div>
+	                </div>
+<!-- 
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">序号：</label>
+	                    <div class="col-sm-4">
+	                        <div class="fg-line">
+	                           <input name="bannerNo" class="bannerNo form-control input-sm" placeholder="请输入">
+	                        </div>
+	                    </div>
+	                </div> -->
+
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">关联电影：</label>
+	                    <div class="col-sm-4">
+	                        <div class="fg-line select">
+	                          <select name="filmId" class="galleryType form-control">
+	                                <option value="">请选择</option>
+	                                <option value="0">1</option>   
+	                                <option value="1">2</option>
+	                          </select>
+	                        </div>
+	                    </div>
+	                </div>  
+
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">标题：</label>
+	                    <div class="col-sm-4">
+	                        <div class="fg-line">
+	                           <input name="bannerTitle" class="bannerTitle form-control input-sm" placeholder="请输入">
+	                        </div>
+	                    </div>
+	                </div>
+
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">简述：</label>
+	                    <div class="col-sm-8">
+	                        <div class="fg-line">
+	                           <textarea name="bannerDesp" class="bannerDesp form-control input-sm" placeholder="请输入"></textarea>
+	                        </div>
+	                    </div>
+	                </div> 
+
+
+         
+	                <div class="btn-gp">
+	                   <div class="btn btn-primary waves-effect btn-create col-sm-offset-2">创建</div>
+	                </div>
+                </form>
+            </div>
+        </div>
+
+        
+    </div>
+</section>
+{% endblock %}

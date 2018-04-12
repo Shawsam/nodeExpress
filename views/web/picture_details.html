@@ -1,0 +1,77 @@
+{% extends  "./layouts/layout.html" %}
+{% block css %}
+<link rel="stylesheet" href="/public/web/plug/fancybox/jquery.fancybox.css">
+<link rel="stylesheet" href="/public/web/style/picture.css" />
+
+{% endblock %}
+{% block js %}
+<script src="/public/web/plug/fancybox/jquery.fancybox.js"></script>
+<script type="text/javascript">
+	// 查看大图
+    setTimeout(function(){
+		$(".fancybox").fancybox({
+			'closeBtn':false,
+			'nextEffect':'fade',
+			'prevEffect':'fade',
+			'overlayColor':'#000',
+			'overlayOpacity':0.8,
+			"centerOnScroll":true
+		});
+	},500);
+</script>
+{% endblock %}
+
+
+{% block content %}
+    <div class="framepage picture_details">
+    	<div class="wrap intro">
+		      <div class="info">
+		      <img src="{{gallery.gallery_imgs[0]}}?imageView2/1/w/200" alt="{{gallery.gallery_name}}" class="cover" />
+		      <h2 class="title">{{gallery.gallery_name}}</h2>
+		      <p class="descp">{{gallery.gallery_desp}}</p>
+		      <p class="date">{{gallery.createtime}}</p>
+		      <p class="num">{{gallery.gallery_imgs.length}}</p>
+		      </div>
+		      <img src="{{gallery.gallery_imgs[0]}}?imageView2/2/w/1800" alt="back" class="back" />
+		</div>
+	    <div class="container">
+		    
+		    <div class="wrap list">
+              
+              {% if gallery.gallery_type == 1 %}
+		      <ul class="gallery1">
+		      	 {% for img in gallery.gallery_imgs %}
+			      <li>
+			      	<div>
+			      	     <a href="{{img}}" class="fancybox" rel="fancybox">
+			      	         <img class="lazy" src="/public/web/image/lazy_500x500.jpg" data-src="{{img}}?imageView2/1/w/500/h/500" />
+			      	     </a>
+			      	     <p class="iconfont like">0</p>
+			      	 </div>
+			      	<h3>{{gallery.gallery_name}}<span></span></h3>
+			      </li>
+			      {% endfor %}
+		      </ul>
+              {% endif %}
+              
+
+              {% if gallery.gallery_type == 0 %}
+		      <ul class="gallery3">
+		      	  {% for img in gallery.gallery_imgs %}
+			      <li>
+			      	<div>
+			      	     <a href="{{img}}" class="fancybox" rel="fancybox">
+			      	         <img class="lazy" src="/public/web/image/lazy_500x500.jpg" data-src="{{img}}?imageView2/2/w/1800" />
+			      	     </a>
+			      	     <p class="iconfont like">0</p>
+			      	 </div>
+			      	<h3>{{gallery.gallery_name}}<span></span></h3>
+			      </li>
+			      {% endfor %}
+		      </ul>
+		    </div>
+		    {% endif %}
+    
+	    </div>
+    </div>
+{% endblock %}

@@ -1,7 +1,9 @@
 {% extends  "./layouts/layout.html" %}
 {% block css %}
+<link rel="stylesheet" href="/public/web/style/index.css" />
 <link rel="stylesheet" href="/public/web/style/picture.css" />
 <link rel="stylesheet" href="/public/web/plug/album/album.css" />
+
 {% endblock %}
 {% block js %}
 <script src="/public/web/plug/album/album.js"></script>
@@ -11,12 +13,25 @@
 
 {% block content %}
     <div class="framepage picture">
-	    <div class="wrapper">
-	    	图片收藏
-<!-- 	    <form class="form registerFm">
-	            <div class="fm tip">图片上传</div>
-	            <div class="fm"><a class="btn imgChoose">相册</a></div>
-	        </form> -->
+    	<div class="white"></div>
+	    <div class="container">
+         <ul class="gallery2">
+              {% for gallery in galleryList %}
+              <li {% if loop.index == 1 %} class="bigimg" {% endif %} >
+                <a href="picture_details?gallery_id={{gallery.gallery_id}}">
+                  <div class="wrap">
+                    <img class="lazy pics" src="public/web/image/lazy_400x200.jpg" data-src="{{gallery.gallery_imgs[0]}}?imageView2/1/w/600/h/400" />
+                    <div class="info">
+                      <h3>{{gallery.gallery_name}}</h3>
+                      <p>{{gallery.gallery_desp}}</p>
+                    </div>
+                  </div>
+                </a>
+                <p class="photo">{{gallery.gallery_num}}</p>
+              </li>
+              {% endfor %}
+          </ul>
+
 	    </div>
     </div>
 {% endblock %}

@@ -5,6 +5,9 @@ var formatTime = require('../utils/formatTime');
 var User = require('../models/User.js');
 var Picture = require('../models/Picture.js');
 var PictureCate = require('../models/PictureCate.js');
+var Gallery = require('../models/Gallery.js');
+var FilmBanner = require('../models/FilmBanner.js');
+
 
 
 var resData;
@@ -168,6 +171,37 @@ router.get('/admin/logout', function(req, res) {
      resData.msg = '退出登录';
      console.log('处理结果，'+resData.msg);
      res.json(resData);
+})
+
+
+// ================ 用户列表 ================
+router.get('/admin/user/user_list', function(req, res) {
+    console.log('/************************访问用户列表************************/');
+    var username = new RegExp(req.query.username);        //模糊查询
+    var role = req.query.role;
+    var age_sort = req.query.age_sort;
+    var register_sort = req.query.register_sort;
+    var login_sort = req.query.login_sort;
+    
+    var sort = {'registerdate':-1};
+    switch(true){
+      case age_sort != '':  sort = {'age':age_sort}; break;
+      case register_sort != '':  sort = {'registerdate':register_sort}; break;
+      case login_sort != '':  sort = {'logindate':login_sort}; break;
+    }
+    console.log(sort); 
+
+    var condition = { 'username':username };
+    if(role != ''){
+      condition = { 'username':username,'adminCode':role}
+    }
+
+    User.find(condition).sort(sort).then(function(userList){
+          resData.msg = '查询成功';
+          resData.data = userList;
+          console.log('处理结果，'+resData.msg);
+          res.json(resData);
+    })
 })
 
 // ================ 用户添加 ================
@@ -338,7 +372,7 @@ router.get('/admin/album/categoryList/del_tag', function(req, res) {
        Picture.updateMany({tag_id:tag_id},{tag_id:1})
        .then(function(data){
              var delNum = data.n;
-             PictureCate.update({tag_id:1},{"$inc":{"count":delNum}})
+             PictureCate.update({tag_id:1},{"$inc":{"count":-delNum}})
              .then(function(data){
                  PictureCate.update({tag_id:tag_id},{is_del:true})
                  .then(function(){
@@ -391,34 +425,35 @@ router.get('/admin/album/list', function(req, res) {
 
 // ================ 删除图片 ================
 router.get('/admin/album/list/imgDel', function(req, res) {
-     console.log('/************************访问图片删除接口************************/');
-     var file_id = req.query.file_id.split(',');
-     for(var i in file_id){
-         Picture.findOne({file_id:file_id}).then(function(data){
-             PictureCate.update({tag_id:data.tag_id},{"$inc":{"count":-1}})
-             .then(function(){
-                 Picture.update({file_id:file_id},{is_del:true})
-                .then(function(){
-                       resData.msg = '删除成功';
-                       console.log('处理结果，'+resData.msg);
-                       res.json(resData);
-                })
-             })
-         })
-     }
+    console.log('/************************访问图片删除接口************************/');
+    var file_id = req.query.file_id.split(',');
+
+    Picture.findOne({file_id:file_id[0]}).then(function(data){
+         PictureCate.update({tag_id:data.tag_id},{"$inc":{"count":-file_id.length}})
+         .then(function(){
+             Picture.updateMany({file_id:{$in:file_id}},{is_del:true})
+            .then(function(){
+                   resData.msg = '删除成功';
+                   console.log('处理结果，'+resData.msg);
+                   res.json(resData);
+            })
+        })
+    })
+
 })
 
 // ================ 图片修改分组 ================
 router.get('/admin/album/list/imgMove', function(req, res) {
      console.log('/************************访问图片修改分组接口************************/');
-     var file_id = req.query.file_id;
+     var file_id = req.query.file_id.split(',');
      var tag_id = req.query.tag_id;
-     console.log(tag_id);
-     Picture.findOne({file_id:file_id}).then(function(data){
-         PictureCate.update({tag_id:data.tag_id},{"$inc":{"count":-1}})
+ 
+
+     Picture.findOne({file_id:file_id[0]}).then(function(data){
+         PictureCate.update({tag_id:data.tag_id},{"$inc":{"count":-file_id.length}})
          .then(function(){
-             Picture.update({file_id:file_id},{tag_id:tag_id}).then(function(){
-                PictureCate.update({tag_id:tag_id},{"$inc":{"count":1}}) 
+             Picture.updateMany({file_id:{$in:file_id}},{tag_id:tag_id}).then(function(){
+                PictureCate.update({tag_id:tag_id},{"$inc":{"count":file_id.length}}) 
                 .then(function(){
                        resData.msg = '修改成功';
                        console.log('处理结果，'+resData.msg);
@@ -431,7 +466,7 @@ router.get('/admin/album/list/imgMove', function(req, res) {
 
 
 // ================ 图片上传 ================
-router.post('/admin/ablum/imgUpload', function(req, res) {
+router.post('/admin/album/imgUpload', function(req, res) {
      console.log('/************************访问图片上传接口************************/');
      //返回结果
      var tag_id = req.body.tag_id;
@@ -454,7 +489,7 @@ router.post('/admin/ablum/imgUpload', function(req, res) {
        });
 
        picture.save().then(function(resdata){    //保存图片数据
-           Picture.count({tag_id:tag_id})
+           Picture.count({tag_id:tag_id,is_del:false})
            .then(function(num){
              PictureCate.update({tag_id:tag_id},{count:num})
              .then(function(data){
@@ -470,6 +505,87 @@ router.post('/admin/ablum/imgUpload', function(req, res) {
      })
 
 
+})
+
+
+//================ 画廊 ======================
+router.post('/admin/gallery/galleryList/add', function(req, res) {
+     console.log('/************************访问添加画廊接口************************/');
+     var gallery_name = req.body.galleryName,
+         gallery_desp = req.body.galleryDesp,
+         gallery_type = req.body.galleryType,
+         gallery_imgs = req.body.galleryImgs.split(',');
+
+     Gallery.findOne({gallery_name:gallery_name})
+     .then(function(gallery){
+        if(gallery){
+           resData.state = false;
+           resData.msg = '创建失败，画廊已存在';
+           console.log('处理结果，'+resData.msg);
+           res.json(resData);
+        }else{
+          Gallery.count({}).then(function(num){
+               var gallery_id = num + 1;
+               var gallery = new Gallery({
+                   gallery_id:gallery_id,
+                   gallery_name:gallery_name,
+                   gallery_desp:gallery_desp,
+                   gallery_type:gallery_type,
+                   gallery_imgs:gallery_imgs,
+                   createtime:formatTime(new Date())
+               });
+
+               gallery.save().then(function(data){
+                 resData.data = data;
+                 resData.msg = '创建成功';
+                 console.log('处理结果，'+resData.msg);
+                 res.json(resData);
+               })
+          })
+        }
+     })
+})
+
+
+//================ 电影轮播 ======================
+router.post('/admin/film/film_banner/add', function(req, res) {
+     console.log('/************************访问添加画廊接口************************/');
+     var banner_id = req.body.bannerId,
+         banner_img = req.body.bannerImg,
+         banner_title = req.body.bannerTitle,
+         banner_desp = req.body.bannerDesp,
+         film_id = req.body.filmId,
+         is_open = req.body.isOpen;
+
+     FilmBanner.findOne({banner_title:banner_title})
+     .then(function(filmbanner){
+        if(filmbanner){
+           resData.state = false;
+           resData.msg = '创建失败，轮播图已存在';
+           console.log('处理结果，'+resData.msg);
+           res.json(resData);
+        }else{
+          FilmBanner.count({}).then(function(num){
+               var banner_id = num + 1;
+               var film_banner = new FilmBanner({
+                   banner_id:banner_id,
+                   banner_img:banner_img,
+                   banner_title:banner_title,
+                   banner_desp:banner_desp,
+                   film_id:film_id,
+                   is_open:is_open,
+                   createtime:formatTime(new Date())
+               });
+
+               film_banner.save().then(function(data){
+                 resData.data = data;
+                 resData.msg = '创建成功';
+                 console.log('处理结果，'+resData.msg);
+                 res.json(resData);
+               })
+          })
+        }
+     })
 })
 
 module.exports = router;

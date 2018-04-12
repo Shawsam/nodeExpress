@@ -1,0 +1,241 @@
+{% extends  "../layouts/layout.html" %}
+{% block css %}
+<link rel="stylesheet" href="/public/admin/plug/album/album.css" />
+<style>  
+#main .card .card-header{ padding:15px 25px 15px 15px; }
+.form-horizontal{ margin-top:15px; }
+#main .card .card-header .btn-gp{ margin-top:5px; }
+#main .card .card-header .btn-gp .btn{ margin-right:10px; }
+
+#main .card .card-header i{ margin-right:8px; color:#FFB50B; font-size:18px;}
+#main .card .card-header h2{ font-weight:bold; font-size:16px;}
+#main .card .card-body table th{ color:#000; background:#EEF8FA; }
+#main .card .card-body table th,td{ text-align:center;  }
+
+#main .imgGroup .imgList{ font-size:0; }
+#main .imgGroup .imgList li{ display:inline-block; position:relative; }
+#main .imgGroup .imgList li .img{ width:85px; height:85px; margin:0 5px 5px 0; border:1px solid #e8e8e8; }
+#main .imgGroup .imgList li .del{ position:absolute; height:16px; width:16px; top:0; right:2px; cursor:pointer;}
+#main .imgGroup .imgList li .del:hover{ transform:scale(1.1,1.1); -webkit-transform:scale(1.1,1.1); -ms-transform:scale(1.1,1.1);}
+#main .imgGroup .imgList li.imgAdd .img{ cursor:pointer; border:none; }
+.checkbox-inline{ padding-top:0!important; }
+
+</style>
+{% endblock %}
+{% block js %}
+<script src="/public/admin/plug/qn_jssdk/plupload/plupload.full.min.js"></script>
+<script src="/public/admin/plug/qn_jssdk/qiniu.dev.js"></script>
+<script src="/public/admin/plug/laytpl.js"></script>
+<script src="/public/admin/plug/album/album.js"></script>
+<script>
+$(".imgAdd1").click(function(){
+	var val = $(".centerImg").val();
+	if(val) {
+		layer.msg('只能上传一张主图片');
+		return;
+	}
+    album({
+        max:1,
+        thumb_w:100,
+        thumb_h:100,
+        success:function(imgs){
+           var _imgs = $(".centerImg").val()?$(".centerImg").val().split(','):[]; 
+           for(var i in imgs){
+               $(".imgAdd1").before('<li><img class="img" src="'+ imgs[i].thumb +'"><img class="del" src="/public/admin/img/delete.png" /></li>');
+               _imgs.push(imgs[i].img);
+               $(".centerImg").val(_imgs);
+           }
+        }
+    });
+})
+
+$(".imgList1").on("click",".del",function(){
+	var imgs = $(".centerImg").val().split(',');
+	var index = $(this).parents("li").index();
+	imgs.splice(index,1);
+	$(".centerImg").val(imgs);
+	$(this).parents("li").remove();
+})
+
+
+
+
+
+
+$(".imgAdd2").click(function(){
+    album({
+        max:100,
+        thumb_w:100,
+        thumb_h:100,
+        success:function(imgs){
+           var _imgs = $(".posters").val()?$(".posters").val().split(','):[]; 
+           for(var i in imgs){
+               $(".imgAdd2").before('<li><img class="img" src="'+ imgs[i].thumb +'"><img class="del" src="/public/admin/img/delete.png" /></li>');
+               _imgs.push(imgs[i].img);
+               $(".posters").val(_imgs);
+           }
+        }
+    });
+})
+
+$(".imgList2").on("click",".del",function(){
+	var imgs = $(".posters").val().split(',');
+	var index = $(this).parents("li").index();
+    imgs.splice(index,1);
+	$(".posters").val(imgs);
+	$(this).parents("li").remove();
+})
+
+
+$(".imgAdd3").click(function(){
+    album({
+        max:100,
+        thumb_w:100,
+        thumb_h:100,
+        success:function(imgs){
+           var _imgs = $(".photos").val()?$(".photos").val().split(','):[]; 
+           for(var i in imgs){
+               $(".imgAdd3").before('<li><img class="img" src="'+ imgs[i].thumb +'"><img class="del" src="/public/admin/img/delete.png" /></li>');
+               _imgs.push(imgs[i].img);
+               $(".photos").val(_imgs);
+           }
+        }
+    });
+})
+
+$(".imgList3").on("click",".del",function(){
+	var imgs = $(".photos").val()?$(".photos").val().split(','):[];
+	var index = $(this).parents("li").index();
+	imgs.splice(index,1);
+	$(".photos").val(imgs);
+	$(this).parents("li").remove();
+})
+
+$(".btn-create").click(function(){
+
+})
+
+
+
+</script>
+{% endblock %}
+
+
+{% block content %}
+<section id="content">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+               <ul class="breadcrumb">位置：
+                  <li>电影管理</li>
+                  <li>电影添加</li>
+              </ul>
+             </div>
+        </div>
+
+        <div class="card cardContent">
+            <div class="form-horizontal" >
+                <form method="post">
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">名称：</label>
+	                    <div class="col-sm-4">
+	                        <div class="fg-line">
+	                           <input name="filmName" class="filmName form-control input-sm" placeholder="请输入">
+	                        </div>
+	                    </div>
+	                </div>
+
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">类型：</label>
+	                    <div class="col-sm-4">
+	                        <div class="fg-line select">
+	                          <select name="filmType" class="filmType form-control">
+	                                <option value="">请选择</option>
+	                                <option value="0">电影</option>   
+	                                <option value="1">电视剧</option>
+	                                <option value="2">动漫</option>
+	                                <option value="3">网络视频</option>
+	                          </select>
+	                        </div>
+	                    </div>
+	                </div>  
+
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">标签：</label>
+	                    <div class="col-sm-10">
+                           <div class="fg-line" style="margin-top:10px;">
+                              <label class="checkbox checkbox-inline m-r-20">
+                                  <input name="filmTag" type="checkbox" value="1">
+                                  <i class="input-helper"></i> 科幻
+                              </label>
+                              <label class="checkbox checkbox-inline m-r-20">
+                                  <input name="filmTag" type="checkbox" value="2">
+                                  <i class="input-helper"></i> 喜剧
+                              </label>
+                              <label class="checkbox checkbox-inline m-r-20">
+                                  <input name="filmTag" type="checkbox" value="3">
+                                  <i class="input-helper"></i> 爱情
+                              </label>
+                              <label class="checkbox checkbox-inline m-r-20">
+                                  <input name="filmTag" type="checkbox" value="4">
+                                  <i class="input-helper"></i> 动作
+                              </label>
+                              <label class="checkbox checkbox-inline m-r-20">
+                                  <input name="filmTag" type="checkbox" value="5">
+                                  <i class="input-helper"></i> 惊悚
+                              </label>
+                            </div>
+	                    </div>
+	                </div> 
+
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">主图片：</label>
+	                    <div class="col-sm-10 imgGroup">
+	                    	<input type="hidden" class="centerImg" name="centerImg" >
+	                    	<ul class="imgList imgList1">
+	                    		<li class="imgAdd imgAdd1"><img class="img" src="/public/admin/img/add_img.png"></li>
+	                    	</ul>
+	                    </div>
+	                </div>   
+
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">海报：</label>
+	                    <div class="col-sm-10 imgGroup">
+	                    	<input type="hidden" class="posters" name="posters" >
+	                    	<ul class="imgList imgList2">
+	                    		<li class="imgAdd imgAdd2"><img class="img" src="/public/admin/img/add_img.png"></li>
+	                    	</ul>
+	                    </div>
+	                </div>  
+
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">剧照：</label>
+	                    <div class="col-sm-10 imgGroup">
+	                    	<input type="hidden" class="photos" name="photos" >
+	                    	<ul class="imgList imgList3">
+	                    		<li class="imgAdd imgAdd3"><img class="img" src="/public/admin/img/add_img.png"></li>
+	                    	</ul>
+	                    </div>
+	                </div>  
+
+
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">简介：</label>
+	                    <div class="col-sm-8">
+	                        <div class="fg-line">
+	                           <textarea name="filmDesp" class="galleryDesp form-control input-sm" placeholder="请输入"></textarea>
+	                        </div>
+	                    </div>
+	                </div>  
+         
+	                <div class="btn-gp">
+	                   <div class="btn btn-primary waves-effect btn-create col-sm-offset-2">创建</div>
+	                </div>
+                </form>
+            </div>
+        </div>
+
+        
+    </div>
+</section>
+{% endblock %}

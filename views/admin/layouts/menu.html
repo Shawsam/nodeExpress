@@ -7,18 +7,38 @@
         <li class="sub-menu {% if title=='用户列表' || title=='用户添加' %} active {% endif %}" >
             <a><i class="zmdi zmdi-account"></i>用户管理</a>
             <ul>    
-                <li><a {% if title=='用户列表' %} class="active" {% endif %} href="/admin/user/user">用户列表</a></li>
+                <li><a {% if title=='用户列表' %} class="active" {% endif %} href="/admin/user/user_list">用户列表</a></li>
                 <li><a {% if title=='用户添加' %} class="active" {% endif %} href="/admin/user/user_add">用户添加</a></li>
             </ul>
         </li>
 
-        <li class="sub-menu {% if title=='图片列表' || title=='图片分类' %} active {% endif %}" >
-            <a><i class="zmdi zmdi-account"></i>图片管理</a>
+        <li class="sub-menu {% if title=='图片素材' || title=='图片列表' %} active {% endif %}" >
+            <a><i class="zmdi zmdi-widgets"></i>素材管理</a>
             <ul>    
-                <li><a {% if title=='图片分类' %} class="active" {% endif %} href="/admin/picture/picture_cate">图片分类</a></li>
-                <li><a {% if title=='图片列表' %} class="active" {% endif %} href="/admin/picture/picture_list">图片列表</a></li>
+                <li><a {% if title=='图片素材' %} class="active" {% endif %} href="/admin/picture/picture_cate">图片素材</a></li>
+<!--            <li><a {% if title=='图片列表' %} class="active" {% endif %} href="/admin/picture/picture_list">图片列表</a></li> -->
             </ul>
         </li>
+
+
+        <li class="sub-menu {% if title=='电影列表' || title=='电影添加' || title=='轮播图' || title=='轮播图添加' %} active {% endif %}" >
+            <a><i class="zmdi zmdi-movie"></i>电影管理</a>
+            <ul>    
+                <li><a {% if title=='电影列表' %} class="active" {% endif %} href="/admin/film/film_list">电影列表</a></li>
+                <li><a {% if title=='电影添加' %} class="active" {% endif %} href="/admin/film/film_add">电影添加</a></li>
+                <li><a {% if title=='轮播图' %} class="active" {% endif %} href="/admin/film/film_banner">轮播图</a></li>
+                <li><a {% if title=='轮播图添加' %} class="active" {% endif %} href="/admin/film/film_banner_add">轮播图添加</a></li>
+            </ul>
+        </li>
+
+        <li class="sub-menu {% if title=='画廊列表' || title=='画廊添加' %} active {% endif %}" >
+            <a><i class="zmdi zmdi-image"></i>我的画廊</a>
+            <ul>    
+                <li><a {% if title=='画廊列表' %} class="active" {% endif %} href="/admin/gallery/gallery_list">画廊列表</a></li>
+                <li><a {% if title=='画廊添加' %} class="active" {% endif %} href="/admin/gallery/gallery_add">画廊添加</a></li>
+            </ul>
+        </li>
+
 
 <!--    <li class="sub-menu" id="">
             <a href="javascript:;"><i class="zmdi zmdi-laptop-mac"></i>系统管理</a>

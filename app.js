@@ -102,13 +102,14 @@ mongoose.connection.on('disconnected', function () {
 })
 
 //======== 解析路由 分功能模块开发 =========================//
+var client = require('./routers/client');
 var admin = require('./routers/admin');
 var api = require('./routers/api');
-var main = require('./routers/main');
 
+app.use('/',client);
 app.use('/admin',admin);
 app.use('/api',api);
-app.use('/',main);
+
 
 app.use(function(req, res, next){
     res.status(404).sendFile(__dirname+'/public/state/404.html');

@@ -22,44 +22,46 @@
 {% endblock %}
 {% block js %}
 <script>
-    var elm,val;
-    function submitForm(){
-       elm = $("input[name='username']");
-       val = elm.val();
-       if(val==''){
-           layer.msg('请输入用户名');return;
-       }
+    $(".btn-create").on("click",function(){
+         $(".btn-create").off("click");
+         var elm,val;
+         elm = $("input[name='username']");
+         val = elm.val();
+         if(val==''){
+             layer.msg('请输入用户名');return;
+         }
 
-       elm = $("input[name='password']");
-       val = elm.val();
-       if(val==''){
-           layer.msg('请输入初始密码');return;
-       }
+         elm = $("input[name='password']");
+         val = elm.val();
+         if(val==''){
+             layer.msg('请输入初始密码');return;
+         }
 
-       elm = $("select[name='adminCode']");
-       val = elm.val();
-       if(val==''){
-           layer.msg('请选择权限');return;
-       }
+         elm = $("select[name='adminCode']");
+         val = elm.val();
+         if(val==''){
+             layer.msg('请选择权限');return;
+         }
 
-       elm = $("input[name='age']");
-       val = elm.val();
-       if(val==''){
-           layer.msg('请输入年龄');return;
-       }
-       
-       param = $("form").serialize();
-       url = "/api/admin/user/userAdd";
-       Ajax(url,param,function(ret){
-          if(ret){
-             layer.msg(ret.msg,function(){
-                 location.href="/admin/user/user"
-             });
-          }else{
-             layer.msg(ret.msg);
-          }
-       })
-    }
+         elm = $("input[name='age']");
+         val = elm.val();
+         if(val==''){
+             layer.msg('请输入年龄');return;
+         }
+         
+         param = $("form").serialize();
+         url = "/api/admin/user/userAdd";
+         Ajax(url,param,function(ret){
+            if(ret){
+               layer.msg(ret.msg,function(){
+                   location.href="/admin/user/user_list"
+               });
+            }else{
+               layer.msg(ret.msg);
+               $(".btn-create").on("click");
+            }
+         })
+    })
 </script>
 {% endblock %}
 
@@ -116,7 +118,7 @@
                     </div>
                 </div>                            
                 <div class="btn-gp">
-                   <div onclick="submitForm()" class="btn btn-primary waves-effect btn-create col-sm-offset-2">创建</div>
+                   <div class="btn btn-primary waves-effect btn-create col-sm-offset-2">创建</div>
                 </div>
                 </form>
             </div>

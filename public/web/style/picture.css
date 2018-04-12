@@ -1,0 +1,89 @@
+.picture{ padding:80px 0; position:relative; background:url(../image/back5.jpg) }
+.picture .white {position: absolute; top:0; width:100%; height: 100%; background: url(../image/bg-white20.png);}
+
+
+.picture .gallery2 { position: relative; z-index: 50; display:block; margin: auto; padding:8px 6px; background: #fff; border:0px solid #f00; }
+.picture .gallery2:after { display:block; content:""; clear:both;}
+.picture .gallery2 li { float:left; position:relative; display:block; width:25%; height:200px; box-sizing: border-box; border:0px solid #f00; }
+.picture .gallery2 li .wrap { position:absolute; left:2%; top:2%; width:96%; height:94%; border:0px solid #fff; box-sizing: border-box; overflow:hidden; }
+.picture .gallery2 li.bigimg { width:50%; height:400px; }
+.picture .gallery2 li.bigimg .wrap { position:absolute; left:1%; top:1%; width:98%; height:97%; }
+
+.picture .gallery2 li .wrap > * { -webkit-transition:all 0.2s linear 0s; -moz-transition:all 0.2s linear 0s; transition:all 0.2s linear 0s; }
+.picture .gallery2 li .pics { position:absolute; left:0; top:0; width:100%; height:100%; z-index:10; }
+.picture .gallery2 li .info { position:absolute; left:0; top:0; width:100%; height:100%; background:url(../image/bg-black60.png); opacity:0; }
+.picture .gallery2 li .info h3 { font:20px/25px "微软雅黑"; color:#fae074; margin:20px 20px 20px; border-bottom:0px solid #eee;}
+.picture .gallery2 li .info p  { font:15px/1.5em "微软雅黑"; color:#fbeba9; margin:5px 20px; }
+.picture .gallery2 li .photo { position:absolute; right:20px; top:20px; font:22px/25px "微软雅黑"; color:#fae074; opacity:0; }
+.picture .gallery2 li .like  { position:absolute; right:20px; top:20px; font:22px/25px "微软雅黑"; color:#fae074; opacity:0; cursor:pointer; }
+.picture .gallery2 li .like:before { display:block; float:left; font:22px/25px "iconfont"; content:"\e601"; margin-right:5px; }
+.picture .gallery2 li .like:hover:before { color:#f2ca24; transform:scale(1.2,1.2); }
+
+.picture .gallery2 li:hover .pics { -webkit-transform:scale(1.1,1.1); -moz-transform:scale(1.1,1.1); transform:scale(1.1,1.1); }
+.picture .gallery2 li:hover .info { opacity:1; z-index:20; }
+.picture .gallery2 li:hover .like { opacity:1; z-index:20; }
+.picture .gallery2 li:hover .photo { opacity:1; z-index:20; }
+
+/* 
+
+图片尺寸 900x500
+图片比例 9:5
+
+1920 : 840x520 420x260
+1600 : 920x560 460x280
+1440 : 830x480 415x240
+1024 : 590x400 295x200
+500  : 250x140 250x140
+
+*/
+
+
+/* ================================================================================================================ */
+.picture_details .intro { background:url(http://7xorte.com1.z0.glb.clouddn.com/image/bg.jpg); overflow:hidden; position:relative;}
+.picture_details .intro .info { position:relative; z-index:10; margin:5% 5.5%; padding:0 300px 0 180px; min-height:140px; }
+.picture_details .intro .info .cover { position:absolute; left:0; top:0; width:130px; border:5px solid #fff; }
+.picture_details .intro .info .title { font:30px/1.5em "微软雅黑"; color:#fff; margin:0 0 0.5em; }
+.picture_details .intro .info .descp { font:20px/1.5em "微软雅黑"; color:#fff; }
+.picture_details .intro .info .date  { font:18px/1.3em "微软雅黑"; color:#fff; margin:0.8em 0; }
+.picture_details .intro .info .num   { position:absolute; right:0; top:0; font:80px/140px "微软雅黑"; color:#fff; }
+.picture_details .intro .back {  position:absolute; width:100%; top:-300px; }
+
+
+/* ================================================================================================================ */
+
+.picture_details .gallery1 { padding:5%; }
+.picture_details .gallery1:after { display:block; content:""; clear:both;}
+.picture_details .gallery1 li { position:relative; float:left; width:16.5%; text-align:center; box-sizing:border-box; border:0px solid #f00; }
+.picture_details .gallery1 li div { position:relative; margin:2%; box-sizing:border-box; box-shadow:0 0 3px rgba(0,0,0,0.5); border-radius:2px; opacity:0.9; overflow:hidden; transition:all 0.5s ease; border:8px solid #fff; }
+.picture_details .gallery1 li div a { display:block; }
+.picture_details .gallery1 li div img { width:100%;  }
+.picture_details .gallery1 li h3 {
+	display:inline-block; max-width:70%; padding:5px 10px; margin:10px;
+	font:15px/1em "微软雅黑"; color:#555;
+	background:#fff; border-radius:4px;
+	overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+	transition:all 0.5s ease; }
+.picture_details .gallery1 li h3 span { display:none; }
+
+.picture_details .gallery1 li .like { position:absolute; right:15px; top:15px; font:22px/25px "微软雅黑"; color:#fae074; opacity:0; cursor:pointer; }
+.picture_details .gallery1 li .like:before { display:block; float:left; font:22px/25px "iconfont"; content:"\e601"; margin-right:5px; }
+.picture_details .gallery1 li .like:hover:before { color:#f2ca24; transform:scale(1.2,1.2); }
+
+.picture_details .gallery1 li:hover div { opacity:1; }
+.picture_details .gallery1 li:hover h3  { box-shadow:0 0 1px rgba(0,0,0,0.3); border-radius:9px;}
+.picture_details .gallery1 li:hover .like { opacity:1; z-index:20; }
+
+.picture_details .list { padding:5%; }
+.picture_details .gallery3 { padding:5% 5%; border:0px solid #f00; }
+.picture_details .gallery3 li { margin:20px auto; text-align:center; border:0px solid #f60; }
+.picture_details .gallery3 li div { position:relative; display:inline-block; transition:all 0.5s ease; }
+.picture_details .gallery3 li div img { max-width:100%; margin:auto; }
+.picture_details .gallery3 li h3 { font:18px/1.5em "微软雅黑"; color:#555; margin:10px; }
+.picture_details .gallery3 li h3 span { margin-left:10px; }
+.picture_details .gallery3 li .like { position:absolute; right:20px; top:20px; font:22px/25px "微软雅黑"; color:#fae074; opacity:0; cursor:pointer; }
+.picture_details .gallery3 li .like:before { display:block; float:left; font:22px/25px "iconfont"; content:"\e601"; margin-right:5px; }
+.picture_details .gallery3 li .like:hover:before { color:#f2ca24; transform:scale(1.2,1.2); }
+.picture_details .gallery3 li div:hover .like { opacity:1; z-index:20; }
+
+
+/* ================================================================================================================ */

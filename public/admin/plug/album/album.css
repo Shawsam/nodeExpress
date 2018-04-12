@@ -20,13 +20,13 @@
 .hhAlbum_menu ul li:hover  { background:#fefefe; }
 
 .hhAlbum_imgs { position:relative; height:318px; margin-left:200px; border:0px solid #f00; }
-.hhAlbum_imgs.empty { background:url(/static/vendor/img/img_empty.png) no-repeat center; }
+.hhAlbum_imgs.empty { background:url(/public/admin/img/img_empty.png) no-repeat center; }
 .hhAlbum_imgs ul { padding:5px; border:0px solid #f00; }
 .hhAlbum_imgs ul li { float:left; margin:5px; width:120px; list-style:none; }
 .hhAlbum_imgs ul li div { position:relative; width:120px; height:120px; }
 .hhAlbum_imgs ul li div p { position:absolute; left:0; bottom:0; width:100%; color:#fff; background:rgba(0,0,0,0.3); }
 .hhAlbum_imgs ul li div b { display:none; position:absolute; left:0; top:0; z-index:5; width:116px; height:116px; border:2px solid #6ec174; box-sizing:content-box; cursor:pointer; }
-.hhAlbum_imgs ul li.selected b { display:block; background:url(/static/vendor/img/album_check.png) no-repeat right bottom; }
+.hhAlbum_imgs ul li.selected b { display:block; background:url(/public/admin/img/album_check.png) no-repeat right bottom; }
 .hhAlbum_imgs ul li img { width:100%; height:100%; cursor:pointer; }
 .hhAlbum_imgs ul li p { font:12px/20px "微软雅黑"; margin:5px 0 0; padding:0; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .hhAlbum_imgs > div { position:absolute; right:12px; bottom:-39px; overflow:hidden; }  /* 七牛图片上传，btn 外面自动包裹一层 div */

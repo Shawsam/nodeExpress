@@ -3,7 +3,8 @@
 album_config = {};
 album_config.cate_url = "/api/admin/album/categoryList";	// 相册分类请求地址
 album_config.imgs_url = "/api/admin/album/list";			// 相册图片列表请求地址
-album_config.upload_url = "/api/admin/album/upfile";		// 相册图片上传请求地址
+album_config.upload_url = "/api/admin/album/imgUpload";		// 相册图片上传请求地址
+
 
 $(function(){
 	

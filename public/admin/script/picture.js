@@ -5,12 +5,12 @@ $(function(){
 	    tpl1 += '{{# for(var i=0;i<d.length;i++){ }}';
 		    tpl1 += '{{# if(i==0){ }}';
 		    tpl1 +=    '<li data-id="{{d[i].tag_id}}" class="cate{{d[i].tag_id}}">';
-		    tpl1 +=      '<span>{{d[i].tag_name}}</span><i class="num"> ({{d[i].count}})</i>';
+		    tpl1 +=      '<span>{{d[i].tag_name}}</span> <i class="num">({{d[i].count}})</i>';
 		    tpl1 +=    '</li>';
 	        tpl1 += '{{# } }}';
 	        tpl1 += '{{# if(i!=0) { }}';
 		    tpl1 +=    '<li data-id="{{d[i].tag_id}}" class="cate{{d[i].tag_id}}">';
-		    tpl1 +=      '<span>{{d[i].tag_name}}</span><i class="num"> ({{d[i].count}})</i>';
+		    tpl1 +=      '<span>{{d[i].tag_name}}</span> <i class="num">({{d[i].count}})</i>';
 		    tpl1 +=      '<img class="btn_edit" src="/public/admin/img/btn_edit.png" />';
 		    tpl1 +=      '<img class="btn_del" src="/public/admin/img/btn_delete.png" />';
 		    tpl1 +=    '</li>';
@@ -21,7 +21,7 @@ $(function(){
     
     var tpl2 = '<script type="text/html" id="tpl_menu2">';
 		tpl2 +=	      '<li data-id="{{d.tag_id}}" class="cate{{d.tag_id}}">';
-		tpl2 +=	        '<span>{{d.tag_name}}<i class="num">({{d.count}})</i></span>';
+		tpl2 +=	        '<span>{{d.tag_name}} <i class="num">({{d.count}})</i></span>';
 		tpl2 +=	        '<img class="btn_edit" src="/public/admin/img/btn_edit.png" />';
 		tpl2 +=	        '<img class="btn_del" src="/public/admin/img/btn_delete.png" />';
 		tpl2 +=	      '</li>';
@@ -31,7 +31,7 @@ $(function(){
 		tpl3 +=     '{{# for(var i=0;i<d.length;i++){ }}';
 		tpl3 +=       '<li data-id="{{d[i].file_id}}">';
 		tpl3 +=         '<div>';
-		tpl3 +=         '<a class="fancybox" href="{{d[i].url}}" title="{{d[i].file_name}}">';
+		tpl3 +=         '<a class="fancybox" rel="fancybox" href="{{d[i].url}}" title="{{d[i].file_name}}">';
 		tpl3 +=         '<img class="lazy" src="/public/admin/img/lazy_200x200.jpg" data-src="{{d[i].url}}?imageView2/1/w/200/h/200" />';
 		tpl3 +=         '<p>{{d[i].attr_width+" x "+d[i].attr_heigth}}</p>';
 		tpl3 +=         '</a>';
@@ -391,7 +391,7 @@ $(function(){
 		fsize : 50,			// 图片大小限制（MB），默认 100MB
 		rery : 3,			// 上传失败重试次数，默认 1
 		FileUploaded : function(img,thumb,all){
-			url = "/api/admin/ablum/imgUpload";
+			url = "/api/admin/album/imgUpload";
 			data = {tag_id:cid,filename:all.key,width:all.width,height:all.height};
 			Ajax(url,data,function(ret){
 				if( ret.state )
@@ -411,12 +411,17 @@ $(function(){
 	});
 	
 	// 查看大图
+    setTimeout(function(){
 	$(".fancybox").fancybox({
-		padding:8,
-		openEffect:"none",
-		closeEffect:"none"
+		'closeBtn':false,
+		'nextEffect':'fade',
+		'prevEffect':'fade',
+		'overlayColor':'#000',
+		'overlayOpacity':0.8,
+		"centerOnScroll":true
 	});
-	
+	},500);
+
 	// 选择图片
 	$(".imgs").on("click",".btn_select span",function(evt){
 		evt.stopPropagation();

@@ -18,6 +18,7 @@
 </style>
 {% endblock %}
 {% block js %}
+<script src="/public/admin/plug/laytpl.js"></script>
 <script src="/public/admin/script/user.js"></script>
 {% endblock %}
 
@@ -33,12 +34,13 @@
                   <li>用户列表</li>
               </ul>
               <div class="row form-horizontal" >
+                    <form>
                     <div class="col-md-4 col-sm-6">  
                         <div class="form-group">
                             <label class="col-sm-3 control-label">用户名</label>
                             <div class="col-sm-9">
                                 <div class="fg-line">
-                                   <input class="form-control input-sm" placeholder="请输入" >
+                                   <input name="username" class="form-control input-sm" placeholder="请输入" >
                                 </div>
                             </div>
                         </div>                          
@@ -48,19 +50,24 @@
                             <label class="col-sm-3 control-label">权限</label>
                             <div class="col-sm-9">
                                  <div class="fg-line select">
-                                      <select class="form-control">
-                                            <option>请选择</option>
-                                            <option>普通用户</option>
-                                            <option>管理员</option>
+                                      <select name="role" class="form-control">
+                                            <option value="" >请选择</option>
+                                            <option value="0" >普通用户</option>
+                                            <option value="1" >管理员</option>
                                      </select>
                                 </div>
                             </div>
                         </div>                          
                     </div>
+                    <input type="hidden" class="ageSortFlag" value="1" name="age_sort">
+                    <input type="hidden" class="registerSortFlag" value="1" name="register_sort">
+                    <input type="hidden" class="loginSortFlag" value="1" name="login_sort">
+                    </form>
                     <div class="col-md-4 col-sm-6 btn-gp text-center">
-                        <button class="btn btn-primary">查询</button>
+                        <button class="btn btn-primary searchBtn">查询</button>
                         <a href="/admin/user/user_add"><button class="btn btn-danger">添加用户</button></a>
                     </div>
+                   
              </div>
 
 
@@ -71,9 +78,9 @@
                         <tr>
                             <th>用户名</th>
                             <th>权限</th>
-                            <th class="sort">年龄</th>
-                            <th class="sort">注册时间<i class="m-l-5  zmdi zmdi-chevron-down"></i></th>
-                            <th class="sort">最后登录时间<i class="m-l-5  zmdi zmdi-chevron-down"></i></th>
+                            <th class="sort ageSort">年龄<i class="m-l-5  zmdi zmdi-chevron-down"></i></th>
+                            <th class="sort registerSort">注册时间<i class="m-l-5  zmdi zmdi-chevron-down"></i></th>
+                            <th class="sort loginSort">最后登录时间<i class="m-l-5  zmdi zmdi-chevron-down"></i></th>
                             <th>操作</th>
                         </tr>
                     </thead>
@@ -94,5 +101,7 @@
         </div>
     </div>
 </section>
+
+
 <!--内容结束  -->
 {% endblock %}
