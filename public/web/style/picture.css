@@ -2,7 +2,7 @@
 .picture .white {position: absolute; top:0; width:100%; height: 100%; background: url(../image/bg-white20.png);}
 
 
-.picture .gallery2 { position: relative; z-index: 50; display:block; margin: auto; padding:8px 6px; background: #fff; border:0px solid #f00; }
+.picture .gallery2 { position: relative; z-index: 50; display:block; margin: auto; padding:8px 6px; background: #fff; border:0px solid #f00; box-shadow:0 0 6px rgba(0,0,0,0.1); }
 .picture .gallery2:after { display:block; content:""; clear:both;}
 .picture .gallery2 li { float:left; position:relative; display:block; width:25%; height:200px; box-sizing: border-box; border:0px solid #f00; }
 .picture .gallery2 li .wrap { position:absolute; left:2%; top:2%; width:96%; height:94%; border:0px solid #fff; box-sizing: border-box; overflow:hidden; }

@@ -1,6 +1,6 @@
 body{ background:url(../image/musicback.jpg); }
 .blog .container{ padding:75px 15px; }
-.blog .container .list{ background:#fff; padding:0 20px; border:1px solid #e8e8e8; box-shadow:3px 3px 6px rgba(0,0,0,0.1); }
+.blog .container .list{ background:#fff; padding:0 20px; border:1px solid #e8e8e8; box-shadow:0 0 6px rgba(0,0,0,0.1); }
 .blog .container .list li{ padding:20px 0; position:relative; border-bottom:1px solid #e8e8e8}
 .blog .container .list li .title{ font-size:18px; color:#000; font-weight:bold; margin:10px 0; }
 .blog .container .list li .title:hover a{ color:#ff6263; }
