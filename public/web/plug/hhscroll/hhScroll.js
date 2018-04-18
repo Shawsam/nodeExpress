@@ -806,7 +806,7 @@ function Slider(container,option)
 	img_num=$(container).children("div").length;
 	if(img_num==0)
 	{
-		$(container).append("<div class='hhError'><img src='http://www.houheaven.com/home/portrait_60x60.png' />出错，检测不到图片！</div>");
+		$(container).append("<div class='hhError'><img src='http://p0mewrlgg.bkt.clouddn.com/logo.png' />出错，检测不到图片！</div>");
 		$(container).find(".hhError").css({lineHeight:opt.height+"px"});
 		return;
 	}

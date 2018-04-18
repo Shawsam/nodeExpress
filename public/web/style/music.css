@@ -1,0 +1,24 @@
+body{background:url(../image/musicback.jpg);}
+/*.music .info { padding:3% 10%; background:url(../image/textbg.jpg);}
+.music .info h2 img { width:130px; margin-bottom:20px; }
+.music .info p  { font:18px/1.3em "微软雅黑"; margin:0.4em 0; color:#1b1915; }
+*/
+.music .container{ padding:50px 0; }
+.music .container .main{ font-size:0; overflow:hidden; zoom:1; margin:0 -15px; }
+.music .container .Con{ background:#fff; padding:15px; }
+.music .container .leftCon{ float:left; width:70%; font:17px/1.3em "微软雅黑"; padding:15px; }
+.music .container .leftCon .title{ margin:20px 0; border-left:5px solid #ff6263; padding:0 8px;  }
+.music .container .leftCon .banner{ width:100%; }
+.music .container .leftCon .banner .swiper-pagination-bullet-active{ background:#ff6263; }
+.music .container .leftCon .list { font-size:0;}
+.music .container .leftCon .list li{ display:inline-block; width:20%; text-align:center; margin-bottom:20px; }
+.music .container .leftCon .list li:hover .info a{ color:#ff6263 }
+.music .container .leftCon .list li .image img{ border:1px solid #e8e8e8; border-radius:5px; overflow:hidden;  }
+.music .container .leftCon .list li .info p{ font-size:14px; color:#999;   overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.music .container .rightCon{ float:left; width:30%; font:17px/1.3em "微软雅黑"; padding:15px; }
+.music .container .rightCon .title{ border-left:5px solid #ff6263; padding:0 8px; margin-bottom:20px  }
+.music .container .rightCon .list li{ font-size:14px;  margin:10px 0; color:#999; }
+.music .container .rightCon .list li a{ color:#333;  }
+.music .container .rightCon .list li a:hover{ color:#ff6263 }
+.music .container .rightCon .list li .name:hover{ color:#ff6263 }
+.music .container .rightCon .list li .name{ float:right;}

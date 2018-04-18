@@ -1,0 +1,89 @@
+
+* { outline:none; }
+body { background:#F3F3F4; }
+li { list-style:none; }
+.hide { display:none; }
+.clear { clear:both; margin:0; }
+.nav-tabs li a { min-width:300px; background:#fbfbfb; color:#555; text-align:center; border: 1px solid #e7eaec; }
+.tabs-container .nav-tabs>li a:hover { background:#fff; border: 1px solid #e7eaec; }
+
+table.page { width:100%; } 
+table.page td { padding:20px; background:#f8f8f8; border: 2px solid #fff; vertical-align:top; }
+table.page td.tb_title { width:280px; padding-top:27px; font:bold 14px/1em "微软雅黑"; color:#333; text-align:center; }
+table.page td.btns { text-align:center; }
+
+table.sku_detail { width:100%; border: 1px solid #e5e5e5; }
+table.sku_detail td { padding:10px; background:#fff; border: 1px solid #e5e5e5; vertical-align:middle; }
+table.sku_detail td input { width:60px; padding:5px; border:1px solid #ddd; border-radius:5px; }
+table.sku_detail td.btns { text-align:center; }
+table.sku_detail tr.setting td { background:#fcfcfc !important; border-left:none; border-right:none; }
+
+.form-group .radio input { display:none; }
+.form-group .radio i { display:block; width:20px; height:20px; position:absolute; left:15px; top:6px; background:url("../vendor/css/plugins/iCheck/green.png")/*tpa=http://works.houheaven.com/pc/sku2/vendor/css/plugins/iCheck/green.png*/ -120px 0; }
+.form-group .radio:hover i { background:url("../vendor/css/plugins/iCheck/green.png")/*tpa=http://works.houheaven.com/pc/sku2/vendor/css/plugins/iCheck/green.png*/ -144px 0; }
+.form-group .radio.active i { background:url("../vendor/css/plugins/iCheck/green.png")/*tpa=http://works.houheaven.com/pc/sku2/vendor/css/plugins/iCheck/green.png*/ -168px 0; }
+.form-group .form-control  { border-radius:5px; width:210px; }
+.form-group .descp { position:absolute; left:240px; top:10px; }
+.chosen-choices2 { border-radius:3px !important; border:1px solid #e5e6e7 !important; }
+.chosen-single2  { border-radius:3px !important; border:1px solid #e5e6e7 !important; }
+
+.pro_norms ul { padding:0; background:#fff; border:1px solid #e5e5e5; border-radius:5px; }
+.pro_norms ul li { position:relative; min-height:50px; margin:-1px; padding:15px 15px 5px 70px; background:#fff; list-style:none inside; border:1px solid #e5e5e5; }
+.pro_norms ul li .btn_delitem { position:absolute; right:0px; top:10px; }
+.pro_norms ul li .btn_additem { position:absolute; left:0px; top:10px; }
+.pro_norms ul li .btn_add { float:left; }
+.pro_norms ul li .select2 { position:absolute; left:10px; }
+.pro_norms ul li select { width:200px; }
+.pro_norms ul li .sku_key { position:absolute; left:15px; font: 14px/20px "微软雅黑"; color:#333; }
+.pro_norms ul li .sku_val { position:relative; float:left; min-width:120px; margin-right:10px; padding:5px; text-align:center; border:1px solid #e5e5e5; border-radius:5px; cursor:pointer; }
+.pro_norms ul li .sku_val b { float:left; width:25px; height:18px; background:url("../vendor/css/plugins/iCheck/green.png")/*tpa=http://works.houheaven.com/pc/sku2/vendor/css/plugins/iCheck/green.png*/ no-repeat -120px 0; border-right:1px solid #e5e5e5; }
+.pro_norms ul li .sku_val:hover { border:1px solid #ccc; }
+.pro_norms ul li .sku_val:hover b { background:url("../vendor/css/plugins/iCheck/green.png")/*tpa=http://works.houheaven.com/pc/sku2/vendor/css/plugins/iCheck/green.png*/ -168px 0; opacity:0.5; }
+.pro_norms ul li .sku_val.active b { background:url("../vendor/css/plugins/iCheck/green.png")/*tpa=http://works.houheaven.com/pc/sku2/vendor/css/plugins/iCheck/green.png*/ -168px 0; opacity:1; }
+.pro_norms ul li .sku_val.active { border:1px solid #ddd; }
+
+.pro_norms ul li.highlight { background:#fffa90; min-height:62px; border:1px dashed #dad55e; z-index: 100; }
+
+.norm_contt select { width:100%; }
+.norm_panel select { width:100%; }
+.select2-dropdown { z-index:1000000000; }
+.error { border:1px solid #f33 !important; }
+.switch { margin-top:5px; }
+
+.pro_pic .pic { position:relative; margin:0 0 15px; padding:0; }
+.pro_pic .pic li { position:relative; float:left; margin-right:5px; }
+.pro_pic .pic li b { position:absolute; right:-8px; top:-8px; z-index:5; display:block; width:26px; height:26px; background:#fff; border-radius:50%; cursor:pointer; }
+.pro_pic .pic li b img { position:absolute; left:2px; bottom:2px; display:block; width:22px; height:22px; }
+.pro_pic .pic li input { display:none; }
+.pro_pic .pic li img { width:80px; height:80px; border-radius:5px; opacity:0.9; }
+.pro_pic .pic .btn_add { cursor:pointer; }
+.pro_pic .pic .btn_add:active:after { border:1px solid #bbb; background:rgba(0,0,0,0.03); }
+.pro_pic .clear { line-height:40px; }
+
+.pro_banner .pic { position:relative; margin:0 0 15px; padding:0; }
+.pro_banner .pic li { position:relative; float:left; margin:0 5px 5px 0; }
+.pro_banner .pic li b { position:absolute; right:-8px; top:-8px; z-index:5; display:block; width:26px; height:26px; background:#fff; border-radius:50%; cursor:pointer; }
+.pro_banner .pic li b img { position:absolute; left:2px; bottom:2px; display:block; width:22px; height:22px; }
+.pro_banner .pic li input { display:none; }
+.pro_banner .pic li img { height:80px; border-radius:5px; opacity:0.9; }
+.pro_banner .pic .btn_add { cursor:pointer; }
+.pro_banner .pic .btn_add:active:after { border:1px solid #bbb; background:rgba(0,0,0,0.03); }
+.pro_banner .clear { line-height:40px; }
+
+.pro_pic2 .pic { position:relative; margin:0 0 15px; padding:0; }
+.pro_pic2 .pic li { position:relative; float:left; margin:0 5px 5px 0; }
+.pro_pic2 .pic li b { position:absolute; right:-8px; top:-8px; z-index:5; display:block; width:26px; height:26px; background:#fff; border-radius:50%; cursor:pointer; }
+.pro_pic2 .pic li b img { position:absolute; left:2px; bottom:2px; display:block; width:22px; height:22px; }
+.pro_pic2 .pic li input { display:none; }
+.pro_pic2 .pic li img { height:80px; border-radius:5px; opacity:0.9; }
+.pro_pic2 .pic .btn_add { cursor:pointer; }
+.pro_pic2 .pic .btn_add:active:after { border:1px solid #bbb; background:rgba(0,0,0,0.03); }
+.pro_pic2 .clear { line-height:40px; }
+
+.panel2 h2 { font:30px/1em "微软雅黑"; color:#999; text-align:center; padding:200px 0; }
+.pro_recommend div { position:relative; }
+.pro_recommend textarea { width:210px; max-width:210px; min-height:8em; }
+.pro_recommend p { position:absolute; left:240px; top:10px; }
+.pro_percent div  { position:relative; }
+.pro_percent span { position:absolute; left:240px; top:10px; }
+

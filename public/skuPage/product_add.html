@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>添加商品规格（SKU）</title>
+    <link rel="icon" href="/public/web/res/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="vendor/css/bootstrap.min14ed.css?v=3.3.6" />
+    <link rel="stylesheet" href="vendor/css/animate.min.css" />
+    <link rel="stylesheet" href="vendor/css/plugins/chosen/chosen.css" />
+    <link rel="stylesheet" href="vendor/css/style.min862f.css?v=4.1.0" />
+    <link rel="stylesheet" href="style/common.css" />
+    <link rel="stylesheet" href="style/sku.css" />
+    <script>
+    Norm = [
+      {
+        id: "100",
+        name: "颜色",
+        type: "radio",
+        unit: "",
+        items: [
+          {id:"101", name:"黑色", check:false},
+          {id:"102", name:"白色", check:false},
+          {id:"103", name:"黄色", check:false},
+          {id:"104", name:"红色", check:false}
+        ]
+      },
+      {
+        id: "200",
+        name: "尺寸",
+        unit: "码",
+        items: [
+          {id:"201", name:"39", check:false},
+          {id:"202", name:"40", check:false},
+          {id:"203", name:"41", check:false},
+          {id:"204", name:"42", check:false},
+          {id:"205", name:"43", check:false},
+          {id:"206", name:"44", check:false}
+        ]
+      },
+      {
+        id: "300",
+        name: "材质",
+        unit: "",
+        items: [
+          {id:"301", name:"棉", check:false},
+          {id:"302", name:"麻", check:false},
+          {id:"303", name:"羊绒", check:false},
+          {id:"304", name:"其他", check:false}
+        ]
+      },
+      {
+        id: "400",
+        name: "产地",
+        unit: "",
+        items: [
+          {id:"401", name:"上海", check:false},
+          {id:"402", name:"北京", check:false},
+          {id:"403", name:"深圳", check:false},
+          {id:"404", name:"重庆", check:false}
+        ]
+      },
+      {
+        id: "500",
+        name: "等级",
+        unit: "",
+        items: [
+          {id:"501", name:"lv1", check:false},
+          {id:"502", name:"lv2", check:false},
+          {id:"503", name:"lv3", check:false}
+        ]
+      },
+      {
+        id: "600",
+        name: "保质期",
+        type: "select",
+        unit: "年",
+        items: [
+          {id:"601", name:"1-5", check:false},
+          {id:"602", name:"6-10", check:false},
+          {id:"603", name:"11-15", check:false},
+          {id:"604", name:"16-100", check:false}
+        ]
+      }
+    ];
+    SKU = {};
+  </script>
+    <script src="http://pub.houheaven.com/jquery/jquery.js"></script>
+    <script src="vendor/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="vendor/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="vendor/js/plugins/pace/pace.min.js"></script>
+    <script src="vendor/js/plugins/chosen/chosen.jquery.js"></script>
+  <script src="plugin/support.js"></script>
+    <script src="script/product.js"></script>
+</head>
+<body>
+    
+    <div class="header">
+      <h1>添加商品规格（SKU）</h1>
+      <a href="http://127.0.0.1:8080/index">SKY工作室</a>
+    </div>
+    
+  <div class="wrapper wrapper-content animated fadeInLeft">
+  
+  <div class="tabs-container">
+        <ul class="nav nav-tabs">
+            <li class=""><a data-toggle="tab" href="#tab-1" aria-expanded="false">商品信息（忽略）</a></li>
+            <li class="active"><a data-toggle="tab" href="#tab-2" aria-expanded="true">配置商品（演示）</a></li>
+            <li class=""><a href="product_edit.html" aria-expanded="true">编辑商品（点我）</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane">
+                <div class="panel-body">
+                
+                <div class="form-horizontal">
+                <table class="page">
+                <tr>
+                <td class="tb_title">商品信息</td>
+                <td>
+                    <div class="form-group">
+                    <label class="col-sm-2 control-label">商品名称</label>
+                    <div class="col-sm-10"><input type="text" name="product.product_name" class="form-control pro_name"></div>
+                    </div>
+                  <div class="form-group prices">
+                    <label class="col-sm-2 control-label">商品价格</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="product.price" class="form-control" /><span class="descp">现价（元）</span>
+                    </div>
+                    </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10">
+                      <input type="text" name="product.market_price" class="form-control" /><span class="descp">原价（元）</span>
+                    </div>
+                    </div>
+                  <div class="form-group pro_pic">
+                    <label class="col-sm-2 control-label">主要图片</label>
+                    <div class="col-sm-10">
+                      <ul class="pic clearfloat">
+                <!--
+                <li class="added">
+                  <input type="checkbox" name="site.attr_img" value="../image/avatar_07.jpg" checked="checked" />
+                  <img class="lazy" src="../image/preview_250x250.jpg" data-src="/static/vendor/img/a3.jpg" /><b></b>
+                </li>
+                -->
+                <li class="btn_add">
+                  <img src="image/image_add.png" />
+                </li>
+                </ul>
+                <p class="clear">用于商品列表显示，推荐上传尺寸300*300</p>
+                    </div>
+                    </div>
+                  <div class="form-group pro_banner">
+                    <label class="col-sm-2 control-label">切换图片</label>
+                    <div class="col-sm-10">
+                      <ul class="pic clearfloat">
+                <!--
+                <li class="added">
+                  <input type="checkbox" name="site.attr_img" value="../image/avatar_07.jpg" checked="checked" />
+                  <img class="lazy" src="../image/preview_250x250.jpg" data-src="/static/vendor/img/a3.jpg" /><b></b>
+                </li>
+                -->
+                <li class="btn_add">
+                  <img src="image/image_add.png" />
+                </li>
+                </ul>
+                <p class="clear">用于商品详情顶部切换的图片，推荐上传尺寸600*350</p>
+                    </div>
+                    </div>
+                    <div class="form-group pro_recommend">
+                    <label class="col-sm-2 control-label">推荐理由</label>
+                    <div class="col-sm-10">
+                      <textarea name="product.product_name" class="form-control"></textarea>
+                      <p>45字以内</p>
+                    </div>
+                    </div>
+                </td>
+                </tr>
+                <tr>
+                <td class="tb_title">运费信息</td>
+                <td>
+                    <div class="form-group">
+                    <label class="col-sm-2 control-label">运费</label>
+                    <div class="col-sm-10"><input type="text" name="product.product_name" class="form-control" value="包邮" disabled></div>
+                    </div>
+                </td>
+                </tr>
+                <tr><td colspan="2" class="btns"><a class="btn btn_next btn-primary">下一步</a></td></tr>
+                </table>
+                </div>
+                
+                </div>
+            </div>
+            <div id="tab-2" class="tab-pane panel2 active">
+                <div class="panel-body">
+                    
+                <div class="form-horizontal">
+                <table class="page">
+                <tr>
+                <td class="tb_title">库存规格</td>
+                <td>
+                    <div class="form-group pro_norms">
+                    <label class="col-sm-2 control-label">商品规格</label>
+                    <div class="col-sm-10">
+                      
+                      <ul class="sku_list">
+            <!--
+                      <li>
+                      <h4 class="sku_key">颜色</h4>
+                      <p class="sku_val active" data-id="102"><b></b>黑色</p>
+                      <p class="sku_val active" data-id="103"><b></b>白色</p>
+                      <p class="sku_val active2" data-id="104"><b></b>黄色</p>
+                      <p class="sku_val" data-id="101"><b></b>红色</p>
+                      <p class="clear"></p>
+                      </li>
+                      <li>
+                      <h4 class="sku_key">尺寸</h4>
+                      <p class="sku_val active" data-id="201"><b></b>39 码</p>
+                      <p class="sku_val active" data-id="202"><b></b>40 码</p>
+                      <p class="sku_val active2" data-id="203"><b></b>41 码</p>
+                      <p class="sku_val" data-id="204"><b></b>42 码</p>
+                      <p class="sku_val" data-id="205"><b></b>43 码</p>
+                      <p class="sku_val" data-id="206"><b></b>44 码</p>
+                      <p class="clear"></p>
+                      </li>
+                      <li>
+                      <h4 class="sku_key">材质</h4>
+                      <p class="sku_val active" data-id="301"><b></b>棉</p>
+                      <p class="sku_val active" data-id="302"><b></b>麻</p>
+                      <p class="sku_val" data-id="303"><b></b>羊绒</p>
+                      <p class="clear"></p>
+                      </li>
+                      <li>
+                      <h4 class="sku_key">产地</h4>
+                      <p class="sku_val active" data-id="401"><b></b>上海</p>
+                      <p class="sku_val active" data-id="402"><b></b>北京</p>
+                      <p class="sku_val" data-id="403"><b></b>深圳</p>
+                      <p class="sku_val" data-id="404"><b></b>广州</p>
+                      <p class="clear"></p>
+                      </li>
+                      <li>
+                      <h4 class="sku_key">等级</h4>
+                      <p class="sku_val active" data-id="501"><b></b>lv1</p>
+                      <p class="sku_val active" data-id="502"><b></b>lv2</p>
+                      <p class="sku_val" data-id="503"><b></b>lv3</p>
+                      <p class="clear"></p>
+                      </li>
+            -->
+                      </ul>
+                      
+                    </div>
+                    </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">商家库存</label>
+                    <div class="col-sm-10">
+                      <table class="sku_detail"></table>
+                      <!--
+                      <br>
+                      <table class="store">
+                      <tr><td>尺寸</td><td>颜色</td><td>款式</td><td>价格（元）</td><td>库存</td><td>商家编码</td><td>销量</td></tr>
+                      <tr><td rowspan="6">111</td><td rowspan="3">111</td><td>111</td><td><input type="text" class="tb_price" /></td><td><input type="text" class="tb_store" /></td><td><input type="text" class="tb_proid" /></td><td>0</td></tr>
+                      <tr><td>111</td><td><input type="text" class="tb_price" /></td><td><input type="text" class="tb_store" /></td><td><input type="text" class="tb_proid" /></td><td>0</td></tr>
+                      <tr><td>111</td><td><input type="text" class="tb_price" /></td><td><input type="text" class="tb_store" /></td><td><input type="text" class="tb_proid" /></td><td>0</td></tr>
+                      <tr><td rowspan="3">111</td><td>111</td><td><input type="text" class="tb_price" /></td><td><input type="text" class="tb_store" /></td><td><input type="text" class="tb_proid" /></td><td>0</td></tr>
+                      <tr><td>111</td><td><input type="text" class="tb_price" /></td><td><input type="text" class="tb_store" /></td><td><input type="text" class="tb_proid" /></td><td>0</td></tr>
+                      <tr><td>111</td><td><input type="text" class="tb_price" /></td><td><input type="text" class="tb_store" /></td><td><input type="text" class="tb_proid" /></td><td>0</td></tr>
+                      <tr><td rowspan="6">111</td><td rowspan="3">111</td><td>111</td><td><input type="text" class="tb_price" /></td><td><input type="text" class="tb_store" /></td><td><input type="text" class="tb_proid" /></td><td>0</td></tr>
+                      <tr><td>111</td><td><input type="text" class="tb_price" /></td><td><input type="text" class="tb_store" /></td><td><input type="text" class="tb_proid" /></td><td>0</td></tr>
+                      <tr><td>111</td><td><input type="text" class="tb_price" /></td><td><input type="text" class="tb_store" /></td><td><input type="text" class="tb_proid" /></td><td>0</td></tr>
+                      <tr><td rowspan="3">111</td><td>111</td><td><input type="text" class="tb_price" /></td><td><input type="text" class="tb_store" /></td><td><input type="text" class="tb_proid" /></td><td>0</td></tr>
+                      <tr><td>111</td><td><input type="text" class="tb_price" /></td><td><input type="text" class="tb_store" /></td><td><input type="text" class="tb_proid" /></td><td>0</td></tr>
+                      <tr><td>111</td><td><input type="text" class="tb_price" /></td><td><input type="text" class="tb_store" /></td><td><input type="text" class="tb_proid" /></td><td>0</td></tr>
+                      <tr class="setting"><td colspan="3">批量设置</td><td><input type="text" class="set_price" /></td><td><input type="text" class="set_store" /></td><td colspan="2"></td></tr>
+                      </table>
+                      -->
+                    </div>
+                    </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10"><p>提示：拖动规格选项进行排序，即可改变前端展示顺序。</p></div>
+                    </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">总库存</label>
+                    <div class="col-sm-10"><input type="text" name="product.product_name" value="0" class="form-control store_all"></div>
+                    </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">商家编码</label>
+                    <div class="col-sm-10"><input type="text" name="product.product_name" class="form-control"></div>
+                    </div>
+                </td>
+                </tr>
+                <tr>
+                <td class="tb_title">请忽略</td>
+                <td>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">商品分类</label>
+                      <div class="col-sm-10">
+                        <select class="form-control chosen-select pro_cate" tabindex="2">
+                        <option value="">请选择</option>
+                        <option value="110000">男装</option>
+                        <option value="120000">女装</option>
+                        <option value="130000">食品</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">商品分组</label>
+                      <div class="col-sm-10">
+                        <select data-placeholder="请选择" class="form-control chosen-select pro_group" multiple tabindex="4">
+                        <option value="110000" hassubinfo="true">热销</option>
+                        <option value="120000" hassubinfo="true">新品</option>
+                        <option value="130000" hassubinfo="true">精品</option>
+                        <option value="140000" hassubinfo="true">降价</option>
+                        </select>
+                      </div>
+                    </div>
+                </td>
+                </tr>
+                <tr><td colspan="2" class="btns"><a class="btn btn_next btn-primary">完成</a></td></tr>
+                </table>
+                </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    </div>
+    
+    <!-- 商品规格 -->
+    <script type="text/html" id="tpl_sku">
+    {{# for(var i=0;i<d.length;i++){ }}
+    <li>
+    <h4 class="sku_key" data-id="{{d[i].id}}">{{d[i].name}}</h4>
+    <input type="hidden" name="norm_sort" value="{{d[i].id}}" />
+    {{# for(var j=0;j<d[i].items.length;j++){ }}
+    <p class="sku_val {{d[i].items[j].check?'active':''}}" data-id="{{d[i].items[j].id}}"><b></b>{{d[i].items[j].name+" "+d[i].unit}}</p>
+    {{# } }}
+    <p class="clear"></p>
+    </li>
+    {{# } }}
+  </script>
+    
+</body>
+</html>

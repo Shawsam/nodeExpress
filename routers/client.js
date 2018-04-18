@@ -76,8 +76,8 @@ router.get('/picture_details', function(req, res) {
     })
 });
 
-router.get('/contact', function(req, res) {
-  res.render('web/contact',{
+router.get('/blog', function(req, res) {
+  res.render('web/blog',{
      title:'博客'
   })
 });

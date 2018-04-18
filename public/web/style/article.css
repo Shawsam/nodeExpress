@@ -1,0 +1,11 @@
+body{ background:url(../image/musicback.jpg); }
+.article .container{ padding:75px 15px; }
+.article .container .list{ background:#fff; padding:0 20px; border:1px solid #e8e8e8; box-shadow:3px 3px 6px rgba(0,0,0,0.1); }
+.article .container .list li{ padding:20px 0; padding-right:230px; position:relative; border-bottom:1px solid #e8e8e8}
+.article .container .list li .centerImg{ position:absolute; right:0; width:215px; height:160px; border-radius:8px; }
+.article .container .list li .author .avatar{ height:45px; width:45px; border-radius:100%; display:inline-block; vertical-align:middle; }
+.article .container .list li .author .info{ display:inline-block; vertical-align:middle; margin-left:5px; font-size:15px; }
+.article .container .list li .title{ font-size:18px; color:#000; font-weight:bold; margin:10px 0; }
+.article .container .list li .title:hover a{ color:#ff6263; }
+.article .container .list li .abstract{ color:#666; font-size:14px; line-height:25px; padding:0 15px; }
+.article .container .list li:last-child{ border-bottom:none; }

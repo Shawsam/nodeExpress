@@ -84,7 +84,7 @@ mongoose.connection.on('connected', function () {
     console.log('数据库连接成功，' + DB_URL);  
 
 	//启动服务，监听连接请求
-	var server = app.listen(8081, '127.0.0.1', function () {
+	var server = app.listen(8080, '0.0.0.0', function () {
 	  var host = server.address().address;
 	  var port = server.address().port;
 	  console.log('服务器启动成功，监听访问 http://%s:%s', host, port);

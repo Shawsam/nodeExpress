@@ -1,0 +1,47 @@
+
+/* ======================================================================================================== */
+
+* { margin:0; padding:0; }
+a { text-decoration:none; }
+::-webkit-scrollbar { display:none; }
+
+.flexbox {
+	display:-webkit-box;
+	display:-webkit-box-flex;
+	display:box;
+	display:-webkit-flex;
+	display:flex;
+	-webkit-box-pack:justify;
+	-webkit-justify-content:space-around; }
+.flexbox > * {
+	-webkit-box-flex:1;
+	box-flex:1;
+	flex:1;
+	width:100%; }
+
+.header { position:relative; background:#393D49; padding:20px; }
+.header h1 { font:30px/1.5em "微软雅黑"; color:#c4c7d2; text-align: center; margin:0; }
+.header a { position:absolute; left:20px; top:20px; padding:0 10px; font:20px/40px "微软雅黑"; color:#94979e; background:#393D49; border:1px solid #94979e; transition:all 0.3s ease 0s; }
+.header a:hover { color:#c4c7d2; border:1px solid #c4c7d2; }
+
+
+.footer { position:fixed; bottom:0; width:100%; z-index:200; height:50px; overflow:hidden; background:#fff; }
+.footer:before { display:block; content:""; width:100%; height:1px; position:absolute; left:0; top:0; z-index:5; background:#ddd; -webkit-transform:scale(1,0.5); }
+.footer ul.nav li        { display:block; padding:0; font:12px/15px "微软雅黑"; color:#fff; text-align:center; }
+.footer ul.nav li.active { background:rgba(0,0,0,0.05); }
+.footer ul.nav li:active { background:rgba(0,0,0,0.1); }
+.footer ul.nav li:before { display:block; font:25px/30px "hhicon"; }
+.footer ul.nav li:nth-child(1):before { content:"\e6ba"; }
+.footer ul.nav li:nth-child(2):before { content:"\e6b7"; font-weight:bold; }
+.footer ul.nav li:nth-child(3):before { content:"\e6b8"; }
+.footer ul.nav li:nth-child(4):before { content:"\e6b5"; }
+
+
+.footer ul li { text-align:center; font:17px/50px "微软雅黑"; }
+.footer ul li a { display:inline-block; width:100%; cursor:pointer; }
+.footer ul li a:active { opacity: 0.6; }
+.footer ul li.price { font:19px/50px "微软雅黑"; color:#FF9000; }
+.footer ul li.buy { background:#FF9000; color:#fff; }
+
+
+/* ======================================================================================================== */
