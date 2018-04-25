@@ -70,7 +70,7 @@ router.get('/picture_details', function(req, res) {
     var gallery_id = req.query.gallery_id;
     Gallery.findOne({gallery_id:gallery_id}).then(function(gallery){
         res.render('web/picture_details',{
-           title:'画廊',
+           title:'画廊详情',
            gallery:gallery
         })
     })
@@ -79,6 +79,13 @@ router.get('/picture_details', function(req, res) {
 router.get('/blog', function(req, res) {
   res.render('web/blog',{
      title:'博客'
+  })
+});
+
+router.get('/blog_details', function(req, res) {
+  var id = req.query.id;
+  res.render('web/blog_details',{
+     title:'博客详情'
   })
 });
 

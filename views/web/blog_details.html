@@ -1,0 +1,35 @@
+{% extends  "./layouts/layout.html" %}
+{% block css %}
+<link rel="stylesheet" href="/public/web/style/blog.css" />
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+	
+</script>
+{% endblock %}
+
+
+{% block content %}
+    <div class="framepage blog_details">
+    	<div class="container">
+    		<div class="content">
+    			<div class="title">小程序开发UnionID机制说明,微信开放平台绑定小程序流程</div>
+    			<div class="time">2018-02-10 13:25</div>	
+    		    <div class="text">
+    		    	<img src="public/web/image/back5.jpg" />
+    		    	<p>如果开发者拥有多个移动应用、网站应用、和公众帐号（包括小程序），可通过unionid来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号（包括小程序），用户的unionid是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，unionid是相同的。</p>
+    		    	<p><b>同一个微信开放平台下的相同主体的App、公众号、小程序，如果用户已经关注公众号，或者曾经登录过App或公众号，则用户打开小程序时，开发者可以直接通过wx.login获取到该用户UnionID，无须用户再次授权。</b></p>
+
+    		    	<p><b>微信开放平台绑定小程序流程</b></p>
+    		    	<p>前提：微信开放平台帐号必须已完成开发者资质认证</p>
+    		    	<p>开发者资质认证流程：</p>
+                    <p>登录微信开放平台(open.weixin.qq.com) – 帐号中心 – 开发者资质认证<p>
+                    <img src="public/web/image/ar1.jpg" />
+                    <p>绑定流程：</p>
+                    <p>登录微信开放平台（open.weixin.qq.com）—管理中心—公众帐号—绑定公众帐号<p>
+                    <img src="public/web/image/ar2.jpg" />
+    		    </div>
+    		</div>
+        </div>
+    </div>
+{% endblock %}
