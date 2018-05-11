@@ -2,7 +2,8 @@
 /* ================================================================================================================ */
 
 body { background:#0042AF; }
-body { background:url(../img/login1.png)no-repeat center center fixed; background-size:100% 100%; }
+body { background:url(../img/login1.jpg)no-repeat center center fixed; background-size:100% 100%; }
+
 
 .logo { position:absolute; left:50%; top:50%; margin:-230px 0 0 -90px; width:180px; }
 
