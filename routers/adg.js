@@ -34,6 +34,7 @@ router.get('/indexData', function(api_req, api_res) {
                  filterData = []
              resArray.map(function(item){
                 filterData.push({
+                  code:item.code,
                   brandName:item.brandCategory.brandName,
                   productName:item.brandCategory.displayName,
                   salePrice:(item.userPrice.salePrice*6.35).toFixed(2),
@@ -71,6 +72,7 @@ router.get('/productList', function(api_req, api_res) {
                  filterData = []
              resArray.map(function(item){
                 filterData.push({
+                  code:item.code,
                   brandName:item.brandCategory.brandName,
                   productName:item.brandCategory.displayName,
                   salePrice:(item.userPrice.salePrice*6.35).toFixed(2),
