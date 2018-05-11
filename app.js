@@ -48,6 +48,7 @@ swig.setDefaults({cache: false})
 app.set('trust proxy', 'loopback') // 指定唯一子网
 
 //静态文件托管
+app.use(express.static('public'));
 app.use('/public',express.static('public'));
 
 //======== cookies配置 =========================//
