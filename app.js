@@ -1,4 +1,4 @@
-//加载express模块
+﻿//加载express模块
 var express = require('express');
 //加载模板引擎
 var swig = require('swig');
@@ -11,6 +11,16 @@ var promise = require('bluebird');
 //加载cookies模块
 var Cookies = require('cookies');
 
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
+var privateKey  = fs.readFileSync('./secret/58adg.com.key', 'utf8');
+var certificate = fs.readFileSync('./secret/58adg.com.pem', 'utf8');
+var credentials = {key: privateKey,
+                   cert: certificate};
+
+
+console.log(credentials)
 
 //===================================================================================//
 var DB_URL = 'mongodb://127.0.0.1:28888/studio';
@@ -34,7 +44,11 @@ app.set('view cache', false);
 //设置swig页面不缓存
 swig.setDefaults({cache: false})
 
+
+app.set('trust proxy', 'loopback') // 指定唯一子网
+
 //静态文件托管
+app.use(express.static('public'));
 app.use('/public',express.static('public'));
 
 //======== cookies配置 =========================//
@@ -84,11 +98,29 @@ mongoose.connection.on('connected', function () {
     console.log('数据库连接成功，' + DB_URL);  
 
 	//启动服务，监听连接请求
-	var server = app.listen(8080, '0.0.0.0', function () {
-	  var host = server.address().address;
-	  var port = server.address().port;
-	  console.log('服务器启动成功，监听访问 http://%s:%s', host, port);
-	});
+
+	// var server = app.listen(8080, '0.0.0.0', function () {
+	//   var host = server.address().address;
+	//   var port = server.address().port;
+	//   console.log('服务器启动成功，监听访问 http://%s:%s', host, port);
+	// });
+
+
+  var httpServer = http.createServer(app);
+  var httpsServer = https.createServer(credentials, app);
+  var PORT = 80;
+  var SSLPORT = 443;
+
+
+  httpServer.listen(PORT, function() {
+      console.log('服务器启动成功: http://localhost:%s', PORT);
+  });
+  httpsServer.listen(SSLPORT, function() {
+      console.log('服务器启动成功: https://localhost:%s', SSLPORT);
+  });
+
+
+
 });    
 
 /*** 连接异常*/

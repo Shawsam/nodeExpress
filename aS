@@ -1,0 +1,122 @@
+commit b56a784f8dacd5bb5a037620a0b3262fee07d192
+Author: shawsam <1603334317@qq.com>
+Date:   Thu Apr 26 09:39:14 2018 +0800
+
+    2018-04-26
+
+diff --git a/public/web/style/blog.css b/public/web/style/blog.css
+index 0e017e9..c04d7d6 100644
+--- a/public/web/style/blog.css
++++ b/public/web/style/blog.css
+@@ -10,6 +10,7 @@ body{ background:url(../image/musicback.jpg); }
+ .blog .container .list li .tags{ margin-top:15px; font-size:14px; }
+ .blog .container .list li .tags span{ background:#ddd; color:#999; padding:1px 10px; margin-right:15px; }
+ 
++
+ .blog_details .container{ padding:50px; }
+ .blog_details .container .content{ /*background:#fff;  border:1px solid #e8e8e8; box-shadow:0 0 6px rgba(0,0,0,0.1); padding:20px;*/ }
+ .blog_details .container .content .title{ font-size:25px; font-weight:bold; margin:15px 0;  }
+
+commit d0a09d2d649f0fb884235356fae4824a3c7d4272
+Author: shawsam <1603334317@qq.com>
+Date:   Wed Apr 25 18:12:07 2018 +0800
+
+    添加博客详情页
+
+diff --git a/public/web/image/ar1.jpg b/public/web/image/ar1.jpg
+new file mode 100644
+index 0000000..fe0fce8
+Binary files /dev/null and b/public/web/image/ar1.jpg differ
+diff --git a/public/web/image/ar2.jpg b/public/web/image/ar2.jpg
+new file mode 100644
+index 0000000..64a977e
+Binary files /dev/null and b/public/web/image/ar2.jpg differ
+diff --git a/public/web/style/blog.css b/public/web/style/blog.css
+index d343f23..0e017e9 100644
+--- a/public/web/style/blog.css
++++ b/public/web/style/blog.css
+@@ -8,4 +8,11 @@ body{ background:url(../image/musicback.jpg); }
+ .blog .container .list li .abstract{ color:#666; font-size:14px; line-height:25px; padding:0 15px; }
+ .blog .container .list li:last-child{ border-bottom:none; }
+ .blog .container .list li .tags{ margin-top:15px; font-size:14px; }
+-.blog .container .list li .tags span{ background:#ddd; color:#999; padding:1px 10px; margin-right:15px; }
+\ No newline at end of file
++.blog .container .list li .tags span{ background:#ddd; color:#999; padding:1px 10px; margin-right:15px; }
++
++.blog_details .container{ padding:50px; }
++.blog_details .container .content{ /*background:#fff;  border:1px solid #e8e8e8; box-shadow:0 0 6px rgba(0,0,0,0.1); padding:20px;*/ }
++.blog_details .container .content .title{ font-size:25px; font-weight:bold; margin:15px 0;  }
++.blog_details .container .content .time{ color:#999; }
++.blog_details .container .content .text img{ max-width:100%; margin:15px auto; text-align:center; border:1px solid #e8e8e8; }
++.blog_details .container .content .text p{ margin-bottom:15px;}
+\ No newline at end of file
+diff --git a/public/web/style/common.css b/public/web/style/common.css
+index f577204..721457e 100644
+--- a/public/web/style/common.css
++++ b/public/web/style/common.css
+@@ -116,7 +116,7 @@ a { text-decoration:none; color:#000; }
+ 
+ /* =========页面布局通用样式========= */
+ /*html,body{ min-height:100%; background:#fff; min-width:1280px;}  */  
+-html,body{ min-height:100%; background:#fff; min-width:1280px;  }
++html,body{ min-height:100%; min-width:1280px;  }
+ .framepage{  min-width:1280px;}
+ .container{  margin:0 auto;  width:1100px; }
+ 
+diff --git a/public/web/style/film.css b/public/web/style/film.css
+index dabbb27..474ad06 100644
+--- a/public/web/style/film.css
++++ b/public/web/style/film.css
+@@ -1,43 +1,43 @@
+ body{ background:url(../image/musicback.jpg); }
+-.flim .container{ padding:75px 0; }
+-.flim .Update{ margin:0 auto; margin-bottom:50px; }
++.film .container{ padding:75px 0; }
++.film .Update{ margin:0 auto; margin-bottom:50px; }
+ 
+ /* ================================================================================================================ */
+ 
+-.flim  .wrap{ margin:0 -10px 30px;}
+-.flim  .wrap:after { display:block; content:""; clear:both; }
++.film  .wrap{ margin:0 -10px 30px;}
++.film  .wrap:after { display:block; content:""; clear:both; }
+ /*
+-.flim  .wrap h2{ display:inline-block; padding:0 10px; margin:20px 10px; background:#0E88EB; color:#fff; font:14px/25px "微软雅黑"; border-radius:10px;}
++.film  .wrap h2{ display:inline-block; padding:0 10px; margin:20px 10px; background:#0E88EB; color:#fff; font:14px/25px "微软雅黑"; border-radius:10px;}
+ */
+-.flim  .wrap .filmreview{ font:bold 16px/25px "微软雅黑"; color:#390; text-indent:10px; border:0px solid #f00; }
+-.flim  .wrap .filmreview a{ color:#390; }
++.film  .wrap .filmreview{ font:bold 16px/25px "微软雅黑"; color:#390; text-indent:10px; border:0px solid #f00; }
++.film  .wrap .filmreview a{ color:#390; }
+ 
+-.flim  .wrap ul.list li{ float:left; display:block; width:16.6%; }
+-.flim  .wrap ul.list li a{ display:block; margin:0 10px; text-align:center; }
+-.flim  .wrap ul.list li a:hover img{ box-shadow:0px 0px 7px rgba(0,0,0,0.7); }
+-.flim  .wrap ul.list li a:hover p  { box-shadow:0px 1px 1px rgba(0,0,0,0.3); background:#fff; color:#0E88EB; }
+-.flim  .wrap ul.list li a img{ width:100%; box-shadow:0px 0px 2px rgba(0,0,0,0.5); border:1px solid #fff; transition:all 0.5s ease 0s;}
+-.flim  .wrap ul.list li a p{ font:100 14px/22px "微软雅黑"; text-align:center; color:#333; overflow:hidden; text-overflow:ellipsis; white-space:n.flim  owrap; text-shadow:0 1px rgba(255,255,255,0.3); transition:all 0.5s ease 0s; display:inline-block; max-width:90%; margin:7px auto; padding:0px 5px; border-radius:5px;}
++.film  .wrap ul.list li{ float:left; display:block; width:16.6%; }
++.film  .wrap ul.list li a{ display:block; margin:0 10px; text-align:center; }
++.film  .wrap ul.list li a:hover img{ box-shadow:0px 0px 7px rgba(0,0,0,0.7); }
++.film  .wrap ul.list li a:hover p  { box-shadow:0px 1px 1px rgba(0,0,0,0.3); background:#fff; color:#0E88EB; }
++.film  .wrap ul.list li a img{ width:100%; box-shadow:0px 0px 2px rgba(0,0,0,0.5); border:1px solid #fff; transition:all 0.5s ease 0s;}
++.film  .wrap ul.list li a p{ font:100 14px/22px "微软雅黑"; text-align:center; color:#333; overflow:hidden; text-overflow:ellipsis; white-space:n.film  owrap; text-shadow:0 1px rgba(255,255,255,0.3); transition:all 0.5s ease 0s; display:inline-block; max-width:90%; margin:7px auto; padding:0px 5px; border-radius:5px;}
+ 
+-.flim  .wrap ul.list2 li{ float:left; display:block; width:152px; }
+-.flim  .wrap ul.list2 li a{ display:block; margin:0 10px; text-align:center; }
+-.flim  .wrap ul.list2 li a:hover img{ box-shadow:0px 0px 7px rgba(0,0,0,0.7); }
+-.flim  .wrap ul.list2 li a:hover p  { box-shadow:0px 1px 1px rgba(0,0,0,0.3); background:#fff; color:#0E88EB; }
+-.flim  .wrap ul.list2 li a img{ width:100%; box-shadow:0px 0px 2px rgba(0,0,0,0.5); border:1px solid #fff; transition:all 0.5s ease 0s;}
+-.flim  .wrap ul.list2 li a p{ font:100 14px/22px "微软雅黑"; text-align:center; color:#333; overflow:hidden; text-overflow:ellipsis; white-space:n.flim  owrap; text-shadow:0 1px rgba(255,255,255,0.3); transition:all 0.5s ease 0s; display:inline-block; max-width:90%; margin:7px auto; padding:0px 5px; border-radius:5px;}
++.film  .wrap ul.list2 li{ float:left; display:block; width:152px; }
++.film  .wrap ul.list2 li a{ display:block; margin:0 10px; text-align:center; }
++.film  .wrap ul.list2 li a:hover img{ box-shadow:0px 0px 7px rgba(0,0,0,0.7); }
++.film  .wrap ul.list2 li a:hover p  { box-shadow:0px 1px 1px rgba(0,0,0,0.3); background:#fff; color:#0E88EB; }
++.film  .wrap ul.list2 li a img{ width:100%; box-shadow:0px 0px 2px rgba(0,0,0,0.5); border:1px solid #fff; transition:all 0.5s ease 0s;}
++.film  .wrap ul.list2 li a p{ font:100 14px/22px "微软雅黑"; text-align:center; color:#333; overflow:hidden; text-overflow:ellipsis; white-space:n.film  owrap; text-shadow:0 1px rgba(255,255,255,0.3); transition:all 0.5s ease 0s; display:inline-block; max-width:90%; margin:7px auto; padding:0px 5px; border-radius:5px;}
+ 
+-.flim  .wrap ul.site { border:0px solid #f00; }
+-.flim  .wrap ul.site li{ float:left; display:block; width:25%; box-sizing:border-box; border:0px solid #f00; }
+-.flim  .wrap ul.site li a{ display:block; margin:0 10px 15px; padding:10px 5px; text-align:center; background:#fff; border-top:4px solid #000; }
+-.flim  .wrap ul.site li a:hover { background:#f6f6f6; }
+-.flim  .wrap ul.site li a h3 { font:16px/1em "微软雅黑"; margin-bottom:10px; border-bottom:1px dashed #999
