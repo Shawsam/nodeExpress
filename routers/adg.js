@@ -70,15 +70,17 @@ router.get('/productList', function(api_req, api_res) {
              var resText = JSON.parse(res.text),
                  resArray = resText,
                  filterData = []
-             resArray.map(function(item){
+             resArray.map(function(item,index){
                 filterData.push({
+                  rank:index+1,
                   code:item.code,
                   brandName:item.brandCategory.brandName,
                   productName:item.brandCategory.displayName,
                   salePrice:(item.userPrice.salePrice*6.35).toFixed(2),
                   discountPrice:(item.userPrice.discountPrice*6.35).toFixed(2),
                   discountRate:item.userPrice.discountRate,
-                  centerImg:item.galleryImages[0]['150X'].url})
+                  centerImg:item.galleryImages[0]['150X']?item.galleryImages[0]['150X'].url:''
+                })
              })
              console.log(filterData)
              resData.msg = '成功'
