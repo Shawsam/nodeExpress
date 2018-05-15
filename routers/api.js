@@ -207,11 +207,11 @@ router.get('/admin/user/user_list', function(req, res) {
 // ================ 用户添加 ================
 router.post('/admin/user/userAdd', function(req, res) {
      console.log('/************************访问用户添加接口************************/');
-     username = req.body.username;
-     password = req.body.password;
-     adminCode = req.body.adminCode;
-     age = req.body.age;
-     registerdate = formatTime(Date.now());
+     var username = req.body.username;
+     var password = req.body.password;
+     var adminCode = req.body.adminCode;
+     var age = req.body.age;
+     var registerdate = formatTime(Date.now());
 
 
      User.findOne({
