@@ -10,15 +10,15 @@ var resData,router = express.Router();
 router.use(function timeLog(req, res, next) {
   console.log('访问接口',req.originalUrl,',Time:',formatTime(Date.now()))
   resData = { state:true,
-  	          data:null,
-  	          msg:''
-  	        }
+              data:null,
+              msg:''
+            }
   next();
 });
 
 
 //接口-临时登录凭证code 获取 session_key 和 openid 等  方式-post 参数-jsCode
-router.get('/getOpenId', function(req, res) {
+router.get('/getOpenId', function(req, api_res) {
     console.log('/***********************登录凭证code换取openId************************/')
     console.log('请求参数，'+ JSON.stringify(req.query))
     const JSCODE = req.query.jsCode
@@ -38,11 +38,11 @@ router.get('/getOpenId', function(req, res) {
                  resData.msg = '成功'
                  resData.data =  resText
                  console.log('处理结果，'+resData.msg)
-                 res.json(resData)
+                 api_res.json(resData)
              }else{
                  resData.msg = '无效的jsCode'
                  console.log('处理结果，'+resData.msg)
-                 res.json(resData)
+                 api_res.json(resData)
              }
 
           }
@@ -79,7 +79,7 @@ router.get('/productList', function(req, res) {
     console.log('/************************访问商品列表************************/')
     console.log('请求参数，'+ JSON.stringify(req.query))
     const cate = req.query.cate||1
-    const pageSize = Number(req.query.pagesize) || 50;   //一页多少条
+    const pageSize = Number(req.query.pagesize) || 100;   //一页多少条
     const currentPage = Number(req.query.page) || 1;     //当前第几页
     const skipNum = (currentPage - 1) * pageSize;        //跳过页数
 
