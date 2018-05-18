@@ -1,6 +1,9 @@
-var express = require('express');
-var superagent = require('superagent')
-var formatTime = require('../utils/formatTime');
+const express = require('express')
+const superagent = require('superagent')
+const formatTime = require('../utils/formatTime')
+const utils = require('utility')
+
+const { productModel, indexproductModel } =  require('../models/product');
 
 // 该路由使用的中间件,定义请求返回数据结构
 var resData,router = express.Router();
@@ -15,12 +18,12 @@ router.use(function timeLog(req, res, next) {
 
 
 //接口-临时登录凭证code 获取 session_key 和 openid 等  方式-post 参数-jsCode
-router.get('/getOpenId', function(api_req, api_res) {
+router.get('/getOpenId', function(req, res) {
     console.log('/***********************登录凭证code换取openId************************/')
-    console.log('请求参数，'+ JSON.stringify(api_req.query))
-    const JSCODE = api_req.query.jsCode
-    // console.log('请求参数，'+ JSON.stringify(api_req.body))
-    // const JSCODE = api_req.body.jsCode
+    console.log('请求参数，'+ JSON.stringify(req.query))
+    const JSCODE = req.query.jsCode
+    // console.log('请求参数，'+ JSON.stringify(req.body))
+    // const JSCODE = req.body.jsCode
     const APPID = 'wxb8b8866dcb2f08b8'
     const SECRET = '3d8e9c3c03f0141bad94765b0b3f2c5b'
     const originUrl = `https://api.weixin.qq.com/sns/jscode2session?appid=${APPID}&secret=${SECRET}&js_code=${JSCODE}&grant_type=authorization_code`
@@ -35,95 +38,66 @@ router.get('/getOpenId', function(api_req, api_res) {
                  resData.msg = '成功'
                  resData.data =  resText
                  console.log('处理结果，'+resData.msg)
-                 api_res.json(resData)
+                 res.json(resData)
              }else{
                  resData.msg = '无效的jsCode'
                  console.log('处理结果，'+resData.msg)
-                 api_res.json(resData)
+                 res.json(resData)
              }
 
           }
        })  
 })
 
-https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code
 
 //接口-首页  方式-get 参数-page(页码)
-router.get('/indexData', function(api_req, api_res) {
+router.get('/indexData', function(req,res) {
     console.log('/************************访问主页商品************************/')
-    console.log('请求参数，'+ JSON.stringify(api_req.query))
-    const pageNum = api_req.query.page||0
-    const jsonData = {"category":"","sort":"topSelling","size":"30","page":pageNum,"text":"","within":"","query":"allCategories:9","condition":{"brand":[],"gender":[],"priceRange":[0,5150],"specialPriceYnOption":false,"giftYnOption":false,"isNewProductOption":false,"fastShopYnOption":false,"flatPriceYnOption":false}}
-    const originUrl = 'http://www.shilladfs.com/estore/kr/zh/ajaxProducts'
-
-    superagent.post(originUrl)
-      .type('form')
-      .send({json:JSON.stringify(jsonData)})
-      .end(function (err, res) {
-         // 常规的错误处理
-         if (err) {
-             console.log(err)
+    console.log('请求参数，'+ JSON.stringify(req.query))
+     var pageSize = Number(req.query.pagesize) || 30;   //一页多少条
+     var currentPage = Number(req.query.page) || 1;     //当前第几页
+     var skipNum = (currentPage - 1) * pageSize;            //跳过页数
+     indexproductModel.find({}).skip(skipNum).limit(pageSize)
+     .then(function(resdata){
+         if(resdata.length){
+            resData.msg = '成功';
+            resData.data =  resdata;
+            console.log('处理结果，'+resData.msg);
+            res.json(resData);
          }else{
-             var resText = JSON.parse(res.text),
-                 resArray = resText.results,
-                 filterData = []
-             resArray.map(function(item){
-                filterData.push({
-                  code:item.code,
-                  brandName:item.brandCategory.brandName,
-                  productName:item.brandCategory.displayName,
-                  salePrice:(item.userPrice.salePrice*6.35).toFixed(2),
-                  discountPrice:(item.userPrice.discountPrice*6.35).toFixed(2),
-                  discountRate:item.userPrice.discountRate,
-                  centerImg:item.galleryImages[0]['150X'].url})
-             })
-             console.log(filterData)
-             resData.msg = '成功';
-             resData.data =  filterData;
-             console.log('处理结果，'+resData.msg);
-             api_res.json(resData);
-          }
-       })  
+            resData.state = false;
+            resData.msg = '没有数据';
+            resData.data =  resdata;
+            console.log('处理结果，'+resData.msg);
+            res.json(resData);
+         }
+     })
 })
 
 //接口-商品分类  方式-get 参数-cate(类别)
-router.get('/productList', function(api_req, api_res) {
+router.get('/productList', function(req, res) {
     console.log('/************************访问商品列表************************/')
-    console.log('请求参数，'+ JSON.stringify(api_req.query))
-    const cate = api_req.query.cate||1
-    const data = { "form":"normal","sc":cate,"type":"topSelling","searchWord":"","rank":0 }
-    const originUrl = 'http://www.shilladfs.com/estore/kr/zh/e/bestshop/getBestProductList'
+    console.log('请求参数，'+ JSON.stringify(req.query))
+    const cate = req.query.cate||1
+    const pageSize = Number(req.query.pagesize) || 50;   //一页多少条
+    const currentPage = Number(req.query.page) || 1;     //当前第几页
+    const skipNum = (currentPage - 1) * pageSize;        //跳过页数
 
-    superagent.post(originUrl)
-      .type('form')
-      .send(data)
-      .end(function (err, res) {
-         // 常规的错误处理
-         if (err) {
-             console.log(err)
+    productModel.find({cate:cate}).skip(skipNum).limit(pageSize)
+     .then(function(resdata){
+         if(resdata.length){
+            resData.msg = '成功';
+            resData.data =  resdata;
+            console.log('处理结果，'+resData.msg);
+            res.json(resData);
          }else{
-             var resText = JSON.parse(res.text),
-                 resArray = resText,
-                 filterData = []
-             resArray.map(function(item,index){
-                filterData.push({
-                  rank:index+1,
-                  code:item.code,
-                  brandName:item.brandCategory.brandName,
-                  productName:item.brandCategory.displayName,
-                  salePrice:(item.userPrice.salePrice*6.35).toFixed(2),
-                  discountPrice:(item.userPrice.discountPrice*6.35).toFixed(2),
-                  discountRate:item.userPrice.discountRate,
-                  centerImg:item.galleryImages[0]['150X']?item.galleryImages[0]['150X'].url:''
-                })
-             })
-             console.log(filterData)
-             resData.msg = '成功'
-             resData.data =  filterData
-             console.log('处理结果，'+resData.msg)
-             api_res.json(resData)
-          }
-       })  
+            resData.state = false;
+            resData.msg = '没有数据';
+            resData.data =  resdata;
+            console.log('处理结果，'+resData.msg);
+            res.json(resData);
+         }
+     })
 })
 
 
