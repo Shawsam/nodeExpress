@@ -1,0 +1,35 @@
+{% extends  "./layouts/layout.html" %}
+{% block css %}
+<link rel="stylesheet" href="/public/web/style/article.css" />
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".text .image-view img").each(function(){
+        const url = $(this).data("original-src")
+        $(this).attr("src",url)
+    })
+    $(".image-caption").each(function(){
+        var text = $(this).text()
+        console.log(text)
+        $(this).text(text.replace('图片发自简书App','SKY前端工作室'))
+    })
+    $(".image-container").css("max-width","720px")
+})
+</script>
+{% endblock %}
+
+
+{% block content %}
+    <div class="framepage article_details">
+    	<div class="container">
+    		<div class="content">
+    			<div class="title">{{article.title}}</div>
+    			<div class="time">{{article.createtime.substr(0,16)}}</div>	
+                <div class="text">
+                  {{ article.content }}
+                </div>
+    		</div>
+        </div>
+    </div>
+{% endblock %}

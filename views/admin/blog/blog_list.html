@@ -1,0 +1,148 @@
+{% extends  "../layouts/layout.html" %}
+{% block css %}
+<style>  
+#main .card .card-header{ padding:15px 25px 15px 15px; }
+.form-horizontal{ margin-top:15px; }
+#main .card .card-header .btn-gp{ margin-top:5px; }
+#main .card .card-header .btn-gp .btn{ margin-right:10px; }
+
+#main .card .card-header i{ margin-right:8px; color:#FFB50B; font-size:18px;}
+#main .card .card-header h2{ font-weight:bold; font-size:16px;}
+#main .card .card-body table th{ color:#000; background:#EEF8FA; }
+#main .card .card-body table th,td{ text-align:center;  }
+#main .card-body ul.list{ list-style:none; padding:6px 0 12px 0; }
+#main .card-body ul.list li{ padding:7px 25px; }
+#main .card-body ul.list li a{ color:#666; }
+#main .card-body ul.list li a:hover{ color:#000; border-bottom:1px solid #333; }
+#main .card-body ul.list li .desp{ color:#999;  }
+.tag{ background:#e8e8e8; padding:1px 5px; font-size:14px; }
+.panigation{ padding:5px 15px 15px 15px ; text-align:center;}
+.panigation .info{ color:#999; font-size:14px; }
+.panigation .page{ margin:8px; }
+</style>
+{% endblock %}
+
+{% block js %}
+<script src="/public/admin/plug/laytpl.js"></script>
+<script src="/public/admin/script/blog_tpl.js"></script>
+<script type="text/javascript">  
+$(document).ready(function(){
+    $("body").append(blog_tpl);
+    var pages = $(".totalPage").text()
+    laypage({
+        cont: $(".page"),
+        skin: 'molv',
+        // skip: true,    //是否开启跳页
+        curr: 1,          //初始化当前页
+        pages: pages,     //可以叫服务端把总页数放在某一个隐藏域，再获取。假设我们获取到的是18
+        jump: function(e, first){   //触发分页后的回调
+            if(!first){             //一定要加此判断，否则初始时会无限刷新
+                url = "/api/admin/blog/blogList?pageNo="+e.curr
+                Ajax(url,function(ret){
+                    tpl = $("#tpl_blog").html();
+                    laytpl(tpl).render(ret.data,function(html){ $("tbody").html(html) })
+                })
+            }
+        }
+    })
+    
+    //删除
+    $("tbody").on("click",".del",function(){
+        const elem = $(this).parents("tr")
+        const id = elem.data("id")
+        layer.confirm('确定要删除此博客吗？',function(){
+            url = '/api/admin/blog/remove?id='+id;
+            Ajax(url,function(ret){
+                if(ret.state){
+                    layer.msg('删除成功')
+                    elem.remove()
+                }else{
+                    layer.msg(ret.msg)
+                }
+            })
+        })
+    })
+
+    //查询
+    $(".searchBtn").on("click",function(){
+        $("form").submit()
+    })
+
+
+})
+</script>
+{% endblock %}
+
+{% block content %}
+<section id="content">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+               <ul class="breadcrumb">位置：
+                  <li>博客管理</li>
+                  <li>博客列表</li>
+              </ul>
+              <div class="row form-horizontal" >
+                    <form action="/admin/blog/blog_list" method="get">
+                    <div class="col-md-4 col-sm-6">  
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">标题</label>
+                            <div class="col-sm-8">
+                                <div class="fg-line">
+                                   <input name="title" value="{{name}}" class="form-control input-sm" placeholder="请输入" >
+                                </div>
+                            </div>
+                        </div>                          
+                    </div>
+                    <div class="col-md-4 col-sm-6">  
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">标签</label>
+                            <div class="col-sm-8">
+                                <div class="fg-line">
+                                   <input name="tag" value="{{tag}}" class="form-control input-sm" placeholder="请输入" >
+                                </div>
+                            </div>
+                        </div>                          
+                    </div>
+                    </form>
+                    <div class="col-md-4 col-sm-6 btn-gp text-center">
+                        <button class="btn btn-primary searchBtn">查询</button>
+                        <a href="/admin/blog/blog_add"><button class="btn btn-danger">添加博客</button></a>
+                    </div>
+              </div>
+            </div>
+
+            <div class="card-body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>标题</th>
+                            <th>标签</th>
+                            <th class="sort createSort">创建时间<i class="m-l-5  zmdi zmdi-chevron-down"></i></th>    
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for blog in blogList %}
+                        <tr data-id="{{blog.id}}">
+                            <td>{{blog.title}}</td>
+                            <td>
+                                {% for tag in blog.tags %}
+                                <span class="tag">{{tag}}</span>
+                                {% endfor %}
+                            </td>
+                            <td>{{blog.createtime}}</td>
+                            <td><a>查看</a> | <a href="/admin/blog/blog_edit?id={{blog.id}}">编辑</a> | <a class="del">删除</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="panigation">
+                <div class="info">共 <span class="totalPage">{{totalPage}}</span> 页，每页 {{pageSize}} 条数据</div>
+                <div class="page"></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

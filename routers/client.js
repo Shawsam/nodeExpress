@@ -2,6 +2,8 @@ var express = require('express');
 var Gallery = require('../models/Gallery.js');
 var FilmBanner = require('../models/FilmBanner.js');
 var formatTime = require('../utils/formatTime');
+var Blog = require('../models/Blog.js');
+var Article = require('../models/Article.js');
 var router = express.Router();
 
 // 该路由使用的中间件
@@ -52,8 +54,30 @@ router.get('/film_details', function(req, res) {
 
 
 router.get('/article', function(req, res) {
-  res.render('web/article',{
-     title:'文集'
+  const pageNo =  1;                          //当前第几页
+  const pageSize = 10;                        //一页多少条
+  const sort = {'createtime':-1};             //排序
+  const skipNum = (pageNo - 1) * pageSize;    //跳过页数
+  Article.find({}).then(function(articleList){
+    Article.find({}).skip(0).limit(pageSize).sort(sort).then(function(data){
+          res.render('web/article',{
+             title:'文集',
+             articleList:data,
+             pageSize:pageSize,
+             totalPage:Math.ceil(articleList.length/pageSize)
+          })
+    })  
+  })
+});
+
+
+router.get('/article_details', function(req, res) {
+  var id = req.query.id;
+  Article.findOne({id:id}).then(function(article){
+      res.render('web/article_details',{
+         title:'文章详情',
+         article:article
+      })
   })
 });
 
@@ -77,15 +101,30 @@ router.get('/picture_details', function(req, res) {
 });
 
 router.get('/blog', function(req, res) {
-  res.render('web/blog',{
-     title:'博客'
+  const pageNo =  1;                                //当前第几页
+  const pageSize = 10;                               //一页多少条
+  const sort = {'createtime':-1};             //排序
+  const skipNum = (pageNo - 1) * pageSize;    //跳过页数
+  Blog.find({}).then(function(blogList){
+    Blog.find({}).skip(0).limit(pageSize).sort(sort).then(function(data){
+          res.render('web/blog',{
+             title:'博客',
+             blogList:data,
+             pageSize:pageSize,
+             totalPage:Math.ceil(blogList.length/pageSize)
+          })
+    })  
   })
 });
 
+
 router.get('/blog_details', function(req, res) {
   var id = req.query.id;
-  res.render('web/blog_details',{
-     title:'博客详情'
+  Blog.findOne({id:id}).then(function(blog){
+      res.render('web/blog_details',{
+         title:'博客详情',
+         blog:blog
+      })
   })
 });
 

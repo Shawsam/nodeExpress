@@ -115,7 +115,7 @@ html #layui_layer_skinlayercss { display:none; position: absolute; width:1989px;
 
 /* 加载框 */
 .layui-layer-loading { width:120px; height:120px; background-color: rgba(0,0,0,.6);  box-shadow:none;  border:none; }
-.layui-layer-loading .layui-layer-content { width:80%; margin:auto; padding-top:75px; font:15px/25px "微软雅黑"; color:#fff; text-align:center; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; background:url(default/loading-1.gif) no-repeat center 28px; background-size:35px 35px; }
+.layui-layer-loading .layui-layer-content { width:80%; height:auto; margin:auto; padding-top:75px; font:15px/25px "微软雅黑"; color:#fff; text-align:center; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; background:url(default/loading-1.gif) no-repeat center 28px; background-size:35px 35px; }
 
 .layui-layer-ico16 { width:32px; height:32px; background:url(default/loading-1.gif) no-repeat; background-size:32px 32px; }
 

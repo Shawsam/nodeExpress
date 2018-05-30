@@ -7,7 +7,9 @@ var Picture = require('../models/Picture.js');
 var PictureCate = require('../models/PictureCate.js');
 var Gallery = require('../models/Gallery.js');
 var FilmBanner = require('../models/FilmBanner.js');
-
+var Blog = require('../models/Blog.js');
+var Article = require('../models/Article.js');
+var fetchTheArticle = require('../spider/fetchTheArticle')
 
 
 var resData;
@@ -499,8 +501,6 @@ router.post('/admin/album/imgUpload', function(req, res) {
                  res.json(resData);
              })
            })
-
-
        });    
      })
 
@@ -587,5 +587,197 @@ router.post('/admin/film/film_banner/add', function(req, res) {
         }
      })
 })
+
+
+//###############################################################################################
+//========================================== 博客 ===============================================
+
+//================ 博客添加 ======================
+router.post('/admin/blog/add', function(req, res) {
+     console.log('/************************访问添加博客接口************************/');
+     const { title,author,content,abstract,centerImg,tags,time } = req.body
+
+     Blog.findOne({title:title})
+     .then(function(blog){
+        if(blog){
+           resData.state = false;
+           resData.msg = '创建失败，博客已存在';
+           console.log('处理结果，'+resData.msg);
+           res.json(resData);
+        }else{
+           var blog = new Blog({
+               id:Date.now(),
+               title:title,
+               author:author,
+               content:content,
+               abstract:abstract,
+               centerImg:centerImg,
+               tags:tags.split(','),
+               createtime:time
+           });
+
+           blog.save().then(function(data){
+             resData.data = data;
+             resData.msg = '创建成功';
+             console.log('处理结果，'+resData.msg);
+             res.json(resData);
+           })
+        }
+     })
+})
+
+//================ 博客删除 ======================
+router.get('/admin/blog/remove', function(req, res) {
+    console.log('/************************访问删除博客分类接口************************/');
+    const id = req.query.id;
+    Blog.remove({id:id}).then(function(){
+       resData.data = '';
+       resData.msg = '删除成功';
+       console.log('处理结果，'+resData.msg);
+       res.json(resData);
+   })
+})
+
+//================ 博客编辑 ======================
+router.post('/admin/blog/edit', function(req, res) {
+     console.log('/************************访问编辑博客接口************************/');
+     const { id,title,author,content,abstract,centerImg,tags,time } = req.body
+
+     Blog.update({id:id},{id,title,author,content,abstract,centerImg,tags,time})
+     .then(function(data){
+             resData.data = '';
+             resData.msg = '编辑成功';
+             console.log('处理结果，'+resData.msg);
+             res.json(resData);
+     })
+})
+
+//================ 博客列表 ======================
+router.get('/admin/blog/blogList', function(req, res) {
+   console.log('/************************访问博客列表************************/');
+   console.log('请求参数，'+ JSON.stringify(req.query));
+   let {pageNo, pageSize} = req.query
+   pageNo = pageNo || 1;                       //当前第几页
+   pageSize = pageSize || 10;                   //一页多少条
+   const sort = {'createtime':-1};             //排序
+   const skipNum = (pageNo - 1) * pageSize;    //跳过页数
+
+   Blog.find({}).skip(skipNum).limit(pageSize).sort(sort).then(function(data){
+       resData.data = data;
+       resData.msg = '成功';
+       console.log('处理结果，'+resData.msg);
+       res.json(resData);
+   })
+})
+
+
+
+//###############################################################################################
+//========================================== 文集 ===============================================
+//================ 文集添加 ======================
+router.post('/admin/article/add', function(req, res) {
+     console.log('/************************访问添加文集接口************************/');
+     const { title,author,content,abstract,centerImg,tags,time } = req.body
+     console.log(centerImg)
+     
+     Article.findOne({title:title})
+     .then(function(article){
+        if(article){
+           resData.state = false;
+           resData.msg = '创建失败，博客已存在';
+           console.log('处理结果，'+resData.msg);
+           res.json(resData);
+        }else{
+           var article = new Article({
+               id:Date.now(),
+               title:title,
+               author:author,
+               content:content,
+               abstract:abstract,
+               centerImg:centerImg,
+               tags:tags.split(','),
+               createtime:time
+           });
+
+           article.save().then(function(data){
+             resData.data = data;
+             resData.msg = '创建成功';
+             console.log('处理结果，'+resData.msg);
+             res.json(resData);
+           })
+        }
+     })
+})
+
+//================ 文集抓取 ======================
+router.get('/admin/article/crawl', function(req, res) {
+     console.log('/************************访问添加文集抓取************************/');
+     const url = req.query.url;
+     console.log(req.query)
+     fetchTheArticle(url).then(function(state){
+       if(state){
+           resData.data = '';
+           resData.msg = '抓取成功';
+           console.log('处理结果，'+resData.msg);
+           res.json(resData);
+       }else{
+           resData.state = false 
+           resData.data = '';
+           resData.msg = '抓取失败，url错误';
+           console.log('处理结果，'+resData.msg);
+           res.json(resData);
+       }
+
+     })
+
+})
+
+//================ 文集删除 ======================
+router.get('/admin/article/remove', function(req, res) {
+    console.log('/************************访问删除文集分类接口************************/');
+    const id = req.query.id;
+    Article.remove({id:id}).then(function(){
+       resData.data = '';
+       resData.msg = '删除成功';
+       console.log('处理结果，'+resData.msg);
+       res.json(resData);
+   })
+})
+
+
+//================ 文集编辑 ======================
+router.post('/admin/article/edit', function(req, res) {
+     console.log('/************************访问编辑文集接口************************/');
+     const { id,title,author,content,abstract,centerImg,tags,time } = req.body
+
+     Article.update({id:id},{id,title,author,content,abstract,centerImg,tags,time})
+     .then(function(data){
+             resData.data = '';
+             resData.msg = '编辑成功';
+             console.log('处理结果，'+resData.msg);
+             res.json(resData);
+     })
+})
+
+//================ 文集列表 ======================
+router.get('/admin/article/articleList', function(req, res) {
+   console.log('/************************访问文集列表************************/');
+   console.log('请求参数，'+ JSON.stringify(req.query));
+   let {pageNo, pageSize} = req.query
+   pageNo = pageNo || 1;                       //当前第几页
+   pageSize = pageSize || 10;                   //一页多少条
+   const sort = {'createtime':-1};             //排序
+   const skipNum = (pageNo - 1) * pageSize;    //跳过页数
+
+   Article.find({}).skip(skipNum).limit(pageSize).sort(sort).then(function(data){
+       resData.data = data;
+       resData.msg = '成功';
+       console.log('处理结果，'+resData.msg);
+       res.json(resData);
+   })
+})
+
+
+
 
 module.exports = router;

@@ -2,6 +2,8 @@ var express = require('express');
 var User = require('../models/User.js');
 var Gallery = require('../models/Gallery.js');
 var FilmBanner = require('../models/FilmBanner.js');
+var Blog = require('../models/Blog.js');
+var Article = require('../models/Article.js');
 var formatTime = require('../utils/formatTime');
 var router = express.Router();
 
@@ -121,6 +123,94 @@ router.get('/gallery/gallery_add', function(req, res) {
   res.render('admin/gallery/gallery_add',{
      title:'画廊添加',
      userInfo:req.userInfo
+  })
+});
+
+//博客============================================
+router.get('/blog/blog_list', function(req, res) {
+  const title = new RegExp(req.query.title||'')
+  const tag = req.query.tag
+  const pageNo =  1;                          //当前第几页
+  const pageSize = 10;                        //一页多少条
+  const sort = {'createtime':-1};             //排序
+  const skipNum = (pageNo - 1) * pageSize;    //跳过页数
+
+  const condition = tag?{title,tags:tag}:{title}
+  Blog.find(condition).then(function(blogList){
+    Blog.find(condition).skip(0).limit(pageSize).sort(sort).then(function(data){
+          res.render('admin/blog/blog_list',{
+             title:'博客列表',
+             name:req.query.title,
+             tag:tag,
+             userInfo:req.userInfo,
+             blogList:data,
+             pageSize:pageSize,
+             totalPage:Math.ceil(blogList.length/pageSize)
+          })
+    })  
+  })
+
+});
+
+router.get('/blog/blog_add', function(req, res) {
+  res.render('admin/blog/blog_add',{
+     title:'博客添加',
+     userInfo:req.userInfo
+  })
+});
+
+router.get('/blog/blog_edit', function(req, res) {
+  const id = req.query.id
+  Blog.findOne({id:id}).then((blog)=>{
+    res.render('admin/blog/blog_edit',{
+       title:'博客编辑',
+       userInfo:req.userInfo,
+       blog:blog
+    })
+  })
+});
+
+
+//文集============================================
+router.get('/article/article_list', function(req, res) {
+  const title = new RegExp(req.query.title||'')
+  const author = new RegExp(req.query.author||'')
+  const pageNo =  1;                          //当前第几页
+  const pageSize = 10;                        //一页多少条
+  const sort = {'createtime':-1};             //排序
+  const skipNum = (pageNo - 1) * pageSize;    //跳过页数
+  
+  Article.find({title,author}).then(function(articleList){
+    Article.find({title,author}).skip(0).limit(pageSize).sort(sort).then(function(data){
+          res.render('admin/article/article_list',{
+             title:'文集列表',
+             name:req.query.title,
+             author:req.query.author,
+             userInfo:req.userInfo,
+             articleList:data,
+             pageSize:pageSize,
+             totalPage:Math.ceil(articleList.length/pageSize)
+          })
+    })  
+  })
+});
+
+
+router.get('/article/article_add', function(req, res) {
+  res.render('admin/article/article_add',{
+     title:'文集添加',
+     userInfo:req.userInfo
+  })
+});
+
+router.get('/article/article_edit', function(req, res) {
+  const id = req.query.id
+  Article.findOne({id:id}).then((article)=>{
+    res.render('admin/article/article_edit',{
+       title:'博客编辑',
+       userInfo:req.userInfo,
+       article:article
+    })
   })
 });
 

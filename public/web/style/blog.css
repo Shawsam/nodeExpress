@@ -1,19 +1,27 @@
 body{ background:url(../image/musicback.jpg); }
 .blog .container{ padding:75px 15px; }
-.blog .container .list{ background:#fff; padding:0 20px; border:1px solid #e8e8e8; box-shadow:0 0 6px rgba(0,0,0,0.1); }
-.blog .container .list li{ padding:20px 0; position:relative; border-bottom:1px solid #e8e8e8}
+.blog .container .list{ background:#fff; padding:0 30px; border:1px solid #e8e8e8; box-shadow:0 0 6px rgba(0,0,0,0.1);  width:1000px; margin:0 auto; }
+.blog .container .list li{ padding:30px 0; position:relative; border-bottom:1px solid #e8e8e8; }
+.blog .container .list li img{ height:160px; width:200px; position:absolute; top:30px; left:0; border-radius:5px;  }
+.blog .container .list li.haveImg{ padding-left:220px;  }
 .blog .container .list li .title{ font-size:18px; color:#000; font-weight:bold; margin:10px 0; }
 .blog .container .list li .title:hover a{ color:#ff6263; }
 .blog .container .list li .title .time{ float:right; color:#999; font-size:15px; font-weight:normal; }
-.blog .container .list li .abstract{ color:#666; font-size:14px; line-height:25px; padding:0 15px; }
+.blog .container .list li .abstract{ color:#666; font-size:14px; line-height:25px; padding:0 15px; height:75px; overflow:hidden;}
 .blog .container .list li:last-child{ border-bottom:none; }
 .blog .container .list li .tags{ margin-top:15px; font-size:14px; }
 .blog .container .list li .tags span{ background:#ddd; color:#999; padding:1px 10px; margin-right:15px; }
 
 
 .blog_details .container{ padding:50px; }
-.blog_details .container .content{ /*background:#fff;  border:1px solid #e8e8e8; box-shadow:0 0 6px rgba(0,0,0,0.1); padding:20px;*/ }
-.blog_details .container .content .title{ font-size:25px; font-weight:bold; margin:15px 0;  }
+.blog_details .container .content{ color:#2f2f2f; width:800px; margin:0 auto; /*background:#fff;  border:1px solid #e8e8e8; box-shadow:0 0 6px rgba(0,0,0,0.1); padding:20px;*/ }
+.blog_details .container .content .title{ font-size:28px; font-weight:bold; margin:15px 0;  }
 .blog_details .container .content .time{ color:#999; }
+.blog_details .container .content .text{ padding:20px 0; }
 .blog_details .container .content .text img{ max-width:100%; margin:15px auto; text-align:center; border:1px solid #e8e8e8; }
-.blog_details .container .content .text p{ margin-bottom:15px;}
+.blog_details .container .content .text p{ margin-bottom:15px; font-size:16px; line-height:1.7; }
+
+.panigation{ padding:15px ; text-align:center; margin-top:20px;}
+.panigation .info{ color:#999; font-size:14px; }
+.panigation .page{ margin:8px; }
+.panigation .page a{ background:#ccc }

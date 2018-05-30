@@ -17,16 +17,21 @@
   },
   "homepage": "https://github.com/Shawsam/nodeExpress#readme",
   "dependencies": {
+    "async": "^2.6.1",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
     "cookies": "^0.7.1",
     "express": "^4.16.2",
+    "log4js": "^2.7.0",
     "markdown": "^0.5.0",
     "mongoose": "^4.13.6",
     "node-fetch": "^1.7.3",
     "promise": "^8.0.1",
     "qiniu": "^7.1.1",
+    "request": "^2.87.0",
     "superagent": "^3.8.3",
-    "swig": "^1.4.2"
+    "swig": "^1.4.2",
+    "utility": "^1.13.1"
   }
 }

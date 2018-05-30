@@ -1,0 +1,789 @@
+{% extends  "../layouts/layout.html" %}
+{% block css %}
+<link rel="stylesheet" href="/public/admin/plug/album/album.css" />
+<style>  
+.btn-gp{ margin-top:30px; text-align:center; position:fixed; bottom:0; left:0; width:100%; background:#fff; padding:30px 0; z-index:5; border-top:1px solid #e8e8e8;}
+.btn{ padding:7px 40px; }
+.btn-save{margin-right: 30px; margin-left:}
+
+/*富文本编辑器=============================*/
+textarea, input {color: #222;}
+.article{ border:1px solid #e8e8e8; }
+.article .toolbar{ padding:10px; position:relative; }
+.article .toolbar .imgAdd{ position:absolute; right:20px; top:10px; padding:6px 15px; }
+.article .toolbar #mask{ z-index:10; position:absolute; top:0; left:0; display:block; height:100%; width:100%; background:rgba(255,255,255,0.5)!important }
+.article .main{ padding:25px 45px; border-top:1px solid #e8e8e8;  }
+.article .main .fm input{ height:50px; line-height:50px; border:none; outline:none; width:100%; }
+.article .main .fm.title input{ font-size:22px; font-weight:bold;  }
+.article .main .fm.author input{ font-size:13px;}
+.article .main .content{ min-height:350px; border-top:1px solid #e8e8e8; }
+.w-e-text{ padding:0!important; overflow-y:auto!important; }
+.placehold{ color:#999; }
+.hide{ display:none!important; }
+.abstract { border-top:1px solid #e8e8e8; }
+.abstract  .lab{ margin:12px 0; font-size:14px; color:#000;  }
+.abstract textarea{ width:100%; outline:none; border:1px solid #e8e8e8; padding:15px; resize:none; min-height:120px}
+.picture{ margin:25px 0; color:#000; }
+.picture .imgAdd{ border:1px solid #ddd; color:#5e5e5e; padding:3px 15px; margin-left:20px; border-radius:3px; user-select:none; }
+.picture .imgAdd:hover{ background:#e8e8e8 }
+.picture .faceImg{ display:block; margin-top:15px; height:240px; width:300px; }
+.picture .size{ color:#999; margin-left:15px; }
+.time{  position:relative; padding-left:65px; margin:25px 0; }
+.time .lab{ position:absolute; left:0; top:0; text-align:left; font-size:14px; color:#000;  }
+.time input{ border:none; outline:none; width:50%; border-bottom:1px solid #e8e8e8; }
+.tags{  position:relative; padding-left:65px; margin:25px 0 30px 0; }
+.tags .lab{ position:absolute; left:0; top:0; text-align:left; font-size:14px; color:#000;  }
+input{ color:#5e5e5e; }
+</style>
+{% endblock %}
+{% block js %}
+<!-- 引用js -->
+<script src="/public/admin/plug/laydate/laydate.js"></script>
+<script src="/public/admin/plug/qn_jssdk/plupload/plupload.full.min.js"></script>
+<script src="/public/admin/plug/qn_jssdk/qiniu.dev.js"></script>
+<script src="/public/admin/plug/laytpl.js"></script>
+<script src="/public/admin/plug/album/album.js"></script>
+<script type="text/javascript" src="https://unpkg.com/wangeditor@3.1.1/release/wangEditor.min.js"></script>
+<script type="text/javascript">
+    
+      laydate.render({elem:'#date',type:'datetime',format:'yyyy-MM-dd HH:mm:ss',value:new Date()})
+
+      var E = window.wangEditor
+      var editor = new E('.toolbar', '.content')
+      editor.customConfig.zIndex = 5
+      // 自定义配置颜色（字体颜色、背景色）
+      editor.customConfig.colors = ['#000000',"#dddddd",'#ff3333','#1C84C6',"#23C6C8",'#4AA301','#1AB394','#FFBA1F','#7b0c00','#ffffff']
+      // 上传图片到服务器
+      // editor.customConfig.uploadImgServer = '/upload'
+      // 使用 base64 保存图片 
+      // editor.customConfig.uploadImgShowBase64 = true 
+      // 隐藏“网络图片”tab
+      editor.customConfig.showLinkImg = false
+      editor.customConfig.emotions = [{
+        title: '默认',type: 'image',
+        content: [
+                  {
+                  alt: "[坏笑]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/4d/2018new_huaixiao_org.png"
+                  },
+                  {
+                  alt: "[笑cry]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/4a/2018new_xiaoku_thumb.png"
+                  },
+                  {
+                  alt: "[馋嘴]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/fa/2018new_chanzui_thumb.png"
+                  },
+                  {
+                  alt: "[拜拜]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/fd/2018new_baibai_thumb.png"
+                  },
+                  {
+                  alt: "[右哼哼]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/c1/2018new_youhengheng_thumb.png"
+                  },
+                  {
+                  alt: "[左哼哼]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/43/2018new_zuohengheng_thumb.png"
+                  },
+                  {
+                  alt: "[怒骂]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/87/2018new_zhouma_thumb.png"
+                  },
+                  {
+                  alt: "[顶]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/ae/2018new_ding_org.png"
+                  },
+                  {
+                  alt: "[微笑]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/e3/2018new_weixioa02_org.png"
+                  },
+                  {
+                  alt: "[偷笑]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/71/2018new_touxiao_org.png"
+                  },
+                  {
+                  alt: "[舔屏]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/3e/2018new_tianping_thumb.png"
+                  },
+                  {
+                  alt: "[亲亲]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/2c/2018new_qinqin_thumb.png"
+                  },
+                  {
+                  alt: "[太开心]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/1e/2018new_taikaixin_org.png"
+                  },
+                  {
+                  alt: "[挤眼]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/43/2018new_jiyan_org.png"
+                  },
+                  {
+                  alt: "[衰]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/a2/2018new_shuai_thumb.png"
+                  },
+                  {
+                  alt: "[感冒]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/2018new_kouzhao_thumb.png"
+                  },
+                  {
+                  alt: "[可怜]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/96/2018new_kelian_org.png"
+                  },
+                  {
+                  alt: "[汗]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/28/2018new_han_org.png"
+                  },
+                  {
+                  alt: "[色]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/9d/2018new_huaxin_org.png"
+                  },
+                  {
+                  alt: "[可爱]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/09/2018new_keai_org.png"
+                  },
+                  {
+                  alt: "[钱]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/a2/2018new_qian_thumb.png"
+                  },
+                  {
+                  alt: "[思考]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/30/2018new_sikao_thumb.png"
+                  },
+                  {
+                  alt: "[生病]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/3b/2018new_shengbing_thumb.png"
+                  },
+                  {
+                  alt: "[困]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/3c/2018new_kun_thumb.png"
+                  },
+                  {
+                  alt: "[互粉]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/86/2018new_hufen02_org.png"
+                  },
+                  {
+                  alt: "[睡]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/e2/2018new_shuijiao_thumb.png"
+                  },
+                  {
+                  alt: "[并不简单]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/aa/2018new_bingbujiandan_thumb.png"
+                  },
+                  {
+                  alt: "[害羞]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/c1/2018new_haixiu_org.png"
+                  },
+                  {
+                  alt: "[费解]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/2a/2018new_wenhao_thumb.png"
+                  },
+                  {
+                  alt: "[挖鼻]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/9a/2018new_wabi_thumb.png"
+                  },
+                  {
+                  alt: "[悲伤]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/ee/2018new_beishang_org.png"
+                  },
+                  {
+                  alt: "[打脸]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/cb/2018new_dalian_org.png"
+                  },
+                  {
+                  alt: "[抓狂]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/17/2018new_zhuakuang_org.png"
+                  },
+                  {
+                  alt: "[哈哈]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/8f/2018new_haha_thumb.png"
+                  },
+                  {
+                  alt: "[傻眼]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/dd/2018new_shayan_org.png"
+                  },
+                  {
+                  alt: "[晕]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/07/2018new_yun_thumb.png"
+                  },
+                  {
+                  alt: "[鄙视]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/da/2018new_bishi_thumb.png"
+                  },
+                  {
+                  alt: "[哼]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/7c/2018new_heng_thumb.png"
+                  },
+                  {
+                  alt: "[哈欠]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/55/2018new_dahaqian_org.png"
+                  },
+                  {
+                  alt: "[泪]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6e/2018new_leimu_org.png"
+                  },
+                  {
+                  alt: "[怒]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/f6/2018new_nu_thumb.png"
+                  },
+                  {
+                  alt: "[闭嘴]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/62/2018new_bizui_org.png"
+                  },
+                  {
+                  alt: "[疑问]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/b8/2018new_ningwen_org.png"
+                  },
+                  {
+                  alt: "[白眼]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/ef/2018new_landelini_org.png"
+                  },
+                  {
+                  alt: "[吐]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/08/2018new_tu_thumb.png"
+                  },
+                  {
+                  alt: "[黑线]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/a3/2018new_heixian_thumb.png"
+                  },
+                  {
+                  alt: "[委屈]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/a5/2018new_weiqu_thumb.png"
+                  },
+                  {
+                  alt: "[笑而不语]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/2d/2018new_xiaoerbuyu_org.png"
+                  },
+                  {
+                  alt: "[阴险]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/9e/2018new_yinxian_org.png"
+                  },
+                  {
+                  alt: "[嘘]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/b0/2018new_xu_org.png"
+                  },
+                  {
+                  alt: "[嘻嘻]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/33/2018new_xixi_thumb.png"
+                  },
+                  {
+                  alt: "[爱你]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/f6/2018new_aini_org.png"
+                  },
+                  {
+                  alt: "[吃惊]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/49/2018new_chijing_org.png"
+                  },
+                  {
+                  alt: "[污]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/10/2018new_wu_thumb.png"
+                  },
+                  {
+                  alt: "[鼓掌]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6e/2018new_guzhang_thumb.png"
+                  },
+                  {
+                  alt: "[憧憬]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/c9/2018new_chongjing_org.png"
+                  },
+                  {
+                  alt: "[酷]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/c4/2018new_ku_org.png"
+                  },
+                  {
+                  alt: "[失望]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/aa/2018new_shiwang_thumb.png"
+                  },
+                  {
+                  alt: "[good]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/8a/2018new_good_thumb.png"
+                  },
+                  {
+                  alt: "[弱]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/3d/2018new_ruo_thumb.png"
+                  },
+                  {
+                  alt: "[耶]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/29/2018new_ye_thumb.png"
+                  },
+                  {
+                  alt: "[来]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/42/2018new_guolai_thumb.png"
+                  },
+                  {
+                  alt: "[握手]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/e9/2018new_woshou_thumb.png"
+                  },
+                  {
+                  alt: "[加油]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/9f/2018new_jiayou_thumb.png"
+                  },
+                  {
+                  alt: "[haha]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/1d/2018new_hahashoushi_org.png"
+                  },
+                  {
+                  alt: "[拳头]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/86/2018new_quantou_thumb.png"
+                  },
+                  {
+                  alt: "[赞]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/e6/2018new_zan_org.png"
+                  },
+                  {
+                  alt: "[ok]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/45/2018new_ok_org.png"
+                  },
+                  {
+                  alt: "[NO]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/1e/2018new_no_org.png"
+                  },
+                  {
+                  alt: "[作揖]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/e7/2018new_zuoyi_org.png"
+                  },
+                  {
+                  alt: "[心]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/8a/2018new_xin_thumb.png"
+                  },
+                  {
+                  alt: "[伤心]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6c/2018new_xinsui_thumb.png"
+                  },
+                  {
+                  alt: "[中国赞]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6d/2018new_zhongguozan_org.png"
+                  },
+                  {
+                  alt: "[广告]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/57/2018new_guanggao_thumb.png"
+                  },
+                  {
+                  alt: "[doge]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/a1/2018new_doge02_org.png"
+                  },
+                  {
+                  alt: "[喵喵]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/7b/2018new_miaomiao_thumb.png"
+                  },
+                  {
+                  alt: "[二哈]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/22/2018new_erha_org.png"
+                  },
+                  {
+                  alt: "[抱抱]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/42/2018new_baobao_thumb.png"
+                  },
+                  {
+                  alt: "[摊手]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/62/2018new_tanshou_org.png"
+                  },
+                  {
+                  alt: "[跪了]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/75/2018new_gui_org.png"
+                  },
+                  {
+                  alt: "[吃瓜]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/01/2018new_chigua_thumb.png"
+                  },
+                  {
+                  alt: "[允悲]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/83/2018new_kuxiao_thumb.png"
+                  },
+                  {
+                  alt: "[星星]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/76/hot_star171109_thumb.png"
+                  },
+                  {
+                  alt: "[半星]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/f9/hot_halfstar_thumb.png"
+                  },
+                  {
+                  alt: "[空星]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/ff/hot_blankstar_thumb.png"
+                  },
+                  {
+                  alt: "[草泥马]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/3b/2018new_caonima_thumb.png"
+                  },
+                  {
+                  alt: "[浮云]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/61/2018new_yunduo_thumb.png"
+                  },
+                  {
+                  alt: "[沙尘暴]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/b7/2018new_shachenbao_thumb.png"
+                  },
+                  {
+                  alt: "[给力]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/36/2018new_geili_thumb.png"
+                  },
+                  {
+                  alt: "[男孩儿]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/0a/2018new_nanhai_thumb.png"
+                  },
+                  {
+                  alt: "[女孩儿]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/39/2018new_nvhai_thumb.png"
+                  },
+                  {
+                  alt: "[话筒]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/48/2018new_huatong_thumb.png"
+                  },
+                  {
+                  alt: "[威武]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/14/2018new_weiwu_thumb.png"
+                  },
+                  {
+                  alt: "[绿丝带]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/cb/2018new_lvsidai_thumb.png"
+                  },
+                  {
+                  alt: "[微风]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/c7/2018new_weifeng_thumb.png"
+                  },
+                  {
+                  alt: "[礼物]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/0e/2018new_liwu_org.png"
+                  },
+                  {
+                  alt: "[飞机]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/4a/2018new_feiji_thumb.png"
+                  },
+                  {
+                  alt: "[干杯]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/2018new_ganbei_org.png"
+                  },
+                  {
+                  alt: "[围脖]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/64/2018new_weibo_org.png"
+                  },
+                  {
+                  alt: "[钟]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/8e/2018new_zhong_org.png"
+                  },
+                  {
+                  alt: "[蜡烛]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/16/2018new_lazhu_org.png"
+                  },
+                  {
+                  alt: "[月亮]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/d5/2018new_yueliang_org.png"
+                  },
+                  {
+                  alt: "[围观]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6c/2018new_weiguan_org.png"
+                  },
+                  {
+                  alt: "[蛋糕]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/f9/2018new_dangao_thumb.png"
+                  },
+                  {
+                  alt: "[音乐]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/1f/2018new_yinyue_org.png"
+                  },
+                  {
+                  alt: "[猪头]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/1c/2018new_zhutou_thumb.png"
+                  },
+                  {
+                  alt: "[鲜花]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/d4/2018new_xianhua_org.png"
+                  },
+                  {
+                  alt: "[太阳]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/cd/2018new_taiyang_org.png"
+                  },
+                  {
+                  alt: "[下雨]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/7e/2018new_yu_thumb.png"
+                  },
+                  {
+                  alt: "[骷髅]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/a1/2018new_kulou_thumb.png"
+                  },
+                  {
+                  alt: "[照相机]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/78/2018new_xiangji_thumb.png"
+                  },
+                  {
+                  alt: "[熊猫]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/aa/2018new_xiongmao_thumb.png"
+                  },
+                  {
+                  alt: "[喜]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/e0/2018new_xizi_thumb.png"
+                  },
+                  {
+                  alt: "[浪]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/46/2018new_xinlang_thumb.png"
+                  },
+                  {
+                  alt: "[偷乐]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/fa/lxhtouxiao_thumb.gif"
+                  },
+                  {
+                  alt: "[笑哈哈]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/32/lxhwahaha_thumb.gif"
+                  },
+                  {
+                  alt: "[羞嗒嗒]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/df/lxhxiudada_thumb.gif"
+                  },
+                  {
+                  alt: "[好爱哦]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/74/lxhainio_thumb.gif"
+                  },
+                  {
+                  alt: "[赞啊]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/00/lxhzan_thumb.gif"
+                  },
+                  {
+                  alt: "[求关注]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/ac/lxhqiuguanzhu_thumb.gif"
+                  },
+                  {
+                  alt: "[好喜欢]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/d6/lxhlike_thumb.gif"
+                  },
+                  {
+                  alt: "[小黄人微笑]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/f0/xhrnew_weixiao_org.png"
+                  },
+                  {
+                  alt: "[小黄人剪刀手]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/63/xhrnew_jiandaoshou_org.png"
+                  },
+                  {
+                  alt: "[小黄人不屑]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/b2/xhrnew_buxie_org.png"
+                  },
+                  {
+                  alt: "[小黄人高兴]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/41/xhrnew_gaoxing_org.png"
+                  },
+                  {
+                  alt: "[小黄人惊讶]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/fd/xhrnew_jingya_thumb.png"
+                  },
+                  {
+                  alt: "[小黄人委屈]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/79/xhrnew_weiqu_org.png"
+                  },
+                  {
+                  alt: "[小黄人坏笑]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/be/xhrnew_huaixiao_thumb.png"
+                  },
+                  {
+                  alt: "[小黄人白眼]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/e2/xhrnew_baiyan_org.png"
+                  },
+                  {
+                  alt: "[小黄人无奈]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/15/xhrnew_wunai_thumb.png"
+                  },
+                  {
+                  alt: "[小黄人得意]",
+                  src: "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/c8/xhrnew_deyi_thumb.png"
+                  }]
+      }]
+      editor.customConfig.onfocus = function () {
+        var html = editor.txt.html() 
+        if(html=='<p class="placehold">从这里开始写正文</p>'){
+            editor.txt.html('')
+        }
+        document.getElementById("mask").setAttribute("class","hide")
+        editor.$textElem.attr('contenteditable', true)   
+      },
+
+      editor.create()
+      editor.txt.html('<p class="placehold">从这里开始写正文</p>')  //设置内容
+      editor.$textElem.attr('contenteditable', false)
+
+      var imgId = editor.imgMenuId
+      $("#"+imgId).click(function(){
+         album({
+              max:1,
+              thumb_w:100,
+              thumb_h:100,
+              success:function(imgs){
+                  var _imgs = []; 
+                  for(var i in imgs){
+                     editor.txt.append('<img class="img" src="'+ imgs[i].img +'" /><br/>')
+                  }
+              }
+         })
+      })
+
+      $(".btn-save").click(function(){
+            var title = $(".title input").val()
+            var author = $(".author input").val()
+            var time = $(".time input").val()
+            var content = editor.txt.html()
+            var abstract = $(".abstract textarea").val()
+            var centerImg = $(".picture input").val()
+            var tags = []
+            $(".tags input").each(function(){
+            	if($(this).is(":checked")){
+                tags.push($(this).val())
+            	}
+            })
+            tags = tags.toString()
+            //验证
+            if(title==''){
+            	layer.msg('请输入标题')
+            	return
+            }
+            if(author==''){
+            	layer.msg('请输入作者')
+            	return
+            }
+            if(content==''){
+            	layer.msg('请输入内容')
+            	return
+            }
+            if(abstract==''){
+            	layer.msg('请输入摘要')
+            	return
+            }
+
+            var url = "/api/admin/article/add";
+            var param = {
+                 title:title,
+                 author:author,
+                 content:content,
+                 abstract:abstract,
+                 centerImg:centerImg,
+                 tags:tags,
+                 time:time
+            }
+            console.log(param)
+            Ajax(url,param,function(ret){
+                  if(ret.state){
+                  layer.msg('保存成功');
+                  location.href="/admin/article/article_list"
+                  }else{
+                  	  layer.msg(ret.msg);
+                  }
+            })
+      })
+
+      $(".btn-preview").click(function(){
+      	var title =  $(".title input").val()
+      	var author = $(".author input").val()
+      	var content = editor.txt.html()
+            //验证
+            if(title==''){
+                  layer.msg('请输入标题')
+                  return
+            }
+            if(author==''){
+                  layer.msg('请输入作者')
+                  return
+            }
+            if(content==''){
+                  layer.msg('请输入内容')
+                  return
+            }
+            if(abstract==''){
+                  layer.msg('请输入摘要')
+                  return
+            }
+            if(tags==''){
+                  layer.msg('请选择标签')
+                  return
+            }
+      })
+
+      $(".imgAdd").click(function(){
+          album({
+              max:1,
+              thumb_w:100,
+              thumb_h:100,
+              success:function(imgs){
+                 var _imgs = []; 
+                 for(var i in imgs){
+                     $(".imgCon").html('<img class="faceImg" src="'+ imgs[i].thumb +'" />')
+                     $(".picture input").val(imgs[i].img)
+                 }
+              }
+          })
+      })
+
+
+    </script>
+{% endblock %}
+
+
+{% block content %}
+<section id="content">
+    <div class="container">
+        <div class="card cardContent">
+		    <div class="article">
+		        <div class="toolbar">
+		            <div id="mask"></div>
+<!-- 		        <button class="imgAdd btn btn-warning waves-effect">图片选择</button>    -->
+		        </div>
+		        <div class="main">
+		            <div class="fm title"><input name="title" placeholder="请输入标题" /></div>
+		            <div class="fm author"><input name="author" placeholder="请输入作者" value="shawsam" /></div>
+		            <div class="content"></div>
+		            <div class="abstract">
+		                <p class="lab">摘要：</p>
+		                <textarea name="abstract" maxlength="100" onchange="this.value=this.value.substring(0, 100)" onkeydown="this.value=this.value.substring(0, 100)" onkeyup="this.value=this.value.substring(0, 100)" ></textarea>
+		            </div>
+                        <div class="picture">
+                            <input type="hidden"  />
+                            <label class="lab">封面：</label><a class="imgAdd">从图片库选择</a><span class="size">(建议尺寸300*240)</span>
+                            <div class="imgCon"></div>
+                        </div>
+                        <div class="time">
+                            <label class="lab">时间：</label><input type="text" id="date">
+                        </div>
+	                  <div class="form-group tags">
+	                     <label class="lab">标签：</label>
+	                     <div>
+                                  <div class="fg-line">
+                                    <label class="checkbox checkbox-inline m-r-20">
+                                        <input name="tags" type="checkbox" value="前端">
+                                        <i class="input-helper"></i> 前端
+                                    </label>
+                                    <label class="checkbox checkbox-inline m-r-20">
+                                        <input name="tags" type="checkbox" value="小程序">
+                                        <i class="input-helper"></i> 小程序
+                                    </label>
+                                    <label class="checkbox checkbox-inline m-r-20">
+                                        <input name="tags" type="checkbox" value="js">
+                                        <i class="input-helper"></i> js
+                                    </label>
+                                    <label class="checkbox checkbox-inline m-r-20">
+                                        <input name="tags" type="checkbox" value="css">
+                                        <i class="input-helper"></i> css
+                                    </label>
+                                    <label class="checkbox checkbox-inline m-r-20">
+                                        <input name="tags" type="checkbox" value="react">
+                                        <i class="input-helper"></i> react
+                                    </label>
+                                    <label class="checkbox checkbox-inline m-r-20">
+                                        <input name="tags" type="checkbox" value="插件">
+                                        <i class="input-helper"></i> 插件
+                                    </label>
+                                    <label class="checkbox checkbox-inline m-r-20">
+                                        <input name="tags" type="checkbox" value="随笔">
+                                        <i class="input-helper"></i> 随笔
+                                    </label>
+                                  </div>
+	                     </div> 
+		            </div>
+		        </div>
+            </div>
+        </div>
+		<div class="btn-gp">
+            <div class="form-horizontal ">
+               <button class="btn btn-primary waves-effect btn-save">保存</button>
+               <button class="btn waves-effect btn-preview">预览</button>
+            </div>
+        </div>    
+    </div>
+</section>
+{% endblock %}

@@ -38,39 +38,53 @@
                 <li><a {% if title=='画廊添加' %} class="active" {% endif %} href="/admin/gallery/gallery_add">画廊添加</a></li>
             </ul>
         </li>
+        <li class="sub-menu {% if title=='博客列表' || title=='博客添加' %} active {% endif %}">
+            <a><i class="zmdi zmdi-view-dashboard"></i>博客管理</a>
+            <ul>   
+                <li><a {% if title=='博客列表' %} class="active" {% endif %} href="/admin/blog/blog_list">博客列表</a></li>   
+                <li><a {% if title=='博客添加' %} class="active" {% endif %} href="/admin/blog/blog_add">博客添加</a></li>
+            </ul>
+        </li>
+        <li class="sub-menu {% if title=='文集列表' || title=='文集添加' %} active {% endif %}">
+            <a><i class="zmdi zmdi-assignment"></i>文集管理</a>
+            <ul>      
+                <li><a {% if title=='文集列表' %} class="active" {% endif %} href="/admin/article/article_list">文集列表</a></li>
+                <li><a {% if title=='文集添加' %} class="active" {% endif %} href="/admin/article/article_add">文集添加</a></li>
+            </ul>
+        </li>
 
 
-<!--    <li class="sub-menu" id="">
-            <a href="javascript:;"><i class="zmdi zmdi-laptop-mac"></i>系统管理</a>
+<!--     <li class="sub-menu" id="">
+            <a><i class="zmdi zmdi-laptop-mac"></i>系统管理</a>
             <ul class="">    
                   <li ><a id="" href="system/menu_list.html">菜单管理</a></li>
                   <li ><a id="" href="system/user_list.html">用户管理</a></li>
             </ul>
         </li>
         <li class="sub-menu" id="">
-            <a href="javascript:;"><i class="zmdi zmdi-usb"></i>主数据管理</a>
+            <a><i class="zmdi zmdi-usb"></i>主数据管理</a>
             <ul class="">      
-                  <li ><a id="" href="javascript:;">SKU品类</a></li>
+                  <li ><a id="">SKU品类</a></li>
                   <li ><a>产品线设置</a></li>
                   <li ><a id="" href="data/data_check_regulate.html">物料级别管理</a></li>
                   <li ><a id="" href="data/data_files_list.html">物料文件管理</a></li>
             </ul>
         </li>
         <li class="sub-menu" id="">
-            <a href="javascript:;"><i class="zmdi zmdi-storage"></i>产品管理</a>
+            <a><i class="zmdi zmdi-storage"></i>产品管理</a>
             <ul class="">      
                   <li ><a id="" href="product/product_list.html">产品列表</a></li>
                   <li ><a id="" href="product/unpulish_product_list.html">未发布列表</a></li>
             </ul>
         </li>
         <li class="sub-menu" id="">
-            <a href="javascript:;"><i class="zmdi zmdi-view-dashboard"></i>库存管理</a>
+            <a><i class="zmdi zmdi-view-dashboard"></i>库存管理</a>
             <ul class="">      
                   <li ><a id="" href="store/store_list.html">库存管理</a></li>
             </ul>
         </li>
         <li class="sub-menu" id="">
-            <a href="javascript:;"><i class="zmdi zmdi-assignment"></i>推广系列管理</a>
+            <a><i class="zmdi zmdi-assignment"></i>推广系列管理</a>
             <ul class="">      
                   <li ><a id="" href="popularize/popularize_list.html">系列列表</a></li>
                   <li ><a id="" href="popularize/popularize_add.html">创建系列</a></li>
@@ -78,17 +92,17 @@
         </li>
 
         <li class="sub-menu" id="">
-            <a href="javascript:;"><i class="zmdi zmdi-time"></i>审批管理</a>
+            <a><i class="zmdi zmdi-time"></i>审批管理</a>
             <ul class="">      
                   <li ><a id="" href="check/check_list.html">待审系列</a></li>
                   <li ><a id="" href="check/already_check_list.html">已审系列</a></li>
             </ul>
-        </li>-->
-        <li class="sub-menu" id="">
-            <a href="javascript:;"><i class="zmdi zmdi-email"></i>消息与提醒</a>
+        </li> -->
+<!--         <li class="sub-menu" id="">
+            <a><i class="zmdi zmdi-email"></i>消息与提醒</a>
             <ul class="">      
-                  <li ><a id="" href="javascript:;">消息列表</a></li>
+                  <li ><a id="">消息列表</a></li>
             </ul>
-        </li>
+        </li> -->
     </ul>
 </aside>

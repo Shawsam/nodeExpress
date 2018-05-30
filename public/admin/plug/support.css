@@ -219,7 +219,7 @@ ul{ list-style:none; padding-left:0; }
 #footer{ height:70px; }
 
 .searchBox i:active{ opacity:0.6; }
-.header-inner .top-menu .toggle-switch{ display: none; }
+
 .header-inner .top-menu .dropdown{ margin:0 15px; }
 .header-inner .top-menu .dropdown{ font-size:13px; }
 
