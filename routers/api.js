@@ -643,7 +643,7 @@ router.post('/admin/blog/edit', function(req, res) {
      console.log('/************************访问编辑博客接口************************/');
      const { id,title,author,content,abstract,centerImg,tags,time } = req.body
 
-     Blog.update({id:id},{id,title,author,content,abstract,centerImg,tags,time})
+     Blog.update({id:id},{id,title,author,content,abstract,centerImg,tags:tags.split(','),time})
      .then(function(data){
              resData.data = '';
              resData.msg = '编辑成功';
@@ -750,7 +750,7 @@ router.post('/admin/article/edit', function(req, res) {
      console.log('/************************访问编辑文集接口************************/');
      const { id,title,author,content,abstract,centerImg,tags,time } = req.body
 
-     Article.update({id:id},{id,title,author,content,abstract,centerImg,tags,time})
+     Article.update({id:id},{id,title,author,content,abstract,centerImg,tags:tags.split(','),time})
      .then(function(data){
              resData.data = '';
              resData.msg = '编辑成功';
