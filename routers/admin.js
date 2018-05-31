@@ -207,7 +207,7 @@ router.get('/article/article_edit', function(req, res) {
   const id = req.query.id
   Article.findOne({id:id}).then((article)=>{
     res.render('admin/article/article_edit',{
-       title:'博客编辑',
+       title:'文章编辑',
        userInfo:req.userInfo,
        article:article
     })

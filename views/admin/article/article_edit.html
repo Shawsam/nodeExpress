@@ -1,4 +1,4 @@
-{% extends  "../layouts/layout.html" %}
+150{% extends  "../layouts/layout.html" %}
 {% block css %}
 <link rel="stylesheet" href="/public/admin/plug/album/album.css" />
 <style>  
@@ -822,8 +822,8 @@ $(document).ready(function(){
                         <div class="fm author"><input name="author" placeholder="请输入作者" value="{{article.author||'shawsam'}}" /></div>
                         <div class="content">{{article.content}}</div>
                         <div class="abstract">
-                            <p class="lab">摘要：</p>
-                            <textarea name="abstract" maxlength="150" onchange="this.value=this.value.substring(0, 150)" onkeydown="this.value=this.value.substring(0, 150)" onkeyup="this.value=this.value.substring(0, 150)" >{{article.abstract}}</textarea>
+                            <p class="lab">摘要(100字以内)：</p>
+                            <textarea name="abstract" maxlength="100" onchange="this.value=this.value.substring(0, 100)" onkeydown="this.value=this.value.substring(0, 100)" onkeyup="this.value=this.value.substring(0, 100)" >{{article.abstract}}</textarea>
                         </div>
                         <div class="picture">
                             <input type="hidden" value="{{article.centerImg}}" />

@@ -717,7 +717,7 @@ input{ color:#5e5e5e; }
                         <div class="fm author"><input name="author" placeholder="请输入作者" value="{{blog.author||'shawsam'}}" /></div>
                         <div class="content">{{blog.content}}</div>
                         <div class="abstract">
-                            <p class="lab">摘要：</p>
+                            <p class="lab">摘要(150字以内)：</p>
                             <textarea name="abstract" maxlength="150" onchange="this.value=this.value.substring(0, 150)" onkeydown="this.value=this.value.substring(0, 150)" onkeyup="this.value=this.value.substring(0, 150)" >{{blog.abstract}}</textarea>
                         </div>
                         <div class="picture">
