@@ -105,7 +105,7 @@ mongoose.connection.on('connected', function () {
 
     var httpServer = http.createServer(app);
     var httpsServer = https.createServer(credentials, app);
-    var PORT = 80;
+    var PORT = 8080;
     var SSLPORT = 443;
 
 

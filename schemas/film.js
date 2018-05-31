@@ -10,7 +10,6 @@ module.exports = new Schema({
     centerImg:{ type: String  },               //主图
     posters:{ type: Array  },                  //海报
     photos:{ type: Array  },                   //剧照
-    is_del:{ type: Boolean, default:false },   //删除
     createtime:{ type: String }                //创建时间
 });
 
