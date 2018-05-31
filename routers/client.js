@@ -4,6 +4,8 @@ var FilmBanner = require('../models/FilmBanner.js');
 var formatTime = require('../utils/formatTime');
 var Blog = require('../models/Blog.js');
 var Article = require('../models/Article.js');
+var Song = require('../models/Song.js');
+var Singer = require('../models/Singer.js');
 var router = express.Router();
 
 // 该路由使用的中间件
@@ -30,8 +32,14 @@ router.get(/^\/(index)?$/, function(req, res) {
 
 
 router.get('/music', function(req, res) {
-  res.render('web/music',{
-     title:'音乐'
+  Song.find({}).then(function(song){
+    Singer.find({}).skip(3).limit(45).then(function(singer){
+      res.render('web/music',{
+         title:'音乐',
+         song:song,
+         singer:singer
+      })
+    })
   })
 });
 
