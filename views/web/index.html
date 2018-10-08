@@ -1,5 +1,19 @@
 {% extends  "./layouts/layout.html" %}
 {% block css %}
+<style>
+    .banner{ position:relative; height:600px;  }
+    .banner img{ height:300px; width:700px!important; display:block; position:absolute; top:50%; left:50%; margin-left:-350px; margin-top:-150px;}
+	.page-bg{z-index:-20; height: 100%; left: 0;opacity: 1;position: fixed;top: 0;transform: translate3d(0,0,0);background-image: url(http://game.gtimg.cn/images/up/2017/pc/page-bg.jpg);background-position: bottom left;background-repeat: repeat-x;background-size:1300px auto;width:3900px;animation: bg 90s linear infinite;}
+	.bg-dot{z-index:-19; height: 100%; left: 0;opacity: 1;position: fixed;top: 0;transform: translate3d(0,0,0);background-image: url(http://game.gtimg.cn/images/up/2017/pc/bg-dot.png);background-position: bottom left;background-repeat: repeat-x;background-size:800px auto;width:2400px;animation: bg2 90s linear infinite;}
+	@keyframes bg {
+	    0% {  transform: translate3d(0,0,0); }
+	    100% { transform: translate3d(-1300px,0,0);}
+	}
+	@keyframes bg2 {
+	    0% { transform: translate3d(-1300px,0,0); }
+	    100% { transform: translate3d(0,0,0);}
+	}
+</style>
 <link rel="stylesheet" href="/public/web/style/index.css" />
 {% endblock %}
 {% block js %}
@@ -10,7 +24,9 @@
 {% block content %}
     <div class="framepage index">
         <div class="banner">
-			<img src="public/web/image/banner1.jpg">
-	    <div>
+        	<img src="public/web/image/wish.png">
+			<div class="page-bg"></div>
+            <div class="bg-dot"></div>
+	    </div>
     </div>
 {% endblock %}

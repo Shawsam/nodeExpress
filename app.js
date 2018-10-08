@@ -1,4 +1,4 @@
-//加载express模块
+﻿//加载express模块
 var express = require('express');
 //加载模板引擎
 var swig = require('swig');
@@ -105,7 +105,7 @@ mongoose.connection.on('connected', function () {
 
     var httpServer = http.createServer(app);
     var httpsServer = https.createServer(credentials, app);
-    var PORT = 8080;
+    var PORT = 80;
     var SSLPORT = 443;
 
 

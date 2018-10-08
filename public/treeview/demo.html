@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='UTF-8' />
+    <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+    <title>门店选择</title>
+    <link rel="stylesheet" type="text/css" href="./lib/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./lib/bootstrap-treeview.css">
+    <script src='./lib/jquery.js'></script>
+    <script data-cover src='./lib/bootstrap.min.js'></script>
+    <script data-cover src='./lib/bootstrap-treeview.js'></script>
+  </head>
+  <style>
+  	*{margin:0; padding:0;}
+  	.list-group{ max-height:800px; overflow-y:scroll; }
+  </style>
+  <body style="background:#ccc">
+      <div id="tree" style="width:800px;  margin:20px auto"></div>
+  </body>
+<script>
+var nodeArray = [];
+for (var i = 1; i < 1001; i++) {
+    nodeArray.push({ "text": "门店" + i })
+}
+console.log(nodeArray);
+
+
+var tree = [{
+        text: "上海",
+        nodes: nodeArray
+    },
+    {
+        text: "北京",
+        nodes: nodeArray
+    }
+];
+
+//初始化数据
+$('#tree').treeview({
+    data: tree,
+    multiSelect: true,
+    showCheckbox: true,
+    selectedColor: '#000',
+    selectedBackColor: '#fff'
+});
+
+
+//事件处理
+$('#tree').on('nodeChecked', function(event, data) {
+    var parNode = data.parentId;
+    var subNodes = data.nodes;
+    //处理子节点
+    if (subNodes != undefined) {
+        $('#tree').treeview('collapseAll', { silent: true });
+        for (var i in subNodes) {
+            var nodeId = $('#tree').treeview('getNode', subNodes[i].nodeId);
+            $('#tree').treeview('checkNode', [nodeId, { silent: true }])
+        }
+    }
+    //处理父节点
+    if (parNode != undefined) {
+        var checkedNum = 0;
+        var _subNodes = $('#tree').treeview('getNode', parNode).nodes;
+        for (var i in _subNodes) {
+            if (_subNodes[i].state.checked) checkedNum++;
+        }
+        if (checkedNum == _subNodes.length) $('#tree').treeview('checkNode', [parNode, { silent: true }])
+    }
+
+});
+
+$('#tree').on('nodeUnchecked', function(event, data) {
+    var parNode = data.parentId;
+    var subNodes = data.nodes;
+    //处理子节点
+    if (subNodes != undefined) {
+        $('#tree').treeview('collapseAll', { silent: true });
+        for (var i in subNodes) {
+            var nodeId = $('#tree').treeview('getNode', subNodes[i].nodeId);
+            $('#tree').treeview('uncheckNode', [nodeId, { silent: true }])
+        }
+    };
+    //处理父节点
+    if (parNode != undefined) {
+        $('#tree').treeview('uncheckNode', [parNode, { silent: true }])
+    }
+});
+</script>
+</html>
