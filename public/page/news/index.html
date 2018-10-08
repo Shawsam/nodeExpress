@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>新闻列表</title>
+	
+	<link rel="stylesheet" href="http://pub.houheaven.com/plugin/swiper/swiper.min.css"/>
+	<link rel="stylesheet" href="http://pub.houheaven.com/hhframe_mob/hhframe.min.css"/>
+	<link rel="stylesheet" href="style/news.css"/>
+	<script src="http://pub.houheaven.com/jquery/jquery.js"></script>
+	<script src="http://pub.houheaven.com/plugin/vue.all.js"></script>
+    <script src="http://pub.houheaven.com/hhframe_mob/hhframe.min.js"></script>
+    <script src="http://pub.houheaven.com/plugin/swiper/swiper.min.js"></script>
+    <script src="script/news.js"></script>
+</head>
+<body>
+	
+    <div class="framepage news_list" v-cloak>
+      
+      <div class="header">
+        <h1 class="hd-title">新闻资讯</h1>
+      </div>
+      
+      <div class="swiper-container topbar">
+        <ul class="swiper-wrapper">
+        <li class="swiper-slide" :class="{active:cate.id===Cate.active}" v-for="cate in Cate.items">
+          <a href="javascript:;" @click="CateProc(cate)">{{cate.name}}</a>
+        </li>
+        </ul>
+      </div>
+      
+      <div class="wrapper">
+        
+        <div class="swiper-container banner" v-show="Cate.active==0">
+        <ul class="swiper-wrapper">
+        <li class="swiper-slide" v-for="banner in Banner.items">
+          <a :href="banner.url">
+            <img class="swiper-lazy" src="image/lazy_400x200.jpg" :data-src="banner.image" />
+          </a>
+        </li>
+        </ul>
+        <div class="swiper-pagination p1"></div>
+        </div>
+        
+        <ul class="list">
+        <li v-for="news in NewsList">
+          <a :href="news.url">
+          <img class="lazy" src="image/lazy_200x200.jpg" :data-src="news.image" />
+          <h3>{{news.title}}</h3>
+          <b>
+            <span class="msg">{{news.comment_num}}</span>
+            <span class="date">{{news.date}}</span>
+          </b>
+          </a>
+        </li>
+        </ul>
+        
+        <div class="hhEmptyPage" v-show="!NewsList.length"></div>
+        
+      </div>
+    
+    </div>
+    
+</body>
+</html>

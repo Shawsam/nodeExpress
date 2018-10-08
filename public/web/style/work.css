@@ -51,6 +51,8 @@ body{ background:url(../image/musicback.jpg); }
 .wkmobs li a img { width:100%; }
 .wkmobs li a .qrcode { position:absolute; left:0; top:0; width:100%; height:100%; background:url("../image/bg-black70.png"); opacity:0; transition:all 0.3s ease-in; }
 .wkmobs li a .qrcode canvas { position:absolute; left:50%; top:55%; width:110px; margin:-60px 0 0 -60px; border:5px solid #fff; opacity:0; transition:all 0.3s ease-in; -webkit-transition:all 0.3s ease-in; }
+.wkmobs li a .qrcode img{  position:absolute; left:50%; top:55%; width:110px; margin:-60px 0 0 -60px; border:5px solid #fff;  transition:all 0.3s ease-in; -webkit-transition:all 0.3s ease-in;  }
+.wkmobs li a .qrcodeImg canvas{ display:none }
 .wkmobs li p { display:inline-block; max-width:70%; padding:5px 10px; margin:10px; font:14px/1em "微软雅黑"; color:#555; background:#fff; border-radius:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; transition:all 0.5s ease; }
 .wkmobs li:hover a { opacity:1; }
 .wkmobs li:hover p { box-shadow:0 0 1px rgba(0,0,0,0.3); border-radius:9px; }
