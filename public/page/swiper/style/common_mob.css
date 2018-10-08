@@ -1,0 +1,43 @@
+
+/* ======================================================================================================== */
+
+body { background-color:#000; background-size:cover; }
+.header { background:none; }
+.header .hd-title { line-height:1.4rem; text-shadow:0 1px 2px rgba(0,0,0,0.5); }
+.framepage { position: fixed; width:100%; height:100%; background:none; overflow: hidden; }
+.wrapper { background:none; }
+
+.blur_back { position:absolute; left:-5%; top:0; width:110%; height:100%; font-size:0; background-repeat:no-repeat; background-position:center center; background-size:cover; -webkit-filter:blur(10px); -moz-filter:blur(10px); filter:blur(10px); }
+.smooth_swiper { -moz-transition: all .2s; -webkit-transition: all .2s; transition: all .2s; }
+
+.Movies .swiper-container { padding:0.5rem 0 1rem; }
+.Movies .swiper-container .swiper-slide { width:5.25rem; border:0px solid #f00; }
+.Movies .swiper-container .swiper-slide a { display: block; padding:0 0 0.2rem; background:#fff; border:0.04rem solid #fff; border-radius:3px; overflow:hidden; box-shadow:0 0 20px rgba(0,0,0,0.1); -moz-transform: scale(0.95); -webkit-transform: scale(0.95); transform: scale(0.95); }
+.Movies .swiper-container .swiper-slide-active a { transform: scale(1); }
+.Movies .swiper-container .swiper-slide img { width:100%; height:7.7rem; margin:0 0 0.2rem; border-top-left-radius:2px; border-top-right-radius:2px; }
+.Movies .swiper-container .swiper-slide h5 { font:0.32rem/1.8em "微软雅黑"; color:#333; text-align: center; overflow:hidden; text-overflow: ellipsis; white-space: nowrap; }
+.Movies .swiper-container .swiper-slide p { font:0.26rem/1.6em "微软雅黑"; color:#bbb; text-align: center; overflow:hidden; text-overflow: ellipsis; white-space: nowrap; }
+.Movies .swiper-pagination-fraction { font-size:0.3rem; color:#fff; }
+
+.Animals .swiper-container { padding:0.4rem 0 1rem; }
+.Animals .swiper-container .swiper-slide { width:5.25rem; border:0px solid #f00; }
+.Animals .swiper-container .swiper-slide a { display: block; padding:0 0 0.2rem; background:#fff; border:0.04rem solid #fff; border-radius:3px; overflow:hidden; box-shadow:0 0 20px rgba(0,0,0,0.1); }
+.Animals .swiper-container .swiper-slide img { width:100%; height:8rem; margin:0 0 0.2rem; border-top-left-radius:2px; border-top-right-radius:2px; }
+.Animals .swiper-container .swiper-slide h5 { font:0.32rem/1.8em "微软雅黑"; color:#333; text-align: center; overflow:hidden; text-overflow: ellipsis; white-space: nowrap; }
+.Animals .swiper-pagination-fraction { font-size:0.3rem; color:#fff; }
+
+/* ======================================================================================================== */
+
+.Banner { padding:70px 0 0; background:#2991CE; }
+.Banner .wrap { width: 100%; }
+
+.Banner .swiper-slide { height: 450px; }
+.Banner h2 { margin: 7% 18.7% 2%; font:27px/1.4em "微软雅黑"; color:#fff; }
+.Banner p  { margin: 0% 18.7%; width: 40%; font:16px/1.6em "微软雅黑"; color:#fff; }
+.Banner .btn { display: inline-block; margin: 3% 18.7%; padding:0 3%; font:14px/35px "微软雅黑"; color:#fff; text-align: center; background:#FFC037; border-radius: 40px; }
+.Banner img { position: absolute; left: 63%; top: 30%; width: 18%; }
+
+.Banner .swiper-pagination-bullet { background: #eee; }
+.Banner .swiper-pagination-bullet-active { background: #fff; }
+
+/* ======================================================================================================== */

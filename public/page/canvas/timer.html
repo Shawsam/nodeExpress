@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>时钟 | SKY工作室</title>
+    <link rel="icon" href="http:58adg.com/public/web/res/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style/common.css" />
+    <script src="script/jquery.js"></script>
+    <script src="script/digit.js"></script>
+    <script src="script/ExplodeBalls3.js"></script>
+    <script>
+		$(document).ready(function(){
+
+			ExplodeCountdown({
+				elm: "demo",
+				width: $(window).width()-12,
+				height: $(window).height()-12
+			});
+
+		});
+	</script>
+</head>
+<body>
+	
+	<canvas id="demo"></canvas>
+	
+</body>
+</html>

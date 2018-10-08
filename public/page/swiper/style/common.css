@@ -1,0 +1,14 @@
+
+/* ================================================================================================ */
+
+*{ margin:0; padding:0; outline:none; }
+img{ display:block; border:none; max-width:100%; }
+li { list-style-type:none; }
+a { text-decoration:none; color:#000; }
+p { color:#555; }
+
+/* ================================================================================================ */
+
+canvas { display: block; border:6px solid #f66; }
+#demo2 { position: absolute; left:50%; top:0; }
+#demo3 { margin: 50px auto; }
