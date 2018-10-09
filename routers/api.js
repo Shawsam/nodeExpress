@@ -229,8 +229,8 @@ router.post('/admin/user/userAdd', function(req, res) {
          var user = new User({     
             username:username,
             password:password,
-            adminCode:0,
-            age:'',
+            adminCode:adminCode,
+            age:age,
             registerdate:registerdate,
             logindate:''
          });
