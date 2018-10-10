@@ -35,7 +35,7 @@ body{ background:url(../image/musicback.jpg); }
 
 /* ================================================================================================================ */
 
-#tech .content{ width:90%; margin:5%; border:0px solid #f00; }
+#tech .content{ width:84%; margin:5% 8%; border:0px solid #f00; }
 #tech .content:after{ display:block; content:""; clear:both; }
 #tech .content h2 { font:22px/60px "微软雅黑"; color:#111; text-indent:10px; }
 #tech .content > div { display:inline-block; width:33%; min-height:100px; position:relative; border:0px solid #f00; }
