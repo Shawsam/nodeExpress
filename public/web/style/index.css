@@ -37,7 +37,7 @@ body{ background:url(../image/musicback.jpg); }
 
 #tech .content{ width:84%; margin:5% 8%; border:0px solid #f00; }
 #tech .content:after{ display:block; content:""; clear:both; }
-#tech .content h2 { font:22px/60px "微软雅黑"; color:#111; text-indent:10px; }
+#tech .content h2 { font:24px/60px "微软雅黑"; color:#000; font-weight:bold; text-indent:10px; }
 #tech .content > div { display:inline-block; width:33%; min-height:100px; position:relative; border:0px solid #f00; }
 #tech .content > div img { position:absolute; left:15px; top:15px; width:80px; height:80px; }
 #tech .content > div h3  { position:relative; font:20px/1.2em "微软雅黑"; color:#0487c4; padding:15px 15px 10px 110px; }
@@ -52,14 +52,14 @@ body{ background:url(../image/musicback.jpg); }
 
 .wkmobs:after { display:block; content:""; clear:both; }
 .wkmobs li { float:left; width:16.5%; text-align:center; cursor:pointer; border:0px solid #f00; }
-.wkmobs li a { position:relative; display:block; margin:1%; box-shadow:0 0 1px rgba(0,0,0,0.2); opacity:0.8; overflow:hidden; transition:all 0.5s ease; border:4px solid #fff; }
+.wkmobs li a { font-size:0; position:relative; display:block; margin:1%; box-shadow:0 0 1px rgba(0,0,0,0.2); opacity:0.8; overflow:hidden; transition:all 0.5s ease; border:4px solid #fff; }
 .wkmobs li a img { width:100%; }
 .wkmobs li a .qrcode { position:absolute; left:0; top:0; width:100%; height:100%; background:url("../image/bg-black70.png"); opacity:0; transition:all 0.3s ease-in; }
 .wkmobs li a .qrcode canvas { position:absolute; left:50%; top:55%; width:110px; margin:-60px 0 0 -60px; border:5px solid #fff; opacity:0; transition:all 0.3s ease-in; -webkit-transition:all 0.3s ease-in; }
 .wkmobs li a .qrcode img{  position:absolute; left:50%; top:55%; width:110px; margin:-60px 0 0 -60px; border:5px solid #fff;  transition:all 0.3s ease-in; -webkit-transition:all 0.3s ease-in;  }
 .wkmobs li a .qrcodeImg canvas{ display:none }
 .wkmobs li p { display:inline-block; max-width:70%; padding:5px 10px; margin:10px; font:14px/1em "微软雅黑"; color:#555; background:#fff; border-radius:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; transition:all 0.5s ease; }
-.wkmobs li:hover a { opacity:1; }
+.wkmobs li:hover a { opacity1:1; }
 .wkmobs li:hover p { box-shadow:0 0 1px rgba(0,0,0,0.3); border-radius:9px; }
 .wkmobs li:hover a .qrcode { opacity:1; }
 .wkmobs li:hover a canvas { top:50%; opacity:1; }

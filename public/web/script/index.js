@@ -17,9 +17,9 @@ function page_init()
     $("#home .intro2").backparallax("60%",-0.2);
     
     // 二维码
-    $(".work .qrcode").each(function(){
+    $(".qrcode").each(function(){
         url = $(this).parent().data("href");
-        $(this).qrcode(url);
+        url && $(this).qrcode(url);
     });
     
     // 浏览器重置大小
