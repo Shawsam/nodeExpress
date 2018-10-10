@@ -118,7 +118,7 @@ a { text-decoration:none; color:#000; }
 /*html,body{ min-height:100%; background:#fff; min-width:1280px;}  */  
 html,body{ min-height:100%; min-width:1280px;  }
 .framepage{  min-width:1280px;}
-.container{  margin:0 auto;  width:1100px; }
+.container{  margin:0 auto;  width:1180px; }
 
 
 .swiper-container-fade .swiper-slide{ transition:opacity 3s!important;}
@@ -130,7 +130,7 @@ html,body{ min-height:100%; min-width:1280px;  }
 .header{ height:60px; background:#fff;/* position:fixed; width:100%; z-index:100; top:0; left:0;*/ }
 
 .header .topbar{ height:60px; position:relative;  }
-.header .container{  margin:0 auto;  width:1150px; }
+.header .container{  margin:0 auto;  width:1280px; }
 .header .topbar .logo{ position:absolute; height:50px; left:25px; top:5px; }
 .header .topbar .nav{ font-size:0; position:absolute; right:0; padding-top:15px;}
 .header .topbar .nav li{ display:inline-block;  margin:0 25px; }

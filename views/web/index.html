@@ -1,10 +1,10 @@
 {% extends  "./layouts/layout.html" %}
 {% block css %}
 <style>
-    .banner{ position:relative; height:700px;  }
-    .banner img{ height:300px; width:700px!important; display:block; position:absolute; top:50%; left:50%; margin-left:-350px; margin-top:-150px;}
-	.page-bg{z-index:-20; height: 100%; left: 0;opacity: 1;position: fixed;top: 0;transform: translate3d(0,0,0);background-image: url(http://game.gtimg.cn/images/up/2017/pc/page-bg.jpg);background-position: bottom left;background-repeat: repeat-x;background-size:1300px auto;width:3900px;animation: bg 90s linear infinite;}
-	.bg-dot{z-index:-19; height: 100%; left: 0;opacity: 1;position: fixed;top: 0;transform: translate3d(0,0,0);background-image: url(http://game.gtimg.cn/images/up/2017/pc/bg-dot.png);background-position: bottom left;background-repeat: repeat-x;background-size:800px auto;width:2400px;animation: bg2 90s linear infinite;}
+    .banner{ position:relative; height:450px;  }
+    .banner img{ height:260px; width:600px!important; display:block; position:absolute; top:50%; left:50%; margin-left:-300px; margin-top:-130px;}
+	.page-bg{z-index:-20; height:450px; left: 0;opacity: 1; position: absolute; top: 0;transform: translate3d(0,0,0);background-image: url(http://game.gtimg.cn/images/up/2017/pc/page-bg.jpg);background-position: top left;background-repeat: repeat-x;background-size:1300px auto;width:3900px;animation: bg 90s linear infinite;}
+	.bg-dot{z-index:-19; height:450px; left: 0;opacity: 1; position: absolute; top: 0;transform: translate3d(0,0,0);background-image: url(http://game.gtimg.cn/images/up/2017/pc/bg-dot.png);background-position: top left;background-repeat: repeat-x;background-size:800px auto;width:2400px;animation: bg2 90s linear infinite;}
 	@keyframes bg {
 	    0% {  transform: translate3d(0,0,0); }
 	    100% { transform: translate3d(-1300px,0,0);}
@@ -17,9 +17,9 @@
 <link rel="stylesheet" href="/public/web/style/index.css" />
 {% endblock %}
 {% block js %}
+<script src="/public/web/plug/qrcode.js"></script>
 <script src="/public/web/script/index.js"></script>
 {% endblock %}
-
 
 {% block content %}
     <div class="framepage index">
@@ -28,5 +28,230 @@
 			<div class="page-bg"></div>
             <div class="bg-dot"></div>
 	    </div>
+	    <div class="wrap" id="tech">
+	      <div class="content">
+	      <h2>我们使用的技术</h2>
+	      <div>
+	        <img class="lazy" src="public/web/image/lazy_empty.png" data-src="public/web/icons/tech_html5.png" />
+	        <h3>HTML5</h3>
+	        <p>互联网最新技术和未来趋势，HTML5 增加了许多新的概念和接口，使开发的网站与应用更加丰富，更加强大。</p>
+	      </div>
+	      <div>
+	        <img class="lazy" src="public/web/image/lazy_empty.png" data-src="public/web/icons/tech_css3.png" />
+	        <h3>CSS3</h3>
+	        <p>CSS3 的出现，使得开发的产品更加惊艳，新功能：动画特效、盒子模型、背景和边框、文字处理、多栏布局等。</p>
+	      </div>
+	      <div>
+	        <img class="lazy" src="public/web/image/lazy_empty.png" data-src="public/web/icons/tech_jqm.png" />
+	        <h3>React</h3>
+	        <p>React 是 JavaScript 构建大型，高性能 Web 应用的首选。在 Facebook 和 Instagram 中都能很好的应用。</p>
+	      </div>
+	      <div>
+	        <img class="lazy" src="public/web/image/lazy_empty.png" data-src="public/web/icons/tech_kendoui.png" />
+	        <h3>Bootstrap</h3>
+	        <p>Bootstrap 是最受欢迎的 HTML、CSS 和 JS 框架，用于开发响应式布局、移动设备优先的 WEB 项目。</p>
+	      </div>
+	      <div>
+	        <img class="lazy" src="public/web/image/lazy_empty.png" data-src="public/web/icons/tech_jqm.png" />
+	        <h3>Nodejs</h3>
+	        <p>Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境，使用事件驱动、非阻塞式 I/O 的模型，轻量又高效。</p>
+	      </div>
+	      <div>
+	        <img class="lazy" src="public/web/image/lazy_empty.png" data-src="public/web/icons/tech_php.png" />
+	        <h3>PHP</h3>
+	        <p>超文本预处理器，是一种面向对象的轻量级动态语言，它吸收了 C、Java、Perl 的特点，并且开源、跨平台、高效。</p>
+	      </div>
+	      </div>
+	    </div>
+	    
+	    <div class="wrap" id="works_wx">
+	      <div class="content">
+		      <h2><img src="public/web/image/wkwx_title.png" alt="微信作品" /></h2>
+		      <ul class="wkmobs">
+			      <li>
+			      	<a data-href="https://weixin.chinauff.com/lnj-weixin/console/dc/index?a=4707DF067F5710102C50391A782F6D4CDCC8CC9C90877679">
+			      	<img class="lazy" src="public/web/image/lazy_400x650.jpg" data-src="public/web/image/mini.jpg" alt="老娘舅点餐" title="老娘舅点餐" />
+			      	<div class="qrcode"></div>
+			        </a>
+			        <p>老娘舅点餐</p>
+			      </li>
+
+			      <li>
+			      	<a data-href="">
+			      	<img class="lazy" src="public/web/image/lazy_400x650.jpg" data-src="public/web/image/mini2.jpg" alt="久事美术馆" title="久事美术馆" />
+			      	<div class="qrcode qrcodeImg"><img src="public/web/image/qrcode2.jpg" /></div>
+			        </a>
+			        <p>久事美术馆</p>
+			      </li>
+
+			      <li>
+			      	<a data-href="">
+			      	<img class="lazy" src="public/web/image/lazy_400x650.jpg" data-src="public/web/image/mini3.jpg" alt="克莉丝汀" title="克莉丝汀" />
+			      	<div class="qrcode qrcodeImg"><img src="public/web/image/qrcode3.jpg" /></div>
+			        </a>
+			        <p>克莉丝汀</p>
+			      </li>
+			      <li>
+			      	<a data-href="http://58adg.com/public/page/news/index.html">
+			      		<img class="lazy" src="public/web/image/lazy_400x650.jpg" data-src="public/web/image/news.jpg" alt="新闻资讯" title="新闻资讯" />
+			      		<div class="qrcode"></div>
+			      	</a>
+			      	<p>新闻资讯H5</p>
+			      <li>
+			      	<a data-href="http://58adg.com/public/page/swiper/animals.html">
+			      		<img class="lazy" src="public/web/image/lazy_400x650.jpg" data-src="public/web/image/wkwx_swiper2.jpg" alt="卡片切换" title="卡片切换" />
+			      		<div class="qrcode"></div>
+			      	</a>
+			      	<p>卡片切换</p>
+			      </li>  
+		      </ul>
+	      </div>
+	      <div class="bg"><img class="lazy pics" src="public/web/image/lazy_empty.png" data-src="http://qnstudio.houheaven.com/image/wkwx_bg.jpg" /></div>
+	      <div class="dog"><img class="lazy pics" src="public/web/image/lazy_empty.png" data-src="http://qnstudio.houheaven.com/image/wkwx_dog.png" /></div>
+	    </div>
+	    
+	    <div class="wrap" id="works_pc">
+	      <div class="content">
+	      <ul class="hhGallery3">
+	      	<li class="bigimg">  
+	      		<a href="public/page/skuPage/product_add.html" target="_blank">  
+	      			<div class="wrap">  
+	      				<img class="lazy pics" src="public/web/image/lazy_empty.png" data-src="http://qnworks.houheaven.com/wkpc_1487574743361/sku2.jpg" />  
+	      				<div class="info">    
+	      					<h3>商品规格（SKU）</h3>    
+	      					<p><span class="tech">HTML5、CSS3</span></p>    
+	      					<p>商城网站经常需要对商品规格进行管理，比如 颜色、尺寸、产地、材质 等等，这些规格的不同，也将影响着商品的价格，这是我做的一个演示。</p>  
+	      				</div>  
+	      			</div>  
+	      		</a>  
+	      		<p class="data">30k+</p>
+	      	</li>
+	        <li class="">  
+	      	  <a href="/public/page/canvas/timer.html">
+	      		<div class="wrap">  
+	      			<img class="lazy pics" src="public/web/image/lazy_empty.png" data-src="http://qnworks.houheaven.com/wkpc_1492573753129/timer.png" />  
+	      			<div class="info">    
+	      				<h3>爆炸的时钟</h3>    
+	      				<p><span class="tech">HTML5、CSS3</span></p>    
+	      				<p>使用 html5 画布（canvas）技术实现的效果。</p>  
+	      			</div>  
+	      		</div>  
+	      	  </a>  
+	      	  <p class="data">30k+</p>
+	        </li>
+	        <li class="">  
+	      		<a href="/public/page/awesomeSlide/index.html">  
+	      			<div class="wrap">  
+	      				<img class="lazy pics" src="public/web/image/lazy_empty.png" data-src="http://qnworks.houheaven.com/wkpc_1484709727720/AwesomeSlide.jpg" />  
+	      				<div class="info">    
+	      					<h3>AwesomeSlide</h3>    
+	      					<p><span class="tech">HTML5、CSS3</span></p>    
+	      					<p>这是一款很棒的插件，图片切换效果非常惊艳，震撼。</p>  
+	      				</div>  
+	      			</div>  
+	      		</a>  
+	      		<p class="data">30k+</p>
+	        </li>
+	      	<li class="">  
+	      		<a href="#">  
+	      			<div class="wrap">  
+	      				<img class="lazy pics" src="public/web/image/lazy_empty.png" data-src="http://qnworks.houheaven.com/wkpc_1484796390759/hhGallery2.jpg" />  
+	      				<div class="info">    
+	      					<h3>hhGallery2</h3>   
+	      					<p><span class="tech">HTML5、CSS3</span></p>    
+	      					<p>画廊（hhGallery2）二版，使用 jQuery 实现，有良好的兼容性 。</p>  
+	      				</div>  
+	      			</div>  
+	      		</a>  
+	      		<p class="data">30k+</p>
+	      	</li>
+	      	<li class="">  
+	      		<a href="#">  
+	      			<div class="wrap">  
+	      				<img class="lazy pics" src="public/web/image/lazy_empty.png" data-src="http://qnworks.houheaven.com/wkpc_1484796111962/hhGallery3.jpg" />  
+	      				<div class="info">    
+	      					<h3>hhGallery3</h3>    
+	      					<p><span class="tech">HTML5、CSS3</span></p>    
+	      					<p>画廊（hhGallery3）三版，响应式，使用 CSS3 实现 。</p>  
+	      				</div>
+	      			</div>
+	      		</a>
+	      		<p class="data">30k+</p>
+	      	</li>      
+	      </ul>    
+	      </div>
+	      <img src="public/web/image/wkpc-bird.png" class="bird" />
+	      <img src="public/web/image/wkpc_hill.png" class="hill" />
+	      <img src="public/web/image/wkpc_title.png" class="title" alt="网站作品" />
+	    </div>
+<!-- 	    
+	    <div class="wrap" id="member">
+	      <div class="content">
+	      <h2>成员介绍</h2>
+	      <ul>
+	      <li>
+	        <a href="#">
+	        <img class="lazy portrait" src="public/web/image/lazy_empty.png" data-src="public/web/image/portrait01.png" />
+	        <div class="info">
+	          <h3>立树</h3>
+	          <p>一只程序猿、半只设计狮</p>
+	          <p>我不管，我就是很厉害</p>
+	          <p class="more">更多+</p>
+	        </div>
+	        </a>
+	      </li>
+	      <li>
+	        <a href="#">
+	        <img class="lazy portrait" src="public/web/image/lazy_empty.png" data-src="public/web/image/portrait03.png" />
+	        <div class="info">
+	          <h3>Gin</h3>
+	          <p>一只很懒很懒的设计狮</p>
+	          <p>我不管，我就是很厉害</p>
+	          <p class="more">更多+</p>
+	        </div>
+	        </a>
+	      </li>
+	      <li>
+	        <a href="#">
+	        <img class="lazy portrait" src="public/web/image/lazy_empty.png" data-src="public/web/image/portrait02.png" />
+	        <div class="info">
+	          <h3>陈菇凉</h3>
+	          <p>一只爱臭美的雌性程序猿</p>
+	          <p>我不管，我就是很厉害</p>
+	          <p class="more">更多+</p>
+	        </div>
+	        </a>
+	      </li>
+	      <li>
+	        <a href="#">
+	        <img class="lazy portrait" src="public/web/image/lazy_empty.png" data-src="public/web/image/portrait04.png" />
+	        <div class="info">
+	          <h3>盛菇凉</h3>
+	          <p>活动策划、文字工作者</p>
+	          <p>我不管，我就是很厉害</p>
+	          <p class="more">更多+</p>
+	        </div>
+	        </a>
+	      </li>
+	      <li>
+	        <a href="#">
+	        <div>
+	        <img class="lazy portrait" src="public/web/image/lazy_empty.png" data-src="public/web/image/portrait05.png" />
+	        <div class="info">
+	          <h3>余森</h3>
+	          <p>外表冰冷、技术凶悍</p>
+	          <p>我不管，我就是很厉害</p>
+	          <p class="more">更多+</p>
+	        </div>
+	        </div>
+	        </a>
+	      </li>
+	      </ul>
+	      <img src="public/web/image/mm-up-quotation.png" class="quotation up" />
+	      <img src="public/web/image/mm-down-quotation.png" class="quotation down" />
+	      </div>
+	      <div class="bg"><img class="lazy" src="public/web/image/lazy_empty.png" data-src="public/web/image/mm_bg2.jpg" /></div>
+	    </div> -->
     </div>
+    <script src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.js"></script>
 {% endblock %}
