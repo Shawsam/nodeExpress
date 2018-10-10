@@ -33,7 +33,7 @@ body{ background:url(../image/musicback.jpg); }
 #tech .content{ width:90%; margin:5%; border:0px solid #f00; }
 #tech .content:after{ display:block; content:""; clear:both; }
 #tech .content h2 { font:22px/60px "微软雅黑"; color:#111; text-indent:10px; }
-#tech .content > div { display:inline-block; width:30%; min-height:100px; position:relative; border:0px solid #f00; }
+#tech .content > div { display:inline-block; width:33%; min-height:100px; position:relative; border:0px solid #f00; }
 #tech .content > div img { position:absolute; left:15px; top:15px; width:80px; height:80px; }
 #tech .content > div h3  { position:relative; font:20px/1.2em "微软雅黑"; color:#0487c4; padding:15px 15px 10px 110px; }
 #tech .content > div p   { position:relative; font:14px/1.3em "微软雅黑"; color:#555555; padding:0px 15px 15px 110px; }
