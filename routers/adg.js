@@ -16,6 +16,28 @@ router.use(function timeLog(req, res, next) {
   next();
 });
 
+//接口-临时登录凭证code 获取 session_key 和 openid 等  方式-post 参数-jsCode
+router.get('/miniMsg', function(req, api_res) {
+    console.log('/***********************小程序消息推送校验************************/')
+    console.log('请求参数，'+ JSON.stringify(req.query))
+    const signature = req.query.signature
+    const timestamp = req.query.timestamp
+    const nonce = req.query.nonce
+    const echostr = req.query.echostr
+
+    const token = '58adg';
+    const tmpArr = new Array(token, timestamp, nonce).sort();
+    const tmpStr = utils.sha1(tmpArr.join('')) 
+    if( tmpStr == signature ){
+        console.log('校验通过')
+        api_res.end(echostr)
+    }else{
+        console.log('校验失败')
+        api_res.end('校验失败')
+    }
+})
+
+
 
 //接口-临时登录凭证code 获取 session_key 和 openid 等  方式-post 参数-jsCode
 router.get('/getOpenId', function(req, api_res) {
