@@ -1,0 +1,16 @@
+.shop_around .wrapper{ background:#fff; }
+.shop_around .topbar .flexbox{ background:#fff; border-bottom:4px solid #a8b896; height:45px; line-height:45px; text-align:center;  }
+.shop_around .topbar .flexbox .colum{ padding:0 0.4rem; font-weight:bold; }
+.shop_around .topbar .flexbox .colum.active .type{ background:#a8b896; }
+.shop_around .topbar p.addr{ height:30px; line-height:30px; background:#e0e7d7; text-align:center; }
+.shop_around .topbar:after{ display:none; }
+
+.shop_around .list{ padding:0.3rem 0.4rem 0.1rem 0.4rem;}
+.shop_around .list li{  background:#e0e7d7; padding:0.3rem;}
+.shop_around .list li{ position:relative; height:1.6rem; margin-bottom:0.3rem;}
+.shop_around .list li .shop{ font-size:0.35rem; font-weight:bold; margin-bottom:0.1rem; }
+.shop_around .list li .dist{ position:absolute; right:0.3rem; top:0.55rem; line-height:0.5rem;}
+.shop_around .list li .dist:after{ content:'\e602'; font-family:'iconfont';  display:inline-block; font-size:0.35rem; color:#ff3300;  }
+.shop_around .empty{ line-height:0.6rem; display:block; width:3.5rem; position:relative; text-align:center; margin:1rem auto; font-weight:bold; }
+.shop_around .empty img.leftIcon{ height:0.5rem; position:absolute; left:0; top:0; }
+.shop_around .empty img.rightIcon{ height:0.5rem; position:absolute; right:0; top:0; }

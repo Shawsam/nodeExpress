@@ -1,0 +1,21 @@
+.suggest .wrapper{ background:#e0e7d7;}
+.suggest .container{  padding:0 0.4rem 0.4rem 0.4rem;}
+.suggest .main{ background-color:#fff; text-align:center; padding:0 0.3rem 0.4rem 0.3rem; }
+.suggest .main .info{ padding:0.4rem; }
+.suggest .main .info .form-group{ position:relative; padding:0 0.8rem 0 1.7rem; margin-bottom:0.15rem;  height:0.6rem; line-height:0.6rem; background:#e0e7d7; border-radius:0.3rem;}
+.suggest .main .info .form-group label{ position:absolute; width:1.5rem; display:inline-block; left:0; text-align:center; background:#a8b896; border-radius:0.3rem; font-size:0.28rem;}
+.suggest .main .info .form-group label i{ color:#f00; margin-right:0.1rem; }
+.suggest .main .info .form-group input{ display:inline-block; width:100%; text-align:center; }
+.suggest .main .info .form-group.select:after{ content:'\e676'; font-family:'iconfont'; position:absolute; display:inline-block; font-size:0.35rem; right:0.2rem; top:0; color:#999;  }
+.suggest .main .info .form-group a{ color:#999; }
+.suggest .main .title{ background:#ff3300; color:#fff; height:0.5rem; line-height:0.5rem; border-radius:0.25rem;  width:2.2rem; text-align:center;  display:inline-block; } 
+.suggest .main .title i{ margin-right:0.2rem;  }
+.suggest .main .text{ height:2.7rem; width:100%; background:#e8e8e8; border-radius:15px; padding:0.3rem; margin:0.25rem 0; }
+.suggest .main .text textarea{ height:100%; width:100%; }
+.suggest .main .tip{ font-size:0.26rem; margin:0.2rem 0;}
+.suggest .main .imgCon{ margin-bottom:0.4rem; }
+.suggest .main .imgCon .imgItem{  display:inline-block; width:1.6rem; width:1.6rem; margin:0 0.2rem;}
+.suggest .main .imgCon .imgItem > img{ height:100%; width:100%; }
+.suggest .confirmBtn{overflow:visible; margin:0 auto;  font-size:0.38rem;  font-weight:bold; display:block;  width:3.5rem; height:0.64rem; line-height:0.64rem; text-align:center; color:#fff; border-radius:10px; position:relative; z-index:0; }
+.suggest .confirmBtn:before{ content:''; display:block; position:absolute; width:4.5rem; height:0.2rem; background:#ff5500; left:-0.5rem; top:0.24rem; border-radius:10px; z-index:-1;  }
+

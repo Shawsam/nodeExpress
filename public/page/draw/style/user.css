@@ -1,0 +1,114 @@
+/*=================================================================================================================*/
+.user_login .wrapper .logo{ padding-top:1.5rem; width:4rem; display:block; margin:0 auto; }
+.user_login .wrapper form{ width:6rem; margin:0 auto; margin-top:1.5rem; }
+.user_login .wrapper form .form-group{ border-bottom:1px solid #999; padding:0.15rem 0; margin-top:0.3rem; position:relative; padding-left:1.2rem; padding-right:1.7rem;   line-height:0.45rem; }
+.user_login .wrapper form .getYzm{ position:absolute; right:0; top:0.15rem; display:block; width:1.7rem; height:0.45rem; line-height:0.45rem; text-align:center; font-size:0.24rem; color:#fff; background:#ff5500; border-radius:10px; }
+.user_login .wrapper form label{ position:absolute; left:0; top:0.15rem; display:block; width:1.2rem;  }
+.user_login .wrapper form input{ display:block; width:100%; text-align:center; }
+.user_login .wrapper form .submitBtn{overflow:visible; margin:0 auto;  font-size:0.38rem;  font-weight:bold; margin-top:2.2rem; display:block;  width:4rem; height:0.64rem; line-height:0.64rem; text-align:center; color:#fff; border-radius:10px; position:relative; z-index:0; }
+.user_login .wrapper form .submitBtn:before{ content:''; display:block; position:absolute; width:5rem; height:0.2rem; background:#ff5500; left:-0.5rem; top:0.24rem; border-radius:10px; z-index:-1;  }
+
+/*=================================================================================================================*/
+.user_register .wrapper{ position:relative; }
+.user_register .wrapper .banner{font-size:0;}
+.user_register .wrapper .banner img{ width:100%; }
+.user_register .wrapper .main{ padding:0.15rem 0.4rem 0.3rem 0.4rem; }
+.user_register .wrapper .main form{ border:4px solid #000; padding:0.2rem 0.4rem 0.25rem 0.4rem;}
+.user_register .wrapper .main form .logo{ width:4.2rem; display:block; margin:0 auto; }
+.user_register .wrapper form .form-group{ border-bottom:1px solid #999; padding:0.15rem 0; margin-top:0.1rem; position:relative; padding-left:1.2rem; padding-right:1.7rem;   line-height:0.45rem; }
+.user_register .wrapper form .form-group.select:after{ content:'\e676'; font-family:'iconfont'; position:absolute; display:inline-block; font-size:0.35rem; right:0.2rem; top:0.15rem; color:#999;  }
+.user_register .wrapper form .getYzm{ position:absolute; right:0; top:0.15rem; display:block; width:1.7rem; height:0.45rem; line-height:0.45rem; text-align:center; font-size:0.24rem; color:#fff; background:#ff5500; border-radius:10px; }
+.user_register .wrapper form label{ position:absolute; left:0; top:0.15rem; display:block; width:1.2rem;  }
+.user_register .wrapper form input{ display:block; width:100%; text-align:center; }
+.user_register .wrapper form select{ display:block; width:100%; text-align:center; }
+.user_register .wrapper form a{ display:block; width:100%; text-align:center; color:#999; position:relative; }
+.user_register .wrapper form a .mob{  position:absolute; top:0; left:0;  display:block; width:100%; text-align:center; opacity:0;}
+.user_register .wrapper form select option{ text-align:center; }
+.user_register .wrapper form .submitBtn{overflow:visible; margin:0 auto;  font-size:0.38rem;  font-weight:bold; margin-top:0.2rem; display:block;  width:4rem; height:0.64rem; line-height:0.64rem; text-align:center; color:#fff; border-radius:10px; position:relative; z-index:0; }
+.user_register .wrapper form .submitBtn:before{ content:''; display:block; position:absolute; width:5rem; height:0.2rem; background:#ff5500; left:-0.5rem; top:0.24rem; border-radius:10px; z-index:-1;  }
+.user_register .wrapper form .protocol{ font-size:0.24rem; line-height:0.24rem; color:#ff5500; text-align:center; margin-top:0.35rem; }
+.user_register .wrapper form .protocol img{ width:0.35rem; vertical-align:middle; margin-right:0.1rem; }
+.user_register .wrapper form .sex .opt{ color:#000; }
+.user_register .wrapper form .sex .opt:before{ display:inline-block; content:''; height:13px; width:13px; overflow:hidden; vertical-align:middle; margin-right:8px; border-radius:100%; border:2px solid #000; background:#000;  }
+.user_register .wrapper form .sex .opt:last-child{ margin-left:25px; }
+.user_register .wrapper form .sex .opt.active:before{ background:#ff3300; }
+.user_register .wrapper .rulePanel{  display:none; background:#fff; padding:0.3rem 0.3rem 0.5rem 0.3rem; font-size:0.22rem; line-height:0.4rem; position:fixed; width:90%; top:50%; transform:translateY(-50%); -webkit-transform:translateY(-50%); left:5%; z-index:102;}
+.user_register .wrapper .rulePanel .btnGp{ margin-top:0.3rem; text-align:center; }
+.user_register .wrapper .rulePanel .btnGp .btn{ display:inline-block; width:1.5rem; height:0.4rem; line-height:0.4rem; border-radius:15px; text-align:center;  }
+
+/*=================================================================================================================*/
+.user_center .wrapper{ height:100%;  }
+.user_center .container{  height:100%; padding-bottom:2rem;  }
+.user_center .main{ text-align:center;  padding:0 0.6rem; height:100%; background:url('../image/indexbg.jpg')no-repeat center center; background-size:auto 100% ;}
+.user_center .main .userinfo{ padding:0.4rem 0 0.1rem 0; font-size:0.28rem; font-weight:bold; }
+.user_center .main .userinfo .avatar{ height:1.4rem; width:1.4rem; border-radius:50%; overflow:hidden; }
+.user_center .main .points{ color:#ff3300; font-size:0.38rem;  font-weight:bold; }
+.user_center .main .points .val{ font-size:0.55rem; }
+.user_center .main .card{ border-radius:6px; margin:0.35rem auto; display:block; position:relative; }
+.user_center .main .cardTxt{ position:absolute; top:0.35rem; right:0.8rem; font-weight:bold; }
+.user_center .main .code{ width:1.4rem; margin:0 auto; display:block; }
+.user_center .main .codeTxt{ font-size:0.28rem;  }
+.user_center .itemCon{ height:2rem; position:absolute; bottom:0; display:block; width:100%; background:#fff;}
+.user_center .itemCon{  text-align:center; padding:0.3rem; }
+.user_center .itemCon a{ display:inline-block; }
+.user_center .itemCon img{ height:1rem; width:1rem;}
+.user_center .itemCon p{ height:0.4rem; line-height:0.4rem; }
+
+/*=================================================================================================================*/
+.user_code .wrapper{  height:100%;  }
+.user_code .container{  height:100%; padding-bottom:2rem;  }
+.user_code .main{ height:100%; background:url('../image/qrcodebg.jpg')no-repeat; background-size:100% 100%; position:relative;}
+.user_code .main .codeCon{ width:3.4rem; position:absolute; top:50%; left:50%; -webkit-transform:translate(-50%,-50%); transform:translate(-50%,-50%);}
+.user_code .main .codeCon p{ line-height:0.4rem;  text-align:center; margin-bottom:0.2rem; }
+.user_code .main .codeCon .qrcode{ width:3.4rem;  }
+.user_code .main .codeCon canvas{ width:3.4rem;  }
+.user_code .itemCon{ height:2rem; line-height:2rem; text-align:center; position:absolute; bottom:0; display:block; width:100%; border-top:4px solid #ff3300; -webkit-box-sizing:content-box; box-sizing:content-box;}
+
+/*=================================================================================================================*/
+.user_info .wrapper{ position:relative; background:#e0e7d7; }
+.user_info .container{ padding:0 0.4rem 0.4rem 0.4rem; height:100%; }
+.user_info .main{ background:url("../image/infobg.jpg")no-repeat top center; background-size:100% auto; background-color:#fff; text-align:center; padding:0 0.3rem 0.3rem 0.3rem; padding-top:5.2rem; position:relative; }
+.user_info .main .userinfo{ padding:0.4rem 0; font-size:0.28rem; font-weight:bold; position:absolute; top:0; left:50%; -webkit-transform:translateX(-50%); transform:translateX(-50%); }
+.user_info .main .userinfo .avatar{ height:1.5rem; width:1.5rem; border-radius:50%; overflow:hidden; }
+.user_info .main form .form-group{ border-bottom:1px solid #999; padding:0.15rem 0; margin-top:0.1rem; position:relative; padding-left:1.2rem; padding-right:1.7rem;   line-height:0.45rem; }
+.user_info .main form .form-group.select:after{ content:'\e676'; font-family:'iconfont'; position:absolute; display:inline-block; font-size:0.35rem; right:0.2rem; top:0.15rem; color:#999;  }
+.user_info .main form .getYzm{ position:absolute; right:0; top:0.15rem; display:block; width:1.7rem; height:0.45rem; line-height:0.45rem; text-align:center; font-size:0.24rem; color:#fff; background:#ff5500; border-radius:10px; }
+.user_info .main form label{ position:absolute; left:0; top:0.15rem; display:block; width:1.2rem;  }
+.user_info .main form input{ display:block; width:100%; text-align:center; }
+.user_info .main form select{ display:block; width:100%; text-align:center; }
+.user_info .main form a{ display:block; width:100%; text-align:center; color:#999; }
+.user_info .main form a .mob{  position:absolute; top:0; left:0;  display:block; width:100%; text-align:center; opacity:0; }
+.user_info .main form select option{ text-align:center; }
+.user_info .main form .submitBtn{overflow:visible; margin:0 auto;  font-size:0.38rem;  font-weight:bold; margin-top:0.2rem; display:block;  width:4rem; height:0.64rem; line-height:0.64rem; text-align:center; color:#fff; border-radius:10px; position:relative; z-index:0; }
+.user_info .main form .submitBtn:before{ content:''; display:block; position:absolute; width:5rem; height:0.2rem; background:#ff5500; left:-0.5rem; top:0.24rem; border-radius:10px; z-index:-1;  }
+.user_info .main form .protocol{ font-size:0.24rem; line-height:0.24rem; color:#ff5500; text-align:center; margin-top:0.35rem; }
+.user_info .main form .protocol img{ width:0.35rem; vertical-align:middle; margin-right:0.1rem; }
+.user_info .main form .sex .opt{ color:#000; }
+.user_info .main form .sex .opt:before{ display:inline-block; content:''; height:13px; width:13px; overflow:hidden; vertical-align:middle; margin-right:8px; border-radius:100%; border:2px solid #000; background:#000;  }
+.user_info .main form .sex .opt:last-child{ margin-left:25px; }
+.user_info .main form .sex .opt.active:before{ background:#ff3300; }
+
+/*=================================================================================================================*/
+.user_right .topbar{ background:#fff; border-bottom:4px solid #a8b896; height:45px; line-height:45px; text-align:center;  }
+.user_right .topbar:after{ display:none; }
+.user_right .topbar .colum{ padding:0 0.4rem; font-weight:bold; }
+.user_right .topbar .colum.active .type{ background:#a8b896; }
+.user_right .wrapper{ background:#e0e7d7; height:100%; }
+.user_right .container{ padding:0 0.4rem; height:100%; }
+.user_right .info{  background-color:#fff; height:95%; padding:0.3rem; font-size:0.22rem; line-height:0.4rem; }
+
+/*=================================================================================================================*/
+.user_transLog .wrapper{ background:#e0e7d7;}
+.user_transLog .list{ padding:0.3rem 0.4rem 0.1rem 0.4rem;}
+.user_transLog .list li{  background:#fff; margin-bottom:0.2rem; height:1.6rem; border-bottom:4px solid #ff3330; padding:0.2rem 0.3rem; position:relative; padding-left:50%;}
+.user_transLog .list li .shop{ position:absolute; left:0.5rem; top:0; font-size:0.35rem; font-weight:bold; height:1.6rem; line-height:1.6rem; }
+.user_transLog .list li p{ font-size:0.26rem; }
+.user_transLog .list li p.time{ margin-top:0.1rem; }
+.user_transLog .empty{ line-height:0.6rem; display:block; width:3.5rem; position:relative; text-align:center; margin:1rem auto; font-weight:bold; }
+.user_transLog .empty img.leftIcon{ height:0.5rem; position:absolute; left:0; top:0; }
+.user_transLog .empty img.rightIcon{ height:0.5rem; position:absolute; right:0; top:0; }
+.user_transLog .panel .panelContent{ line-height:0.6rem; display:block; width:4.5rem; position:relative; text-align:center; margin:1rem auto 0.6rem auto; font-size:0.4rem; font-weight:bold;}
+.user_transLog .panel .panelContent img.leftIcon{ height:0.5rem; position:absolute; left:0; top:0; }
+.user_transLog .panel .panelContent img.rightIcon{ height:0.5rem; position:absolute; right:0; top:0; }
+.user_transLog .panel .panelFooter{ text-align:center; padding-bottom:0.4rem; }
+.user_transLog .panel .panelFooter a{  display:inline-block; line-height:0.45rem;  border-radius:10px; width:2rem; text-align:center; }

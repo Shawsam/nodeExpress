@@ -1,0 +1,46 @@
+.point .topbar{ background:#fff; border-bottom:4px solid #a8b896; height:45px; line-height:45px; text-align:center;  }
+.point .topbar:after{ display:none; }
+.point .topbar .colum{ padding:0 0.4rem; font-weight:bold; }
+.point .topbar .colum.active .type{ background:#a8b896; }
+.point .container{ padding:0 0.4rem; }
+.point .list{ padding:0.3rem 0 0.1rem 0;}
+.point .list li{  background:#fff; }
+.point .list li .item{ border-bottom:4px solid #ff3300; height:2rem;  padding:0.25rem 0.3rem;  }
+.point .list li{ position:relative; padding-left:2rem; height:2rem; margin-bottom:0.3rem;}
+.point .list li .imgCenter{ width:2rem; height:2rem; position:absolute; left:0; top:0; }
+.point .list li .name{ font-size:0.3rem; font-weight:bold;}
+.point .list li .price{ font-size:0.32rem; margin-top:0.3rem; font-weight:bold; color:#ff3300; }
+.point .list li .price .val{ font-size:0.5rem; }
+.point .list li .btn{ display:inline-block; line-height:0.45rem;  border-radius:10px; padding:0 0.35rem;  position:absolute;  bottom:0.35rem; right:0.3rem; font-size:0.26rem;}
+.point .empty{ line-height:0.6rem; display:block; width:3.5rem; position:relative; text-align:center; margin:1rem auto; font-weight:bold; }
+.point .empty img.leftIcon{ height:0.5rem; position:absolute; left:0; top:0; }
+.point .empty img.rightIcon{ height:0.5rem; position:absolute; right:0; top:0; }
+.point .panel .panelContent{ display:block; position:relative; }
+.point .panel .panelContent img.leftIcon{ height:0.5rem; position:absolute; left:0; top:0; }
+.point .panel .panelContent img.rightIcon{ height:0.5rem; position:absolute; right:0; top:0; }
+.point .panel .panelFooter{ text-align:center; padding-bottom:0.4rem; }
+.point .panel .panelFooter a{  display:inline-block; line-height:0.45rem; border-radius:10px; width:2rem; text-align:center; }
+.point .panelTip   .panelContent{ width:4.5rem; text-align:center;  font-size:0.4rem; font-weight:bold;  line-height:0.6rem;  margin:1rem auto 0.6rem auto; }
+.point .panelModal .panelContent{ width:5rem; line-height:0.5rem;  margin:0.6rem auto 0.6rem auto;  padding-right:0.8rem;}
+.point .panelModal .panelContent .bold{  font-size:0.4rem; font-weight:bold; line-height:0.6rem; margin-bottom:0.2rem; }
+.point .info{ display:none; }
+
+/*.point .wrapper{ background:url("../image/pointbg.jpg")no-repeat bottom center; background-size:100% auto;}*/
+.point .wrapper{ background:#e0e7d7;}
+.pointDetail .wrapper{ height:100%; }
+.pointDetail .container{ height:100%; }
+.pointDetail .info .item{ position:relative; padding-left:0.9rem; line-height:0.9rem; height:0.9rem; display:inline-block; }
+.pointDetail .info .icon{ display:inline-block; width:0.7rem; height:0.7rem; position:absolute; left:0; top:0.1rem;  }
+.pointDetail .info{ background:url("../image/pointbg.jpg")no-repeat top center; background-size:100% auto; background-color:#fff; height:97%; text-align:center; padding:0 0.3rem; padding-top:4.2rem; }
+.pointDetail .info .bala{ font-size:0.35rem; font-weight:bold; color:#ff3300; line-height:0.9rem;  margin-bottom:0.1rem;}
+.pointDetail .info .grade{ font-size:0.35rem; font-weight:bold; color:#ff3300; line-height:0.9rem;  margin-bottom:0.2rem;}
+.pointDetail .info .bala .val{ font-size:0.5rem; }
+.pointDetail .info .grade .text{ font-size:0.4rem; }
+.pointDetail .info .table{ margin-top:0.4rem; line-height:0.9rem; border-top:1px solid #000; border-bottom:1px solid #000;}
+.pointDetail .info .table .title{ font-weight:bold; font-size:0.26rem;}
+.pointDetail .info .table .fill{ font-size:0.24rem;  }
+.pointDetail .info .table .td{ border:1px solid  #000;}
+.pointDetail .info .table .title .td:first-child{ border-left:none }
+.pointDetail .info .table .title .td:last-child{ border-right:none }
+.pointDetail .info .table .fill .td:first-child{ border-left:none }
+.pointDetail .info .table .fill .td:last-child{ border-right:none }

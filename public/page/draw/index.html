@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>MM家小CK抽奖活动</title>
+    <link rel="stylesheet" href="./style/common.css" />
+    <link rel="stylesheet" href="./style/user.css" />
+    <style>
+        .user_sign .title{ padding-top:0.6rem; text-align:center; color:#fff; background: linear-gradient(to right, red, blue); -webkit-background-clip: text;  color:transparent; font-weight:bold;}
+        .user_sign .container{ background:url("./image/list_bg.jpg")no-repeat center center; background-size:100% 100%;}
+        .user_sign .list{ padding:0.7rem 0.5rem; }
+        .user_sign .list ul{ font-size:0; }
+        .user_sign .list ul li{ padding:0 0.2rem; display:inline-block; width:33.33%; text-align:center; padding:0.1rem; font-size:15px;}
+        .user_sign .list ul li .item{ height:2rem; width:100%; text-align:center; border-radius:8px; vertical-align:middle;}
+        .user_sign .tip{ text-align:center; color:#ff5500;  font-weight:bold; margin-top:0.3rem; font-size:13px; font-weight:bold;}
+        .user_sign .signBtn{overflow:visible; margin:0 auto;  font-size:0.35rem;  font-weight:bold; margin-top:0.25rem; display:block;  width:4rem; height:0.64rem; line-height:0.64rem; text-align:center; color:#fff; border-radius:10px; position:relative; z-index:0; border:none!important; }
+        .user_sign .signBtn:before{ content:''; display:block; position:absolute; width:5rem; height:0.2rem; background:#ff5500; left:-0.5rem; top:0.24rem; border-radius:10px; z-index:-1;  }
+      
+        .user_sign .flip_wrap{ perspective:10000px; -webkit-perspective:10000px; -moz-perspective:10000px; -ms-perspective:10000px; -o-perspective:10000px;}
+        .user_sign .flip{height:100%;width:100%;backface-visibility:hidden; -webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;transition: all 1.5s ease; -webkit-transition: all 1.5s ease;-moz-transition: all 1.5s ease;-ms-transition: all 1.5s ease;-o-transition: all 1.5s ease;transform-style: preserve-3d; }
+        .user_sign .side{ width:100%; height:100%; background:#ccc; border-radius:10px; overflow:hidden; position: absolute; }
+        .user_sign .front{ z-index:10; line-height:2rem;}
+        .user_sign .back{ z-index:10; transform:rotateY(180deg); -webkit-transform:rotateY(180deg); -moz-transform:rotateY(180deg); -ms-transform:rotateY(180deg); -o-transform:rotateY(180deg);}
+        .user_sign .back p{ position:relative; padding-top:1.3rem; color:#888; }
+        .user_sign .back p:before{ content:'\e604'; color:#888; font-family:'iconfont'; position:absolute; display:inline-block; font-size:0.7rem; position:absolute; top:0.4rem; left:50%; margin-left:-0.35rem;  font-weight:normal;}
+        .user_sign .flip_wrap.fliped .flip{ transform:rotateY(180deg); -webkit-transform:rotateY(180deg); -moz-transform:rotateY(180deg); -ms-transform:rotateY(180deg); -o-transform:rotateY(180deg);}
+        .user_sign .item.active .back{ background:#fff; color:#ff5500; }
+        .user_sign .item.active .back p{ color:#ff5500; }
+        .user_sign .item.active .back p:before{ color:#ff5500; }
+
+        @keyframes downright{
+            0%{ -webkit-transform:translate(0,0);transform:translate(0,0); }
+            25%{ transform:translate(0,50%);transform:translate(0,50%); }
+            50%{ transform:translate(100%,50%); }
+            75%{ transform:translate(100%,100%); }
+            100%{ transform:translate(200%,100%); }
+        }
+
+        @keyframes downleft{
+            0%{ -webkit-transform:translate(0,0);transform:translate(0,0);  }
+            25%{ -webkit-transform:translate(0,50%); transform:translate(0,50%); }
+            50%{ -webkit-transform:translate(-100%,50%);transform:translate(-100%,50%); }
+            75%{ -webkit-transform:translate(-100%,100%); transform:translate(-100%,100%); }
+            100%{ -webkit-transform:translate(-200%,100%); transform:translate(-200%,100%); }
+        }
+
+        @keyframes topright{
+            0%{ -webkit-transform:translate(0,0);transform:translate(0,0); }
+            25%{ -webkit-transform:translate(0,-50%);transform:translate(0,-50%); }
+            50%{ -webkit-transform:translate(100%,-50%);transform:translate(100%,-50%); }
+            75%{ -webkit-transform:translate(100%,-100%);transform:translate(100%,-100%); }
+            100%{ -webkit-transform:translate(200%,-100%);transform:translate(200%,-100%); }
+        }
+
+        @keyframes topleft{
+            0%{ -webkit-transform:translate(0,0);transform:translate(0,0); }
+            25%{ -webkit-transform:translate(0,-50%);transform:translate(0,-50%); }
+            50%{ -webkit-transform:translate(-100%,-50%); transform:translate(-100%,-50%); }
+            75%{ -webkit-transform:translate(-100%,-100%); transform:translate(-100%,-100%); }
+            100%{ -webkit-transform:translate(-200%,-100%); transform:translate(-200%,-100%); }
+        }
+
+        @keyframes up{
+            0%{ -webkit-transform:translate(0,0);transform:translate(0,0); }
+            50%{ -webkit-transform:translate(0,-50%);transform:translate(0,-50%); }
+            100%{ -webkit-transform::translate(0,-100%); transform:translate(0,-100%); }
+        }
+
+        @keyframes down{
+            0%{ -webkit-transform:translate(0,0);transform:translate(0,0); }
+            50%{  -webkit-transform:translate(0,50%);transform:translate(0,50%); }
+            100%{ -webkit-transform:translate(0,100%); transform:translate(0,100%); }
+        }
+
+        @keyframes Shake{
+            0%{ opacity: 1; }
+            50%{ opacity: 0; }
+            100%{ opacity: 1; }
+        }
+        .DownRight{ -webkit-animation:downright 1.5s;animation:downright 1.5s; }
+        .DownLeft{ -webkit-animation:downleft 1.5s;animation:downleft 1.5s; }
+        .UpRight{ -webkit-animation:topright 1.5s;animation:topright 1.5s; }
+        .UpLeft{ -webkit-animation:topleft 1.5s;animation:topleft 1.5s; }
+        .Up{ -webkit-animation:up 1.5s;animation:up 1.5s; }
+        .Down{ -webkit-animation:down 1.5s;animation:down 1.5s; }
+        .shake{ -webkit-animation:Shake 1s infinite; animation:Shake 1s infinite;}
+        .user_sign .panel .panelContent{ display:block; position:relative; }
+        .user_sign .panel .panelContent img.leftIcon{ height:0.5rem; position:absolute; left:0; top:0; }
+        .user_sign .panel .panelContent img.rightIcon{ height:0.5rem; position:absolute; right:0; top:0; }
+        .user_sign .panel .panelFooter{ text-align:center; padding-bottom:0.4rem; }
+        .user_sign .panel .panelFooter a{  display:inline-block; line-height:0.45rem; border-radius:10px; width:2rem; text-align:center; }
+        .user_sign .panelTip  .panelContent{ width:5.5rem; text-align:center;  font-size:0.4rem; font-weight:bold;  line-height:0.6rem;  margin:1rem auto 0.6rem auto; }
+        .signBtn.disable:before{ background:#ccc; }
+        .bottom{ text-align:center; margin-top:1.2rem; padding-bottom:0.5rem; }
+        .bottom .text p{ text-align:left; font-size:0.26rem; color:#ddd; width:90%; margin:0 auto; line-height:0.4rem; position:relative; padding-left:0.3rem;}
+        .bottom .text p label{ display:inline-block; width:0.3rem; text-align:left; position:absolute; top:0; left:0; }
+        .bottom .qrcode{ width:120px; margin-top:0.5rem; }
+    </style>
+</head>
+<body>
+    <div class="framepage user_sign">
+        <div class="wrapper">
+            <div class="container">
+                <p class="title">MM家小CK抽奖活动，拼一拼谁是运气王~</p>
+                <div class="list">
+                    <ul>
+                        <li class="topleftItem">
+                            <div class="item flip_wrap">
+                                <div class="flip">
+                                    <div class="front side"><p>点击抽奖</p></div>
+                                    <div class="back side"><p>10元优惠券</p></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="topcenterItem">
+                            <div class="item flip_wrap">
+                                <div class="flip">
+                                    <div class="front side"><p>点击抽奖</p></div>
+                                    <div class="back side"><p>5元优惠券</p></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="toprightItem">
+                            <div class="item flip_wrap">
+                                <div class="flip">
+                                    <div class="front side"><p>点击抽奖</p></div>
+                                    <div class="back side"><p>15元优惠券</p></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="bottomleftItem">
+                            <div class="item flip_wrap">
+                                <div class="flip">
+                                    <div class="front side"><p>点击抽奖</p></div>
+                                    <div class="back side"><p>10元优惠券</p></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="bottomcenterItem">
+                            <div class="item flip_wrap">
+                                <div class="flip">
+                                    <div class="front side"><p>点击抽奖</p></div>
+                                    <div class="back side"><p>20元优惠券</p></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="bottomrightItem">
+                            <div class="item flip_wrap">
+                                <div class="flip">
+                                    <div class="front side"><p>点击抽奖</p></div>
+                                    <div class="back side"><p>10元优惠券</p></div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <p class="tip hide">已抽 <span class="count">0</span> 次,还剩 <span class="chance">1</span> 次机会</p>
+                <a class="signBtn btn">立即抽奖</a>
+
+                <div class="bottom">
+                    <div class="text">
+                        <p><label>1.</label>活动有效期为2018年11月15日-2018年11月30日,优惠券最低面值5元,最高面值20元;</p>
+                        <p><label>2.</label>优惠券可用于小CK包包【天猫工厂】，服饰，饰品等；</p>
+                        <p><label>3.</label>每人限抽奖1次，抽奖后截图发回10天内有效；</p>
+                        <p><label>4.</label>更多优惠信息或者商品咨询，请扫描识别下方二维码。</p>
+                    </div>
+                    <img class="qrcode" src="./image/qrcode.jpg" />
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panelTip">
+            <div class="panelContent">
+                <p class="msg"></p>
+            </div>
+            <div class="panelFooter">
+                <a class="btn closeTip">确定</a>
+            </div>
+        </div>
+
+    </div>
+    <script src="./script/support.js"></script>
+    <script src="./script/flexble.js"></script>
+    <script>
+        var gift = ['5元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','15元优惠券','15元优惠券','20元优惠券'];
+        function random(lower, upper) {
+            return Math.floor(Math.random() * (upper - lower)) + lower;
+        }
+
+        function draw(){
+            var number = random(1,100);
+            var text = gift[number%8];
+            return text
+        }
+
+        function signFun(){
+            $(".signBtn").off("click").addClass("disable");
+            $(".list .item").removeClass('fliped');
+             setTimeout(function(){
+                 $(".list li.topleftItem").addClass('DownRight');
+                 $(".list li.toprightItem").addClass('DownLeft');
+                 $(".list li.bottomleftItem").addClass('UpRight');
+                 $(".list li.bottomrightItem").addClass('UpLeft');
+                 $(".list li.topcenterItem").addClass('Down');
+                 $(".list li.bottomcenterItem").addClass('Up');
+                 $(".chance").text("1");
+             },1000)
+
+             setTimeout(function(){
+                $(".list .item").find(".front p").addClass('shake');
+                //$(".chance").text("1");
+                $(".list .item").on("click",function(){
+                        $(".list .item p").removeClass('shake');
+                        var count = $(".count").text();
+                        var chance = $(".chance").text();
+                        if(chance==0){
+                            $(".panelTip .msg").text('您的抽奖次数已用完，请明天再来吧！')
+                            $(".shadow").show()
+                            $(".panelTip").show()
+                            return;
+                        } 
+
+                        var gift = draw()
+                        $(".list .item").off('click');
+                        $(this).addClass('active').addClass('fliped').find(".back p").text(gift);
+                        chance--;
+                        count++;
+                        $(".chance").text(chance)
+                        $(".count").text(count);
+
+                        setTimeout(function(){
+                            $(".list .item").addClass('fliped');
+                        },1000)
+                        setTimeout(function(){
+                            $(".panelTip .msg").text('恭喜您抽中“'+ gift +'”')
+                            $(".shadow").show()
+                            $(".panelTip").show()
+                        },3500)
+                })
+             },2500)
+        }
+
+        $(document).ready(function(){
+            setTimeout(function(){
+                 $(".list .item").addClass('fliped')
+            },500)
+
+            setTimeout(function(){
+                 $(".signBtn").on("click",signFun)
+            },1500)
+            
+
+            $(".closeTip").on("click",function(){
+                $(".panelTip").hide()
+                $(".shadow").hide()
+            })
+
+        })
+
+
+    </script>
+</body>
+</html>

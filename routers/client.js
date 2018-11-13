@@ -30,6 +30,11 @@ router.get(/^\/(index)?$/, function(req, res) {
   });
 });
 
+//ck抽奖
+router.get('/draw', function(req, res) {
+   res.render('web/ck_draw')
+});
+
 
 router.get('/music', function(req, res) {
   Song.find({}).then(function(song){
