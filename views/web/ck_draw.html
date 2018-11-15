@@ -6,11 +6,12 @@
     <meta content="telephone=no" name="format-detection">
     <meta content="email=no" name="format-detection">
     <title>MM家小CK抽奖活动</title>
-    <link rel="stylesheet" href="/public/page/draw/style/common.css" />
-    <link rel="stylesheet" href="/public/page/draw/style/user.css" />
+    <link rel="icon" href="http:58adg.com/public/web/res/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="public/page/draw/style/common.css" />
+    <link rel="stylesheet" href="public/page/draw/style/user.css" />
     <style>
-        .user_sign .title{ padding-top:0.6rem; text-align:center; color:#fff; background: linear-gradient(to right, red, blue); -webkit-background-clip: text;  color:transparent; font-weight:bold;}
-        .user_sign .container{ background:url("/public/page/draw/image/list_bg.jpg")no-repeat center center; background-size:100% 100%;}
+        .user_sign .title{ padding-top:0.6rem; font-size:0.33rem; text-align:center; color:#fff; background: linear-gradient(to right, red, blue); -webkit-background-clip: text;  color:transparent; font-weight:bold;}
+        .user_sign .container{ background:url("public/page/draw/image/list_bg.jpg")no-repeat center center; background-size:100% 100%;}
         .user_sign .list{ padding:0.7rem 0.5rem; }
         .user_sign .list ul{ font-size:0; }
         .user_sign .list ul li{ padding:0 0.2rem; display:inline-block; width:33.33%; text-align:center; padding:0.1rem; font-size:15px;}
@@ -24,8 +25,8 @@
         .user_sign .side{ width:100%; height:100%; background:#ccc; border-radius:10px; overflow:hidden; position: absolute; }
         .user_sign .front{ z-index:10; line-height:2rem;}
         .user_sign .back{ z-index:10; transform:rotateY(180deg); -webkit-transform:rotateY(180deg); -moz-transform:rotateY(180deg); -ms-transform:rotateY(180deg); -o-transform:rotateY(180deg);}
-        .user_sign .back p{ position:relative; padding-top:1.3rem; color:#888; }
-        .user_sign .back p:before{ content:'\e604'; color:#888; font-family:'iconfont'; position:absolute; display:inline-block; font-size:0.7rem; position:absolute; top:0.4rem; left:50%; margin-left:-0.35rem;  font-weight:normal;}
+        .user_sign .back p{ position:relative; padding-top:1.3rem; color:#888; background: linear-gradient(to right, red, blue); -webkit-background-clip: text;  color:transparent;  }
+        .user_sign .back p:before{ content:'\e604'; color:#888; background: linear-gradient(to right, red, blue); -webkit-background-clip: text;  color:transparent;  font-family:'iconfont'; position:absolute; display:inline-block; font-size:0.7rem; position:absolute; top:0.4rem; left:50%; margin-left:-0.35rem;  font-weight:normal;}
         .user_sign .flip_wrap.fliped .flip{ transform:rotateY(180deg); -webkit-transform:rotateY(180deg); -moz-transform:rotateY(180deg); -ms-transform:rotateY(180deg); -o-transform:rotateY(180deg);}
         .user_sign .item.active .back{ background:#fff; color:#ff5500; }
         .user_sign .item.active .back p{ color:#ff5500; }
@@ -135,7 +136,7 @@
                             <div class="item flip_wrap">
                                 <div class="flip">
                                     <div class="front side"><p>点击抽奖</p></div>
-                                    <div class="back side"><p>10元优惠券</p></div>
+                                    <div class="back side"><p>酒神包</p></div>
                                 </div>
                             </div>
                         </li>
@@ -162,12 +163,13 @@
 
                 <div class="bottom">
                     <div class="text">
-                        <p><label>1.</label>活动有效期为2018年11月15日-2018年11月30日,优惠券最低面值5元,最高面值20元;</p>
-                        <p><label>2.</label>优惠券可用于小CK包包【天猫工厂】，服饰，饰品等；</p>
-                        <p><label>3.</label>每人限抽奖1次，抽奖后截图发回10天内有效；</p>
-                        <p><label>4.</label>更多优惠信息或者商品咨询，请扫描识别下方二维码。</p>
+                        <p><label>1.</label>活动有效期为2018年11月15日-2018年11月30日;</p>
+                        <p><label>2.</label>活动奖品为最低5元优惠券，最高20元优惠券，更有“酒神包”免费等你拿;</p>
+                        <p><label>3.</label>优惠券可用于小CK包包【天猫工厂】，服饰，饰品等；</p>
+                        <p><label>4.</label>每人限抽奖1次，抽奖后截图发回10天内有效；</p>
+                        <p><label>5.</label>更多优惠信息或者商品咨询，请扫描识别下方二维码。</p>
                     </div>
-                    <img class="qrcode" src="/public/page/draw/image/qrcode.jpg" />
+                    <img class="qrcode" src="public/page/draw/image/qrcode.jpg" />
                 </div>
             </div>
         </div>
@@ -182,8 +184,8 @@
         </div>
 
     </div>
-    <script src="/public/page/draw/script/support.js"></script>
-    <script src="/public/page/draw/script/flexble.js"></script>
+    <script src="public/page/draw/script/support.js"></script>
+    <script src="public/page/draw/script/flexble.js"></script>
     <script>
         var gift = ['5元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','15元优惠券','15元优惠券','20元优惠券'];
         function random(lower, upper) {
