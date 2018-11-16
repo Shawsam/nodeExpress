@@ -187,6 +187,7 @@
     <script src="public/page/draw/script/support.js"></script>
     <script src="public/page/draw/script/flexble.js"></script>
     <script>
+        console.log(navigator)
         var gift = ['5元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','15元优惠券','15元优惠券','20元优惠券'];
         function random(lower, upper) {
             return Math.floor(Math.random() * (upper - lower)) + lower;
@@ -228,6 +229,8 @@
                         var gift = draw()
                         $(".list .item").off('click');
                         $(this).addClass('active').addClass('fliped').find(".back p").text(gift);
+                        localdata.set('indexNum',$(this).parents("li").index())
+                        localdata.set('gift',gift)
                         chance--;
                         count++;
                         $(".chance").text(chance)
@@ -246,14 +249,20 @@
         }
 
         $(document).ready(function(){
+            var indexNum = localdata.get('indexNum');
+            var gift = localdata.get('gift');
             setTimeout(function(){
-                 $(".list .item").addClass('fliped')
-            },500)
-
-            setTimeout(function(){
-                 $(".signBtn").on("click",signFun)
-            },1500)
-            
+                    $(".list .item").addClass('fliped')
+            },500); 
+            if(indexNum){
+                setTimeout(function(){
+                    $(".list .item").eq(indexNum).addClass('active').find('p').text(gift)    
+                },1500)      
+            }else{
+                setTimeout(function(){
+                     $(".signBtn").on("click",signFun)
+                },1500)
+            }
 
             $(".closeTip").on("click",function(){
                 $(".panelTip").hide()
