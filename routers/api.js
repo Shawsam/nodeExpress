@@ -27,7 +27,7 @@ router.use(function timeLog(req, res, next) {
 });
 
 // ================================================================================================================================================================
-// ================ 抽奖页面统计 ================
+// ================ 抽奖页面pv uv ================
 router.post('/draw/pageView', function(req, res) {
     console.log('/************************抽奖页面用户数据上报************************/');
     console.log('请求参数，'+ JSON.stringify(req.body));
@@ -47,9 +47,9 @@ router.post('/draw/pageView', function(req, res) {
     })
 })
 
-// ================ 抽奖页面统计 ================
+// ================ 抽奖 ================
 router.post('/draw/drawing', function(req, res) {
-    console.log('/************************抽奖页面用户数据上报************************/');
+    console.log('/************************用户点击抽奖************************/');
     console.log('请求参数，'+ JSON.stringify(req.body));
     const { id,gift,indexNum } = req.body
     Drawer.findOne({id:id}).then(function(drawer){
@@ -59,6 +59,28 @@ router.post('/draw/drawing', function(req, res) {
         })
     })
 })
+
+// ================ 抽奖活动统计 ================
+router.get('/draw/data', function(req, res) {
+    console.log('/************************抽奖活动统计************************/');
+    Drawer.find({times:{ $gt:0 }}).then(function(data){
+       const uv = data.length;
+       let pv = 0;
+       let drawNum = 0;
+       let gift = [],city=[];
+       for(var i in data){
+          pv = pv + data[i].times
+          if(data[i].gift){
+              drawNum = drawNum + 1;
+              gift.push(data[i].gift)
+              city.push(data[i].city)
+          }
+       }
+       resData.data = { pv,uv,drawNum,gift,city}
+       res.json(resData)
+    })
+})
+
 
 
 

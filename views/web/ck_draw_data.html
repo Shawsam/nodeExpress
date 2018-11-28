@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>抽奖活动统计</title>
+    <link rel="icon" href="http:58adg.com/public/web/res/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="public/page/draw/style/common.css" />
+    <link rel="stylesheet" href="public/page/draw/style/user.css" />
+    <style>
+        .user_sign .title{ padding-top:0.6rem; font-size:0.33rem; text-align:center; color:#fff; background: linear-gradient(to right, red, blue); -webkit-background-clip: text;  color:transparent; font-weight:bold;}
+        .user_sign .container{ padding:0 0.5rem; color:#333; background:#f6f6f6; }
+        .user_sign .container .total p{ line-height:30px; }
+        .user_sign .container .total p.title{text-align:left; }
+        .user_sign .container .total p .val{ color:#f00; }
+        .user_sign .container .total .area p{ margin-right:20px; display:inline-block; }
+    </style>
+</head>
+<body>
+    <div class="framepage user_sign">
+        <div class="wrapper">
+            <div class="container">
+                <div class="total">
+                    <p class="title">数据总览</p>
+                    <p>页面访问次数：<span class="pv val"></span>次</p>
+                    <p>页面访问人数：<span class="uv val"></span>人</p>
+                    <p>参与抽奖人数：<span class="drawNum val"></span>人</p>
+                </div>
+                <div class="total">
+                    <p class="title">奖品分布</p>
+                    <p>25元优惠券数量：<span class="gift25 val"></span>人</p>
+                    <p>20元优惠券数量：<span class="gift20 val"></span>人</p>
+                    <p>15元优惠券数量：<span class="gift15 val"></span>人</p>
+                    <p>10元优惠券数量：<span class="gift10 val"></span>人</p>
+                </div> 
+                <div class="total">
+                    <p class="title">区域分布</p>
+                    <div class="area"></div>
+                </div>          
+            </div>
+        </div>
+    </div>
+    <script src="public/page/draw/script/support.js"></script>
+    <script src="public/page/draw/script/flexble.js"></script>
+    <script>
+    /* Console.web.1.0.0.js  2016-12-21 立树 | studio.houheaven.com */
+    function Console(a){var b="";if(0==arguments.length)b="\u672a\u586b\u5199\u53c2\u6570";else for(i=0;i<arguments.length;i++)str=arguments[i],b+="object"==typeof str?JSON.stringify(str):str;console.log(b)};
+    /* Ajax.web.1.0.5.js  2016-12-21 立树 | studio.houheaven.com */
+    function Ajax(a,b,c,d){var e={};switch(e.url=a,e.data="",e.type="get",e.success=function(a){a.state||layer.msg(a.msg)},e.failed=function(a){layer.confirm("\u7f51\u7edc\u5f02\u5e38\uff0c\u662f\u5426\u91cd\u65b0\u52a0\u8f7d\uff1f",{yes:function(){location.reload(!0)},cancel:function(){history.back()}})},arguments.length){case 2:"function"!=typeof arguments[1]?(e.type="post",e.data=arguments[1]):e.success=arguments[1];break;case 3:"function"!=typeof arguments[1]?(e.type="post",e.data=arguments[1],e.success=arguments[2]):(e.success=arguments[1],e.failed=arguments[2]);break;case 4:e.type="post",e.data=arguments[1],e.success=arguments[2],e.failed=arguments[3]}layer.load(),$.ajax({url:e.url,type:e.type,data:e.data,dataType:"json",success:function(a){layer.closeAll("prompt"),layer.closeAll("confirm"),layer.closeAll("loading"),e.success(a),Console("Ajax Return : ",a)},error:function(){layer.closeAll("prompt"),layer.closeAll("confirm"),layer.closeAll("loading"),e.failed()}})};
+    </script>
+    <script>
+         $(document).ready(function(){
+              url="/api/draw/data";
+              Ajax(url,function(ret){
+                if(ret.state){
+                    $(".pv").text(ret.data.pv)
+                    $(".uv").text(ret.data.uv)
+                    $(".drawNum").text(ret.data.drawNum)
+                    var giftArray = ret.data.gift;
+                    var cityArray = ret.data.city;
+                    for(i in giftArray){
+                        var gift = giftArray[i];
+                        var gift25 = 0, gift20 = 0, gift15 = 0, gift10 = 0;
+                        switch(true){
+                            case gift=='25元优惠券': gift25++; break;
+                            case gift=='20元优惠券': gift20++; break;
+                            case gift=='15元优惠券': gift15++; break;
+                            case gift=='10元优惠券': gift10++; break;
+                        }
+                    }
+                    $(".gift25").text(gift25)
+                    $(".gift20").text(gift20)
+                    $(".gift15").text(gift15)
+                    $(".gift10").text(gift10)
+
+                    for(i in cityArray){
+                         $(".area").append("<p>"+ cityArray[i] +"</p>")
+                    }
+                }                
+              })
+         })
+    </script>
+</body>
+</html>
