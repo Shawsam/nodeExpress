@@ -10,6 +10,7 @@ var FilmBanner = require('../models/FilmBanner.js');
 var Blog = require('../models/Blog.js');
 var Article = require('../models/Article.js');
 var fetchTheArticle = require('../spider/fetchTheArticle')
+var Drawer = require('../models/Drawer.js');
 
 
 var resData;
@@ -24,6 +25,42 @@ router.use(function timeLog(req, res, next) {
   	        }
   next();
 });
+
+// ================================================================================================================================================================
+// ================ 抽奖页面统计 ================
+router.post('/draw/pageView', function(req, res) {
+    console.log('/************************抽奖页面用户数据上报************************/');
+    console.log('请求参数，'+ JSON.stringify(req.body));
+    const { id,ip,city } = req.body
+    Drawer.findOne({id:id}).then(function(drawer){
+        if(drawer){
+            Drawer.update({id:id},{times:drawer.times+1}).then(function(data){
+                 resData.data = { gift:drawer.gift,indexNum:drawer.indexNum };
+                 res.json(resData);
+            })
+        }else{
+            var drawer = new Drawer({id,ip,city,times:1,gift:'',indexNum:-1,});
+            drawer.save().then(function(data){
+                 res.json(resData);
+            })
+          }
+    })
+})
+
+// ================ 抽奖页面统计 ================
+router.post('/draw/drawing', function(req, res) {
+    console.log('/************************抽奖页面用户数据上报************************/');
+    console.log('请求参数，'+ JSON.stringify(req.body));
+    const { id,gift,indexNum } = req.body
+    Drawer.findOne({id:id}).then(function(drawer){
+        Drawer.update({id:id},{gift,indexNum}).then(function(data){
+          resData.msg = '抽奖成功';
+          res.json(resData);
+        })
+    })
+})
+
+
 
 // ================================================================================================================================================================
 // ================ 七牛token ================

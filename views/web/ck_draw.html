@@ -26,7 +26,8 @@
         .user_sign .front{ z-index:10; line-height:2rem;}
         .user_sign .back{ z-index:10; transform:rotateY(180deg); -webkit-transform:rotateY(180deg); -moz-transform:rotateY(180deg); -ms-transform:rotateY(180deg); -o-transform:rotateY(180deg);}
         .user_sign .back p{ position:relative; padding-top:1.3rem; color:#888; background: linear-gradient(to right, red, blue); -webkit-background-clip: text;  color:transparent;  }
-        .user_sign .back p:before{ content:'\e604'; color:#888; background: linear-gradient(to right, red, blue); -webkit-background-clip: text;  color:transparent;  font-family:'iconfont'; position:absolute; display:inline-block; font-size:0.7rem; position:absolute; top:0.4rem; left:50%; margin-left:-0.35rem;  font-weight:normal;}
+        .user_sign .back p:before{ content:'\e645'; color:#888; background: linear-gradient(to right, red, blue); -webkit-background-clip: text;  color:transparent;  font-family:'iconfont'; position:absolute; display:inline-block; font-size:0.7rem; position:absolute; top:0.4rem; left:50%; margin-left:-0.35rem;  font-weight:normal;}
+        .user_sign .back p.bag:before{ content:'\e604'; }
         .user_sign .flip_wrap.fliped .flip{ transform:rotateY(180deg); -webkit-transform:rotateY(180deg); -moz-transform:rotateY(180deg); -ms-transform:rotateY(180deg); -o-transform:rotateY(180deg);}
         .user_sign .item.active .back{ background:#fff; color:#ff5500; }
         .user_sign .item.active .back p{ color:#ff5500; }
@@ -77,10 +78,11 @@
         }
 
         @keyframes Shake{
-            0%{ opacity: 1; }
-            50%{ opacity: 0; }
-            100%{ opacity: 1; }
+            0%{ color:#000; }
+            50%{ color:#ccc; }
+            100%{ color:#000; }
         }
+
         .DownRight{ -webkit-animation:downright 1.5s;animation:downright 1.5s; }
         .DownLeft{ -webkit-animation:downleft 1.5s;animation:downleft 1.5s; }
         .UpRight{ -webkit-animation:topright 1.5s;animation:topright 1.5s; }
@@ -105,7 +107,7 @@
     <div class="framepage user_sign">
         <div class="wrapper">
             <div class="container">
-                <p class="title">MM家小CK抽奖活动，拼一拼谁是运气王~</p>
+                <p class="title">MM家小CK抽奖活动，酒神包免费等你拿~</p>
                 <div class="list">
                     <ul>
                         <li class="topleftItem">
@@ -120,7 +122,7 @@
                             <div class="item flip_wrap">
                                 <div class="flip">
                                     <div class="front side"><p>点击抽奖</p></div>
-                                    <div class="back side"><p>5元优惠券</p></div>
+                                    <div class="back side"><p>25元优惠券</p></div>
                                 </div>
                             </div>
                         </li>
@@ -136,7 +138,7 @@
                             <div class="item flip_wrap">
                                 <div class="flip">
                                     <div class="front side"><p>点击抽奖</p></div>
-                                    <div class="back side"><p>酒神包</p></div>
+                                    <div class="back side"><p class="bag">酒神包</p></div>
                                 </div>
                             </div>
                         </li>
@@ -163,10 +165,10 @@
 
                 <div class="bottom">
                     <div class="text">
-                        <p><label>1.</label>活动有效期为2018年11月15日-2018年11月30日;</p>
-                        <p><label>2.</label>活动奖品为最低5元优惠券，最高20元优惠券，更有“酒神包”免费等你拿;</p>
+                        <p><label>1.</label>活动有效期为2018年12月1日-2018年12月30日;</p>
+                        <p><label>2.</label>活动奖品为最低10元优惠券，最高25元优惠券，更有“酒神包”免费等你拿;</p>
                         <p><label>3.</label>优惠券可用于小CK包包【天猫工厂】，服饰，饰品等；</p>
-                        <p><label>4.</label>每人限抽奖1次，抽奖后截图发回10天内有效；</p>
+                        <p><label>4.</label>每人限抽奖1次，抽奖后请转发并截图发回，10天内有效；</p>
                         <p><label>5.</label>更多优惠信息或者商品咨询，请扫描识别下方二维码。</p>
                     </div>
                     <img class="qrcode" src="public/page/draw/image/qrcode.jpg" />
@@ -186,16 +188,63 @@
     </div>
     <script src="public/page/draw/script/support.js"></script>
     <script src="public/page/draw/script/flexble.js"></script>
+    <script src="public/web/script/fingerprint.js"></script>
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
     <script>
-        console.log(navigator)
-        var gift = ['5元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','15元优惠券','15元优惠券','20元优惠券'];
+    /* Console.web.1.0.0.js  2016-12-21 立树 | studio.houheaven.com */
+    function Console(a){var b="";if(0==arguments.length)b="\u672a\u586b\u5199\u53c2\u6570";else for(i=0;i<arguments.length;i++)str=arguments[i],b+="object"==typeof str?JSON.stringify(str):str;console.log(b)};
+    /* Ajax.web.1.0.5.js  2016-12-21 立树 | studio.houheaven.com */
+    function Ajax(a,b,c,d){var e={};switch(e.url=a,e.data="",e.type="get",e.success=function(a){a.state||layer.msg(a.msg)},e.failed=function(a){layer.confirm("\u7f51\u7edc\u5f02\u5e38\uff0c\u662f\u5426\u91cd\u65b0\u52a0\u8f7d\uff1f",{yes:function(){location.reload(!0)},cancel:function(){history.back()}})},arguments.length){case 2:"function"!=typeof arguments[1]?(e.type="post",e.data=arguments[1]):e.success=arguments[1];break;case 3:"function"!=typeof arguments[1]?(e.type="post",e.data=arguments[1],e.success=arguments[2]):(e.success=arguments[1],e.failed=arguments[2]);break;case 4:e.type="post",e.data=arguments[1],e.success=arguments[2],e.failed=arguments[3]}layer.load(),$.ajax({url:e.url,type:e.type,data:e.data,dataType:"json",success:function(a){layer.closeAll("prompt"),layer.closeAll("confirm"),layer.closeAll("loading"),e.success(a),Console("Ajax Return : ",a)},error:function(){layer.closeAll("prompt"),layer.closeAll("confirm"),layer.closeAll("loading"),e.failed()}})};
+    </script>
+    <script>
+        var giftArray = ['10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券',
+            '10元优惠券','10元优惠券','15元优惠券','15元优惠券','15元优惠券','15元优惠券','15元优惠券','20元优惠券','20元优惠券','25元优惠券'];
+        var fingerprint = new Fingerprint().get(),
+            ip = returnCitySN["cip"];
+            city = returnCitySN["cname"];
+
+        $(document).ready(function(){
+            //初始化页面
+            var url = "/api/draw/pageView";
+            var param = {
+                id:fingerprint,
+                ip:ip,
+                city:city
+            }
+            Ajax(url,param,function(ret){
+                if(ret.state){
+                    //抽奖处理
+                    var indexNum = ret.data.indexNum;
+                    var gift = ret.data.gift;
+                    if(indexNum>=0){
+                        $(".signBtn").addClass('disable') 
+                        $(".list .item").eq(indexNum).addClass('active').find('p').text(gift)    
+                        $(".list .item").addClass('fliped')
+                    }else{
+                        setTimeout(function(){
+                            $(".list .item").addClass('fliped')
+                        },500); 
+                        setTimeout(function(){
+                             $(".signBtn").on("click",signFun)
+                        },1500)
+                    }
+                }
+            })
+
+            $(".closeTip").on("click",function(){
+                $(".panelTip").hide()
+                $(".shadow").hide()
+            })
+        })
+
+
         function random(lower, upper) {
             return Math.floor(Math.random() * (upper - lower)) + lower;
         }
 
         function draw(){
-            var number = random(1,100);
-            var text = gift[number%8];
+            var number = random(1,1000);
+            var text = giftArray[number%20];
             return text
         }
 
@@ -216,60 +265,47 @@
                 $(".list .item").find(".front p").addClass('shake');
                 //$(".chance").text("1");
                 $(".list .item").on("click",function(){
-                        $(".list .item p").removeClass('shake');
-                        var count = $(".count").text();
-                        var chance = $(".chance").text();
-                        if(chance==0){
-                            $(".panelTip .msg").text('您的抽奖次数已用完，请明天再来吧！')
-                            $(".shadow").show()
-                            $(".panelTip").show()
-                            return;
-                        } 
+                    var gift = draw()
+                    var elm = $(this)
+                    var url = "/api/draw/drawing";
+                    var param = { 
+                        id:fingerprint,
+                        gift:gift,
+                        indexNum:elm.parents('li').index()
+                    }
+                    Ajax(url,param,function(ret){
+                        if(ret.state){
+                            $(".list .item p").removeClass('shake');
+                            var count = $(".count").text();
+                            var chance = $(".chance").text();
+                            if(chance==0){
+                                $(".panelTip .msg").text('您的抽奖次数已用完，请明天再来吧！')
+                                $(".shadow").show()
+                                $(".panelTip").show()
+                                return;
+                            } 
 
-                        var gift = draw()
-                        $(".list .item").off('click');
-                        $(this).addClass('active').addClass('fliped').find(".back p").text(gift);
-                        localdata.set('indexNum',$(this).parents("li").index())
-                        localdata.set('gift',gift)
-                        chance--;
-                        count++;
-                        $(".chance").text(chance)
-                        $(".count").text(count);
-
-                        setTimeout(function(){
-                            $(".list .item").addClass('fliped');
-                        },1000)
-                        setTimeout(function(){
-                            $(".panelTip .msg").text('恭喜您抽中“'+ gift +'”')
-                            $(".shadow").show()
-                            $(".panelTip").show()
-                        },3500)
+                            
+                            $(".list .item").off('click');
+                            elm.addClass('active').addClass('fliped').find(".back p").text(gift);
+                            chance--;
+                            count++;
+                            $(".chance").text(chance)
+                            $(".count").text(count);
+                            setTimeout(function(){
+                                $(".list .item").addClass('fliped');
+                            },1000)
+                            setTimeout(function(){
+                                $(".panelTip .msg").text('恭喜您抽中“'+ gift +'”')
+                                $(".shadow").show()
+                                $(".panelTip").show()
+                            },3000)
+                        }  
+                    })
                 })
              },2500)
         }
 
-        $(document).ready(function(){
-            var indexNum = localdata.get('indexNum');
-            var gift = localdata.get('gift');
-            setTimeout(function(){
-                    $(".list .item").addClass('fliped')
-            },500); 
-            if(indexNum){
-                setTimeout(function(){
-                    $(".list .item").eq(indexNum).addClass('active').find('p').text(gift)    
-                },1500)      
-            }else{
-                setTimeout(function(){
-                     $(".signBtn").on("click",signFun)
-                },1500)
-            }
-
-            $(".closeTip").on("click",function(){
-                $(".panelTip").hide()
-                $(".shadow").hide()
-            })
-
-        })
 
 
     </script>
