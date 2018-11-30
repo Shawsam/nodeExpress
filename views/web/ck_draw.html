@@ -209,7 +209,7 @@
         $(document).ready(function(){
             if( config.mode=="run"  && typeof WeixinJSBridge == "undefined" )
             {
-                alert('请在微信客户端打开链接')
+                $("body").html('<p>请在微信客户端打开链接</p>')
                 return;
             }
 
