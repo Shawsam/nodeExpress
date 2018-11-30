@@ -209,7 +209,7 @@
         $(document).ready(function(){
             if( config.mode=="run"  && typeof WeixinJSBridge == "undefined" )
             {
-                location.replace("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx85fd6dd575348b58&redirect_uri=http://js.jsxfang.com/api/auth/&response_type=code&scope=snsapi_userinfo&state=info&connect_redirect=1#wechat_redirect");
+                alert('请在微信客户端打开链接')
                 return;
             }
 
@@ -220,6 +220,7 @@
                 ip:ip,
                 city:city
             }
+            
             Ajax(url,param,function(ret){
                 if(ret.state){
                     //抽奖处理
