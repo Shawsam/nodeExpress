@@ -207,9 +207,10 @@
             city = returnCitySN["cname"];
 
         $(document).ready(function(){
+            alert(WeixinJSBridge)
             if( config.mode=="run"  && typeof WeixinJSBridge == "undefined" )
             {
-                $("body").html('<p>请在微信客户端打开链接</p>')
+                $(".container").html('<p class="title">请在微信客户端打开链接</p>')
                 return;
             }
 
