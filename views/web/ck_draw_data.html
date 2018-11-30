@@ -12,7 +12,7 @@
     <style>
         .user_sign .title{ padding-top:0.6rem; font-size:0.33rem; text-align:center; color:#fff; background: linear-gradient(to right, red, blue); -webkit-background-clip: text;  color:transparent; font-weight:bold;}
         .user_sign .container{ padding:0 0.5rem; color:#333; background:#f6f6f6; }
-        .user_sign .container .total p{ line-height:30px; }
+        .user_sign .container .total p{ line-height:0.7rem; }
         .user_sign .container .total p.title{text-align:left; }
         .user_sign .container .total p .val{ color:#f00; }
         .user_sign .container .total .area p{ margin-right:20px; display:inline-block; }
@@ -70,10 +70,10 @@
                             case gift=='10元优惠券': gift10++; break;
                         }
                     }
-                    $(".gift25").text(gift25)
-                    $(".gift20").text(gift20)
-                    $(".gift15").text(gift15)
-                    $(".gift10").text(gift10)
+                    $(".gift25").text(gift25||0)
+                    $(".gift20").text(gift20||0)
+                    $(".gift15").text(gift15||0)
+                    $(".gift10").text(gift10||0)
 
                     for(i in cityArray){
                          $(".area").append("<p>"+ cityArray[i] +"</p>")
