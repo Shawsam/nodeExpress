@@ -229,8 +229,8 @@
             Ajax(url,param,function(ret){
                 if(ret.state){
                     //抽奖处理
-                    var indexNum = ret.data.indexNum;
-                    var gift = ret.data.gift;
+                    var indexNum = ret.data?ret.data.indexNum:-1;
+                    var gift = ret.data?ret.data.gift:'';
                     if(indexNum>=0){
                         $(".signBtn").addClass('disable') 
                         $(".list .item").eq(indexNum).addClass('active').find('p').text(gift)    
