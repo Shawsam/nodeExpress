@@ -212,7 +212,7 @@
         console.log(wx)
 
         $(document).ready(function(){
-            if( config.mode=="run"  && !wx && !mobile)
+            if( config.mode=="run"  && (!wx || !mobile))
             {
                 $(".container").html('<p class="title">请在微信客户端打开链接</p>')
                 return;
