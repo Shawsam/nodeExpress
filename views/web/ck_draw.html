@@ -205,10 +205,14 @@
         var fingerprint = new Fingerprint().get(),
             ip = returnCitySN["cip"];
             city = returnCitySN["cname"];
+        
+        var mobile = /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)
+        var wx = (function () { return navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1 })()
+        console.log(mobile)
+        console.log(wx)
 
         $(document).ready(function(){
-            alert(typeof WeixinJSBridge)
-            if( config.mode=="run"  && typeof WeixinJSBridge == "undefined" )
+            if( config.mode=="run"  && !wx && !mobile)
             {
                 $(".container").html('<p class="title">请在微信客户端打开链接</p>')
                 return;
