@@ -196,6 +196,10 @@
     function Ajax(a,b,c,d){var e={};switch(e.url=a,e.data="",e.type="get",e.success=function(a){a.state||layer.msg(a.msg)},e.failed=function(a){layer.confirm("\u7f51\u7edc\u5f02\u5e38\uff0c\u662f\u5426\u91cd\u65b0\u52a0\u8f7d\uff1f",{yes:function(){location.reload(!0)},cancel:function(){history.back()}})},arguments.length){case 2:"function"!=typeof arguments[1]?(e.type="post",e.data=arguments[1]):e.success=arguments[1];break;case 3:"function"!=typeof arguments[1]?(e.type="post",e.data=arguments[1],e.success=arguments[2]):(e.success=arguments[1],e.failed=arguments[2]);break;case 4:e.type="post",e.data=arguments[1],e.success=arguments[2],e.failed=arguments[3]}layer.load(),$.ajax({url:e.url,type:e.type,data:e.data,dataType:"json",success:function(a){layer.closeAll("prompt"),layer.closeAll("confirm"),layer.closeAll("loading"),e.success(a),Console("Ajax Return : ",a)},error:function(){layer.closeAll("prompt"),layer.closeAll("confirm"),layer.closeAll("loading"),e.failed()}})};
     </script>
     <script>
+        // 全局配置
+        var config = {};
+        config.mode = "run";  // 调试dev 运行run
+
         var giftArray = ['10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券',
             '10元优惠券','10元优惠券','15元优惠券','15元优惠券','15元优惠券','15元优惠券','15元优惠券','20元优惠券','20元优惠券','25元优惠券'];
         var fingerprint = new Fingerprint().get(),
@@ -203,6 +207,12 @@
             city = returnCitySN["cname"];
 
         $(document).ready(function(){
+            if( config.mode=="run"  && typeof WeixinJSBridge == "undefined" )
+            {
+                location.replace("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx85fd6dd575348b58&redirect_uri=http://js.jsxfang.com/api/auth/&response_type=code&scope=snsapi_userinfo&state=info&connect_redirect=1#wechat_redirect");
+                return;
+            }
+
             //初始化页面
             var url = "/api/draw/pageView";
             var param = {
