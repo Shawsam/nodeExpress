@@ -60,9 +60,9 @@
                     $(".drawNum").text(ret.data.drawNum)
                     var giftArray = ret.data.gift;
                     var cityArray = ret.data.city;
+                    var gift25 = 0, gift20 = 0, gift15 = 0, gift10 = 0;
                     for(i in giftArray){
                         var gift = giftArray[i];
-                        var gift25 = 0, gift20 = 0, gift15 = 0, gift10 = 0;
                         switch(true){
                             case gift=='25元优惠券': gift25++; break;
                             case gift=='20元优惠券': gift20++; break;
