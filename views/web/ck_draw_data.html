@@ -27,6 +27,8 @@
                     <p>页面访问次数：<span class="pv val"></span>次</p>
                     <p>页面访问人数：<span class="uv val"></span>人</p>
                     <p>参与抽奖人数：<span class="drawNum val"></span>人</p>
+                    <p>代理1下抽奖人数：<span class="Num_1543813914628 val"></span>人</p>
+                    <p>代理2下抽奖人数：<span class="Num_1543814026556 val"></span>人</p>
                 </div>
                 <div class="total">
                     <p class="title">奖品分布</p>
@@ -38,7 +40,7 @@
                 <div class="total">
                     <p class="title">区域分布</p>
                     <div class="area"></div>
-                </div>          
+                </div>       
             </div>
         </div>
     </div>
@@ -58,6 +60,8 @@
                     $(".pv").text(ret.data.pv)
                     $(".uv").text(ret.data.uv)
                     $(".drawNum").text(ret.data.drawNum)
+                    $(".Num_1543813914628").text(ret.data.Num_1543813914628)
+                    $(".Num_1543814026556").text(ret.data.Num_1543814026556)
                     var giftArray = ret.data.gift;
                     var cityArray = ret.data.city;
                     var gift25 = 0, gift20 = 0, gift15 = 0, gift10 = 0;

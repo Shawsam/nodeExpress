@@ -31,7 +31,7 @@ router.use(function timeLog(req, res, next) {
 router.post('/draw/pageView', function(req, res) {
     console.log('/************************抽奖页面用户数据上报************************/');
     console.log('请求参数，'+ JSON.stringify(req.body));
-    const { id,ip,city } = req.body
+    const { id,agentId,ip,city } = req.body
     Drawer.findOne({id:id}).then(function(drawer){
         if(drawer){
             Drawer.update({id:id},{times:drawer.times+1}).then(function(data){
@@ -39,7 +39,7 @@ router.post('/draw/pageView', function(req, res) {
                  res.json(resData);
             })
         }else{
-            var drawer = new Drawer({id,ip,city,times:1,gift:'',indexNum:-1,});
+            var drawer = new Drawer({id,agentId,ip,city,times:1,gift:'',indexNum:-1,});
             drawer.save().then(function(data){
                  res.json(resData);
             })
@@ -51,7 +51,7 @@ router.post('/draw/pageView', function(req, res) {
 router.post('/draw/drawing', function(req, res) {
     console.log('/************************用户点击抽奖************************/');
     console.log('请求参数，'+ JSON.stringify(req.body));
-    const { id,gift,indexNum } = req.body
+    const { id,gift,indexNum,agentId } = req.body
     Drawer.findOne({id:id}).then(function(drawer){
         Drawer.update({id:id},{gift,indexNum}).then(function(data){
           resData.msg = '抽奖成功';
@@ -68,17 +68,26 @@ router.get('/draw/data', function(req, res) {
        let pv = 0;
        let drawNum = 0;
        let gift = [],city=[];
+       let Num_1543813914628 = 0, Num_1543814026556 = 0
        for(var i in data){
           pv = pv + data[i].times
           if(data[i].gift){
-              drawNum = drawNum + 1;
-              gift.push(data[i].gift)
-              city.push(data[i].city)
+              drawNum++;
+              gift.push(data[i].gift);
+              city.push(data[i].city);
+              if(data[i].agentId=='1543813914628'){
+                  Num_1543813914628++;
+              }
+              if(data[i].agentId=='1543814026556'){
+                  Num_1543814026556++;
+              }
           }
        }
-       resData.data = { pv,uv,drawNum,gift,city}
+       resData.data = { pv,uv,drawNum,gift,city,Num_1543813914628,Num_1543814026556}
        res.json(resData)
     })
+
+
 })
 
 

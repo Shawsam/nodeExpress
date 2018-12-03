@@ -170,7 +170,11 @@
                         <p><label>3.</label>每人限抽奖1次，抽奖后请转发并截图，10天内有效；</p>
                         <p><label>4.</label>更多优惠信息或者商品咨询，请扫描识别下方二维码。</p>
                     </div>
-                    <img class="qrcode" src="public/page/draw/image/qrcode.jpg" />
+                    {% if id %}
+                         <img class="qrcode" src="http://img.58adg.com/{{id}}_qrcode.jpg" />
+                    {% else %}
+                         <img class="qrcode" src="public/page/draw/image/qrcode.jpg" />
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -198,7 +202,7 @@
     <script>
         // 全局配置
         var config = {};
-        config.mode = "run";  // 调试dev 运行run
+        //config.mode = "run";  // 调试dev 运行run
 
         var giftArray = ['10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券','10元优惠券',
             '10元优惠券','10元优惠券','15元优惠券','15元优惠券','15元优惠券','15元优惠券','15元优惠券','20元优惠券','20元优惠券','25元优惠券'];
@@ -208,10 +212,15 @@
         
         var mobile = /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)
         var wx = (function () { return navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1 })()
-        console.log(mobile)
-        console.log(wx)
+        var agentId = GetQueryString("id")||'';
 
         $(document).ready(function(){
+            if(agentId){
+                if(agentId!='1543813914628' && agentId!='1543814026556'){
+                    $(".container").html('<p class="title">错误的活动代码，请联系管理人员</p>')
+                    return;
+                }
+            }
             if( config.mode=="run"  && (!wx || !mobile))
             {
                 $(".container").html('<p class="title">请在微信客户端打开链接</p>')
@@ -221,6 +230,7 @@
             //初始化页面
             var url = "/api/draw/pageView";
             var param = {
+                agentId:agentId,
                 id:fingerprint,
                 ip:ip,
                 city:city
@@ -285,6 +295,7 @@
                     var url = "/api/draw/drawing";
                     var param = { 
                         id:fingerprint,
+                        agentId:agentId,
                         gift:gift,
                         indexNum:elm.parents('li').index()
                     }
@@ -322,6 +333,12 @@
         }
 
 
+        function GetQueryString(name)
+        {
+             var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+             var r = window.location.search.substr(1).match(reg);
+             if(r!=null)return  unescape(r[2]); return null;
+        }
 
     </script>
 </body>

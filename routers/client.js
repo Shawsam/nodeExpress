@@ -32,7 +32,8 @@ router.get(/^\/(index)?$/, function(req, res) {
 
 //ck抽奖
 router.get('/draw', function(req, res) {
-   res.render('web/ck_draw')
+   const id = req.query.id
+   res.render('web/ck_draw',{id:id})
 });
 
 //ck抽奖

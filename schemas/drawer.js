@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 //定义Schema 表结构  图片分组
-module.exports = new Schema({            
+module.exports = new Schema({  
+    agentId:{ type: String },          
     id:{ type: String },    
     city:{ type:String }, 
     ip:{ type:String },
