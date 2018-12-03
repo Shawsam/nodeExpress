@@ -532,7 +532,7 @@ router.post('/admin/album/imgUpload', function(req, res) {
      //返回结果
      var tag_id = req.body.tag_id;
      var filename = req.body.filename;
-     var url = "http://p0mewrlgg.bkt.clouddn.com/"+filename;
+     var url = "http://img.58adg.com/"+filename;
      var width = req.body.width;
      var height = req.body.height;
      var createtime = formatTime(Date.now());
