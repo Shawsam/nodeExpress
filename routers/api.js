@@ -656,6 +656,19 @@ router.post('/admin/film/film_banner/add', function(req, res) {
      })
 })
 
+//================ 博客删除 ======================
+router.get('/admin/film/film_banner/remove', function(req, res) {
+    console.log('/************************访问删除博客分类接口************************/');
+    const banner_id = req.query.id;
+    FilmBanner.remove({banner_id:banner_id}).then(function(){
+       resData.data = '';
+       resData.msg = '删除成功';
+       console.log('处理结果，'+resData.msg);
+       res.json(resData);
+   })
+})
+
+
 
 //###############################################################################################
 //========================================== 博客 ===============================================

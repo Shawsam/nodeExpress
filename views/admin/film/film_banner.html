@@ -18,6 +18,23 @@
 <script src="/public/admin/plug/qn_jssdk/qiniu.dev.js"></script>
 <script src="/public/admin/plug/laytpl.js"></script>
 <script src="/public/admin/plug/album/album.js"></script>
+<script>
+    $(document).ready(function(){
+        $("tbody .del").click(function(){
+            elm = $(this).parents("tr")
+            id = $(this).data("id")
+            var url = "/api/admin/film/film_banner/remove?id="+id;
+            Ajax(url,function(ret){
+               if(ret.state){
+                  layer.msg('删除成功');
+                  elm.remove()
+               }else{
+                  layer.msg(ret.msg);
+               }
+            })
+        })
+    })
+</script>
 {% endblock %}
 
 
@@ -57,7 +74,7 @@
                             <td>{{banner.banner_title}}</td>
                             <td>{% if banner.is_open %} 开启 {% else %} 关闭 {% endif %}</td>
                             <td>{{banner.createtime}}</td>
-                            <td><a>编辑</a> | <a>删除</a></td>
+                            <td><a>编辑</a> | <a data-id="{{banner.banner_id}}" class="del">删除</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
