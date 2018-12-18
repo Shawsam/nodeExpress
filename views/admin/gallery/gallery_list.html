@@ -24,18 +24,34 @@
 <script src="/public/admin/plug/laytpl.js"></script>
 <script src="/public/admin/plug/album/album.js"></script>
 <script>
-$(".imgChoose").click(function(){
-    album({
-        max:100,
-        thumb_w:100,
-        thumb_h:100,
-        success:function(imgs){
-            $(".img-content img").attr("src",imgs[0].thumb);
-            $(".img-content img").data("src",imgs[0].img);
-            $(".js-image-container").addClass("hidden");
-            $(".img-content").removeClass("hidden");
-        }
-    });
+$(document).ready(function(){
+    $("tbody .del").click(function(){
+        elm = $(this).parents("tr")
+        id = $(this).data("id")
+        var url = "/api/admin/gallery/galleryList/remove?id="+id;
+        Ajax(url,function(ret){
+           if(ret.state){
+              layer.msg('删除成功');
+              elm.remove()
+           }else{
+              layer.msg(ret.msg);
+           }
+        })
+    })
+
+    $(".imgChoose").click(function(){
+        album({
+            max:100,
+            thumb_w:100,
+            thumb_h:100,
+            success:function(imgs){
+                $(".img-content img").attr("src",imgs[0].thumb);
+                $(".img-content img").data("src",imgs[0].img);
+                $(".js-image-container").addClass("hidden");
+                $(".img-content").removeClass("hidden");
+            }
+        });
+    })
 })
 </script>
 {% endblock %}
@@ -96,7 +112,7 @@ $(".imgChoose").click(function(){
                             <td>{% if gallery.gallery_type==0 %} 相册 {% else %} 图册 {% endif %}</td>
                             <td>{{gallery.gallery_imgs.length}}</td>
                             <td>{{gallery.createtime}}</td>
-                            <td><a>查看</a> | <a>编辑</a> | <a>删除</a></td>
+                            <td><a>查看</a> | <a>编辑</a> | <a data-id="{{gallery.gallery_id}}" class="del">删除</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>

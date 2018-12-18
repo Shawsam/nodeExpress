@@ -614,6 +614,18 @@ router.post('/admin/gallery/galleryList/add', function(req, res) {
      })
 })
 
+//================ 画廊删除 ======================
+router.get('/admin/gallery/galleryList/remove', function(req, res) {
+    console.log('/************************访问删除画廊接口************************/');
+    const id = req.query.id;
+    Gallery.remove({id:id}).then(function(){
+       resData.data = '';
+       resData.msg = '删除成功';
+       console.log('处理结果，'+resData.msg);
+       res.json(resData);
+   })
+})
+
 
 //================ 电影轮播 ======================
 router.post('/admin/film/film_banner/add', function(req, res) {
@@ -656,9 +668,9 @@ router.post('/admin/film/film_banner/add', function(req, res) {
      })
 })
 
-//================ 博客删除 ======================
+//================ 电影轮播删除 ======================
 router.get('/admin/film/film_banner/remove', function(req, res) {
-    console.log('/************************访问删除博客分类接口************************/');
+    console.log('/************************访问删除电影轮播接口************************/');
     const banner_id = req.query.id;
     FilmBanner.remove({banner_id:banner_id}).then(function(){
        resData.data = '';
