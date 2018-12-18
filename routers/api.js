@@ -617,8 +617,8 @@ router.post('/admin/gallery/galleryList/add', function(req, res) {
 //================ 画廊删除 ======================
 router.get('/admin/gallery/galleryList/remove', function(req, res) {
     console.log('/************************访问删除画廊接口************************/');
-    const id = req.query.id;
-    Gallery.remove({id:id}).then(function(){
+    const gallery_id = req.query.id;
+    Gallery.remove({gallery_id:gallery_id}).then(function(){
        resData.data = '';
        resData.msg = '删除成功';
        console.log('处理结果，'+resData.msg);
