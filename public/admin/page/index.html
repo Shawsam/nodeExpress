@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>首页</title>
+        <!-- Vendor CSS -->
+        <link href="../v2/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+        <link href="../v2/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="../v2/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="../v2/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
+         <link rel="stylesheet" href="../plug/support.css" media="screen">
+        <!-- CSS -->
+        <link href="../v2/css/app.min.1.css" rel="stylesheet">
+        <link href="../v2/css/app.min.2.css" rel="stylesheet">
+        <script src="../v2/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../plug/support.js"></script>
+        <script src="../plug/echarts.min.js"></script>
+        <style>
+            #main{ padding-bottom:0; }
+            #main .card .card-header{ padding:15px 25px 15px 15px; }
+            .form-horizontal{ margin-top:15px; }
+            #main .card .card-header .btn-gp{ margin-top:5px; }
+            #main .card .card-header .btn-gp .btn{ margin-right:10px; }
+
+            #main .card .card-header i{ margin-right:8px; color:#FFB50B; font-size:18px;}
+            #main .card .card-header h2{ font-weight:bold; font-size:16px;}
+            #main .card .card-body table th{ color:#000; background:#EEF8FA; }
+            #main .card .card-body table th,td{ text-align:center;  }
+            #main .card-body ul.list{ list-style:none; padding:6px 0 12px 0; }
+            #main .card-body ul.list li{ padding:7px 25px; }
+            #main .card-body ul.list li a{ color:#666; }
+            #main .card-body ul.list li a:hover{ color:#000; border-bottom:1px solid #333; }
+            #main .card-body ul.list li .desp{ color:#999;  }
+            #main .card .product_name{ padding:0 30px; }
+            #main .card .product_name .btn-gp .btn{ margin-right:10px; }
+            #main .card .product_name .name{ color:#000; font-size:15px;  }
+            .label-title{ background:#2196F3; color:#fff; padding:7px 22px;margin-left:-15px; }
+            .product_main{ padding:0 25px 20px 25px; }
+            .product_content{ padding:12px 25px 5px 25px; border-radius:3px; }
+            .product_content .title{ color:#0042AF; font-size:15px; }
+            .product_content .title a{ color:#0042AF; font-size:14px; }
+            .product_content .content.hasimg{ padding:10px 0 0 180px; position: relative; }
+            .product_content .content.hasimg img{ position:absolute; left:0; top:0; width:150px;}
+            .product_content .content p span{ margin-right:30px; }
+            .product_content .content p.notFirst span{ width:240px; display:inline-block; }
+            .product_content .content p.notFirst1 span{ width:150px; display:inline-block; }
+            .contentText{ width:100%; padding:5px 10px;}
+
+            #chart{ height:400px; }
+            #chart2{ height:400px; }
+        </style>
+    </head>
+    <body>
+        <header id="header" class="clearfix">
+            <ul class="header-inner">
+                <li id="menu-trigger" data-trigger="#sidebar">
+                    <div class="line-wrap">
+                        <div class="line top"></div>
+                        <div class="line center"></div>
+                        <div class="line bottom"></div>
+                    </div>
+                </li>
+                <li class="logo hidden-xs">
+                    <a class="title" href="index.html">盒马生鲜设备管理系统 — 示例门店</a>
+                </li>
+            
+                <li class="pull-right">
+                    <ul class="top-menu">
+                        <li id="toggle-width">
+                            <div class="toggle-switch">
+                                <input id="tw-switch" type="checkbox" hidden="hidden">
+                                <label title="侧边栏" for="tw-switch" class="ts-helper"></label>
+                            </div>
+                        </li>
+                        <li class="dropdown" >
+                            <a title="退出登录" href="login.html" class="exit_system">
+                                <i style="vertical-align:middle; margin-right:8px;" class="tm-icon zmdi zmdi-power m-r-8"></i>退出
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </header>
+        
+        <section id="main" data-layout="layout-1">
+            <!-- 左侧菜单开始 -->
+              <aside id="sidebar" class="sidebar c-overflow">
+                <ul class="main-menu">
+                    <li class="active">
+                        <a href="index.html"><i class="zmdi zmdi-home"></i>门店数据总览</a>
+                    </li>
+                    <li>
+                        <a href="device_list.html"><i class="zmdi zmdi-storage"></i>设备列表</a>
+                    </li>
+                    <li>
+                        <a href="cell_list.html"><i class="zmdi zmdi-view-dashboard"></i>设备单元信息</a>
+                    </li>
+                    <li>
+                        <a href="break_list.html"><i class="zmdi zmdi-usb"></i>设备故障信息</a>
+                    </li>
+                    <li>
+                        <a href="mend_list.html"><i class="zmdi zmdi-assignment"></i>设备维保记录</a>
+                    </li>                    
+                </ul>
+            </aside>
+            <!--菜单结束  -->
+
+            <!--内容结束  -->
+            <section id="content">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-header">
+                           <label class="label-title">基本信息</label>
+                        </div>
+                        <div class="card-body product_main">
+                            <div class="product_content">
+                                <div class="content">
+                                    <p class="notFirst1"><span>门店名称：示例门店</span><span>门店编号：001</span><span>门店地址：上海</span><span>门店状态：<label style="color:#ff6263">正常</label></span></p>
+                                    <p class="notFirst1"><span>设备总量：40</span><span>正常运行设备:37</span><span>停止运行设备：3</span><span>故障设备：0</span></p>   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-ms-8">
+                             <div class="card">
+                                <div class="card-header">
+                                    <h2>故障次数及时长统计</h2>
+                                </div>
+                                
+                                <div class="card-body" style="padding:15px 15px  40px 20px">
+                                    <div id="chart"></div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-4 col-ms-4">
+                             <div class="card">
+                                <div class="card-header">
+                                    <h2>设备故障分类统计</h2>
+                                </div>
+                                <div class="card-body" style="padding:15px 15px  40px 20px">
+                                    <div id="chart2"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-ms-8">
+                             <div class="card">
+                                <div class="card-header">
+                                    <h2><i class="zmdi zmdi-hourglass-outline"></i>门店实时监控</h2>
+                                </div>
+                                
+                                <div class="card-body table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>设备名称</th>
+                                                <th>设备代码</th>
+                                                <th>运行状态</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>监控设备1</td>
+                                                <td>001</td>
+                                                <td>正常</td>
+                                                <td><a>查看实况画面</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>监控设备2</td>
+                                                <td>001</td>
+                                                <td>正常</td>
+                                                <td><a>查看实况画面</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>监控设备3</td>
+                                                <td>001</td>
+                                                <td>正常</td>
+                                                <td><a>查看实况画面</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>监控设备4</td>
+                                                <td>001</td>
+                                                <td>正常</td>
+                                                <td><a>查看实况画面</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>监控设备5</td>
+                                                <td>001</td>
+                                                <td>正常</td>
+                                                <td><a>查看实况画面</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>监控设备6</td>
+                                                <td>001</td>
+                                                <td>正常</td>
+                                                <td><a>查看实况画面</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>监控设备7</td>
+                                                <td>001</td>
+                                                <td>正常</td>
+                                                <td><a>查看实况画面</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>监控设备8</td>
+                                                <td>001</td>
+                                                <td>正常</td>
+                                                <td><a>查看实况画面</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>监控设备9</td>
+                                                <td>001</td>
+                                                <td>正常</td>
+                                                <td><a>查看实况画面</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>监控设备10</td>
+                                                <td>001</td>
+                                                <td>正常</td>
+                                                <td><a>查看实况画面</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-4 col-ms-4">
+                             <div class="card">
+                                <div class="card-header">
+                                    <h2><i class="zmdi zmdi-notifications-none"></i>故障及预警提醒</h2>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list">
+                                        <li><a>【故障消息】转弯机过载</a><span class="desp pull-right">2019-3-22</span></li>
+                                        <li><a>【故障消息】转弯机电源故障</a><span class="desp pull-right">2019-3-22</span></li>
+                                        <li><a>【预警消息】转弯机寿命已达到90%</a><span class="desp pull-right">2019-3-22</span></li>
+                                        <li><a>【预警消息】转弯机寿命已达到90%</a><span class="desp pull-right">2019-3-22</span></li>
+                                        <li><a>【故障消息】转弯机过载</a><span class="desp pull-right">2019-3-22</span></li>
+                                        <li><a>【故障消息】转弯机电源故障</a><span class="desp pull-right">2019-3-22</span></li>
+                                        <li><a>【故障消息】转弯机过载</a><span class="desp pull-right">2019-3-22</span></li>
+                                        <li><a>【故障消息】转弯机电源故障</a><span class="desp pull-right">2019-3-22</span></li>
+                                        <li><a>【故障消息】转弯机过载</a><span class="desp pull-right">2019-3-22</span></li>
+                                        <li><a>【故障消息】转弯机电源故障</a><span class="desp pull-right">2019-3-22</span></li>
+                                        <li><a>【故障消息】转弯机电源故障</a><span class="desp pull-right">2019-3-22</span></li>
+                                        <li><a>【故障消息】转弯机电源故障</a><span class="desp pull-right">2019-3-22</span></li>
+                                        <li><a>【故障消息】转弯机电源故障</a><span class="desp pull-right">2019-3-22</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+        
+
+
+                </div>
+            </section>
+
+
+
+
+        </section>
+        
+
+        <!-- Page Loader -->
+        <div class="page-loader">
+            <div class="preloader pls-blue">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20" />
+                </svg>
+                <p>正在载入...</p>
+            </div>
+        </div>
+        
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1 class="c-white">Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="iew-container">
+                    <ul class="iew-download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>   
+        <![endif]-->
+        
+        <!-- Javascript Libraries -->
+
+        <script src="../v2/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../layer/layer.js"></script>   
+        <script src="../plug/validator-nice/jquery.validator.admin.js"></script>    
+        <script src="../plug/laydate/laydate.js"></script>  
+        
+        <script src="../v2/vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+        <script src="../v2/vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="../v2/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="../v2/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> 
+        
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+        
+<!--         <script src="../v2/js/flot-charts/curved-line-chart.js"></script>
+        <script src="../v2/js/flot-charts/line-chart.js"></script>
+
+        <script src="../v2/js/charts.js"></script>-->
+        <script src="../v2/js/charts.js"></script>
+        <script src="../v2/js/functions.js"></script>
+        <script src="../v2/js/demo.js"></script> 
+    </body>
+    <script type="text/javascript">
+    $(function(){
+        $("#main").css("min-height",$(window).height()-230+"px");//跳转默认的高度窗口
+
+        $(".searchBox input").on("focus",function(){
+            $(".searchBox").addClass("active");
+        })
+
+        $(".searchBox input").on("blur",function(){
+            $(".searchBox").removeClass("active");
+        })
+
+        $(".optionList").on("click","li label",function(){
+            $(this).addClass("active").siblings().removeClass("active");
+        })
+
+        var myChart = echarts.init(document.getElementById('chart'));
+        var myChart2 = echarts.init(document.getElementById('chart2'));
+        myChart.showLoading({color:'#fc9b37',text : ""});
+
+        drawBar();
+        drawPie();
+
+        function drawBar(){
+          var data1= ['2018.05','2018.06','2018.07','2018.08','2018.09','2018.10','2018.11','2018.12','2019.01','2019.02','2019.03','2019.04'];
+          var data2=[620, 732, 701, 734, 1090, 1130, 1120, 620, 732, 701, 734, 1090];
+          var data3=[62, 73, 70, 73, 109, 113, 112, 62, 73, 70, 73, 90];
+          var charttit='消费活力';
+          option = {
+            tooltip:{ 
+                trigger: 'axis',
+    
+                 axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                     type : 'shadow' ,       // 默认为直线，可选为：'line' | 'shadow'
+                     shadowStyle:{
+                         color:'rgba(0,0,0,0.04)'
+                     }
+                 },
+            },
+            legend: {show:false},
+            grid: {
+                left: '3%',
+                top:'6%',
+                bottom:'0',
+                right: '3%',
+                containLabel: true
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data1,
+                    axisTick: { show: false },
+                    axisLabel: { color:'#333'},
+                    axisLine:{lineStyle:{color:'#999'}}
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    splitLine: { lineStyle:{type:'dashed' }},
+                    axisLabel: { formatter: '{value}'},
+                    axisLine: { show: false },
+                    axisTick: {show: false }
+                }
+            ],
+            series : [
+                {   
+                    name:'故障累计时长',
+                    type:'bar',
+                    barWidth: 30,
+                    data:data2
+                },{   
+                    name:'故障次数',
+                    type:'line',
+                    data:data3
+                }
+            ]
+          };
+          myChart.setOption(option);
+          setTimeout(function () {myChart.hideLoading();}, 300);
+           window.addEventListener('resize', function () {myChart.resize();})
+        }
+
+        function drawPie(){
+            option = {
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: ['无故障(正常)','驱动卡过载','急停故障','停止光电堵包']
+                },
+                series : [
+                    {
+                        name: '访问来源',
+                        type: 'pie',
+                        radius : '50%',
+                        center: ['50%', '60%'],
+                        data:[
+                            {value:210, name:'无故障(正常)'},
+                            {value:31, name:'驱动卡过载'},
+                            {value:23, name:'急停故障'},
+                            {value:20, name:'停止光电堵包'}
+                        ],
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            }
+            myChart2.setOption(option);
+            setTimeout(function () {myChart2.hideLoading();}, 300);
+            window.addEventListener('resize', function () {myChart2.resize();})
+        }
+
+
+    })
+</script>
+  </html>
