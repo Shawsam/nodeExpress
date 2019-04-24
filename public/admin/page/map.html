@@ -16,8 +16,12 @@
         <link href="../v2/css/app.min.2.css" rel="stylesheet">
         <script src="../v2/vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="../plug/support.js"></script>
+        <script src="../plug/vue.all.js"></script>
+        <script src="../plug/echarts.min.js"></script>
         <style>
+            [v-cloak]{ display:none!important; }
             #main{ padding-bottom:0; }
+            .logo{ padding-left:15px!important;  }
             #main .card .card-header{ padding:15px 25px 15px 15px; }
             .form-horizontal{ margin-top:15px; }
             #main .card .card-header .btn-gp{ margin-top:5px; }
@@ -32,27 +36,27 @@
             #main .card-body ul.list li a{ color:#666; }
             #main .card-body ul.list li a:hover{ color:#000; border-bottom:1px solid #333; }
             #main .card-body ul.list li .desp{ color:#999;  }
+            #main .card .product_name{ padding:0 30px; }
+            #main .card .product_name .btn-gp .btn{ margin-right:10px; }
+            #main .card .product_name .name{ color:#000; font-size:15px;  }
+            .label-title{ background:#2196F3; color:#fff; padding:7px 22px;margin-left:-15px; }
+            .product_main{ padding:0 25px 20px 25px; }
+            .product_content{ padding:12px 25px 5px 25px; border-radius:3px; }
+            .product_content .title{ color:#0042AF; font-size:15px; }
+            .product_content .title a{ color:#0042AF; font-size:14px; }
+            .product_content .content.hasimg{ padding:10px 0 0 180px; position: relative; }
+            .product_content .content.hasimg img{ position:absolute; left:0; top:0; width:150px;}
+            .product_content .content p span{ margin-right:30px; }
+            .product_content .content p.notFirst span{ width:240px; display:inline-block; }
+            .product_content .content p.notFirst1 span{ width:150px; display:inline-block; }
+            .contentText{ width:100%; padding:5px 10px;}
 
-            #main .card .card-header.topCon{  position:relative; padding-right:200px; padding-left:30px;}
-            #main .card .card-header.topCon h2{ font-weight:normal; }
-            #main .card .card-header.topCon .rightCon{ position:absolute; right:30px; top:10px;}
-            #main .card .card-header.topCon .rightCon .searchBox{ padding-left:18px; padding-right:8px; background:#fff; border:1px solid #FFB50B; border-radius:15px; }
-            #main .card .card-header.topCon .rightCon .searchBox.active{ border:1px solid #999; }
-            #main .card .card-header.topCon .rightCon .searchBox input{ border:none; outline:none; line-height: 25px; width:190px;}
-            #main .card .card-header.topCon .rightCon .searchBox i{ cursor:pointer; line-height: 25px; font-size:22px; vertical-align:bottom; }
-
-            #main .card .card-header.topCon .rightCon .slideBtn{ cursor:pointer;line-height: 25px; }
-            #main .card .card-header.topCon .rightCon .slideBtn i{line-height: 25px; font-size:25px; vertical-align:bottom;}
-            #main .card ul.optionList{ padding-top:5px; }
-            #main .card ul.optionList li { position:relative; padding-left:120px!important; }
-            #main .card ul.optionList li span.flag{ position:absolute; left:30px;  }
-            #main .card ul.optionList li label{ margin:0 10px 5px 10px; padding:2px 12px; cursor:pointer;  }
-            #main .card ul.optionList li label.active{ background:#FFB50B; color:#fff; border-radius:15px; }
-            
-            @media screen and (max-width: 1440px) {
-              .last{ margin-left:80px!important; }
-            }
-
+            #chart{ height:400px; }
+            #chart2{ height:400px; }
+            th{ text-align:center; }
+            .map{  padding:30px 100px; background:#fff; position:relative; }
+            .map img{ width:100%; }
+            .map .hema{ position:absolute; bottom:250px; right:450px; height:30px; width:30px; cursor:pointer; }
         </style>
     </head>
     <body>
@@ -66,9 +70,9 @@
                     </div>
                 </li>
                 <li class="logo hidden-xs">
-                    <a class="title" href="index.html">盒马生鲜单元管理系统 — 示例门店</a>
+                    <a class="title" href="index.html">盒马生鲜设备管理系统 — 示例门店</a>
                 </li>
-			
+            
                 <li class="pull-right">
                     <ul class="top-menu">
                         <li id="toggle-width">
@@ -89,13 +93,13 @@
         </header>
         
         <section id="main" data-layout="layout-1">
-<!-- 左侧菜单开始 -->
+            <!-- 左侧菜单开始 -->
               <aside id="sidebar" class="sidebar c-overflow">
                 <ul class="main-menu">
-                    <li class="sub-menu" id="">
+                    <li class="sub-menu active" id="">
                         <a href="javascript:;"><i class="zmdi zmdi-laptop-mac"></i>系统首页</a>
                         <ul>   
-                            <li>
+                            <li class="active">
                                 <a href="map.html">全国首页</a>
                             </li>
                             <li>
@@ -132,10 +136,10 @@
                         </ul>
                     </li> 
                     <li>
-                    <li class="sub-menu active" id="">
+                    <li class="sub-menu" id="">
                         <a href="javascript:;"><i class="zmdi zmdi-storage"></i>设备维保</a>
                         <ul>   
-                            <li class="active"> 
+                            <li> 
                                 <a href="mend_list.html">设备维保记录</a>
                             </li>
                         </ul>
@@ -153,85 +157,32 @@
             <!--内容结束  -->
             <section id="content">
                 <div class="container">
-                    <div class="card">
-                        <div class="card-header">
-                          <ul class="breadcrumb">设备维保记录</ul>
-　　　　　　　　　　　　　　<div class="row form-horizontal" >
-                                <div class="col-sm-3">  
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-4 control-label">单元编号</label>
-                                        <div class="col-sm-8">
-                                            <div class="fg-line">
-                                               <input class="form-control input-sm" placeholder="请输入" >
-                                            </div>
-                                        </div>
-                                    </div>                          
-                                </div>
-                                <div class="col-sm-3">  
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-4 control-label">单元名称</label>
-                                        <div class="col-sm-8">
-                                            <div class="fg-line">
-                                               <input class="form-control input-sm" placeholder="请输入" >
-                                            </div>
-                                        </div>
-                                    </div>                          
-                                </div>
-                                <div class="col-sm-3">  
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-4 control-label">状态</label>
-                                        <div class="col-sm-8">
-                                             <div class="fg-line select">
-                                              <select class="form-control">
-                                                    <option>请选择</option>
-                                             </select>
-                                            </div>
-                                        </div>
-                                    </div>                          
-                                </div>
-                                <div class="col-sm-3" style="text-align:right;">  
-                                     <div class="btn-gp">
-                                           <a class="btn btn-primary">查询</a>
-                                           <a class="btn btn-primary">清空内容</a>
-                                     </div>                       
-                                </div>
-                         </div>    
-                    </div> 
-
-
-
-                        <div class="card-body table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th class="sort">单元识别号<i class="m-l-5"></i></th>
-                                        <th>维保项目<i class="m-l-5"></i></th>
-                                        <th>维修详情</th>
-                                        <th>处理结果</th>
-                                        <th>维修人员</th>
-                                        <th>维保时间</th>
-                                        <th>备注</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="map" >
+                        <img src="../img/map.jpg" />
+                        <a href="index.html"><img class="hema" src="../img/hema.jpg" /></a>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>门店名称</th>
+                                    <th>门店代码</th>
+                                    <th>运行状态</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(item,index) in items">
+                                    <td>门店{{index}}</td>
+                                    <td>00{{index}}</td>
+                                    <td>正常</td>
+                                    <td><a href=index.html>查看</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </section>
-            <!--内容结束  -->
-
 
 
 
@@ -295,9 +246,9 @@
         <!-- Javascript Libraries -->
 
         <script src="../v2/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	    <script src="../layer/layer.js"></script>	
-	  	<script src="../plug/validator-nice/jquery.validator.admin.js"></script>	
-		<script src="../plug/laydate/laydate.js"></script>	
+        <script src="../layer/layer.js"></script>   
+        <script src="../plug/validator-nice/jquery.validator.admin.js"></script>    
+        <script src="../plug/laydate/laydate.js"></script>  
         
         <script src="../v2/vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
         <script src="../v2/vendors/bower_components/Waves/dist/waves.min.js"></script>
@@ -318,20 +269,173 @@
         <script src="../v2/js/demo.js"></script> 
     </body>
     <script type="text/javascript">
-$(function(){
-	$("#main").css("min-height",$(window).height()-230+"px");//跳转默认的高度窗口
+    $(function(){
+        $("#main").css("min-height",$(window).height()-230+"px");    //跳转默认的高度窗口
+        function drawBar(data1,data2,data3){
+          var charttit='消费活力';
+          option = {
+            tooltip:{ 
+                trigger: 'axis',
 
-    $(".searchBox input").on("focus",function(){
-        $(".searchBox").addClass("active");
+                 axisPointer : {             // 坐标轴指示器，坐标轴触发有效
+                     type : 'shadow' ,       // 默认为直线，可选为：'line' | 'shadow'
+                     shadowStyle:{
+                         color:'rgba(0,0,0,0.04)'
+                     }
+                 },
+            },
+            legend: {show:false},
+            grid: {
+                left: '3%',
+                top:'6%',
+                bottom:'0',
+                right: '3%',
+                containLabel: true
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data1,
+                    axisTick: { show: false },
+                    axisLabel: { color:'#333'},
+                    axisLine:{lineStyle:{color:'#999'}}
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    splitLine: { lineStyle:{type:'dashed' }},
+                    axisLabel: { formatter: '{value}'},
+                    axisLine: { show: false },
+                    axisTick: {show: false }
+                }
+            ],
+            series : [
+                {   
+                    name:'故障累计时长',
+                    type:'bar',
+                    barWidth: 30,
+                    data:data2
+                },{   
+                    name:'故障次数',
+                    type:'line',
+                    data:data3
+                }
+            ]
+          };
+          myChart.setOption(option);
+          setTimeout(function () {myChart.hideLoading();}, 300);
+           window.addEventListener('resize', function () {myChart.resize();})
+        }
+
+        function drawPie(pieCate,pieData){
+            option = {
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data:pieCate
+                },
+                series : [
+                    {
+                        name: '访问来源',
+                        type: 'pie',
+                        radius : '50%',
+                        center: ['50%', '60%'],
+                        data:pieData,
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            }
+            myChart2.setOption(option);
+            setTimeout(function () {myChart2.hideLoading();}, 300);
+            window.addEventListener('resize', function () {myChart2.resize();})
+        }
+
+        var myChart = echarts.init(document.getElementById('chart'));
+        var myChart2 = echarts.init(document.getElementById('chart2'));
+        myChart.showLoading({color:'#fc9b37',text : ""});
+        
+        var data1= ['2018.05','2018.06','2018.07','2018.08','2018.09','2018.10','2018.11','2018.12','2019.01','2019.02','2019.03','2019.04'];
+        var data2=[620, 732, 701, 734, 1090, 1130, 1120, 620, 732, 701, 734, 1090];
+        var data3=[62, 73, 70, 73, 109, 113, 112, 62, 73, 70, 73, 90];
+        drawBar(data1,data2,data3);
+
+        var pieCate = ['无故障(正常)','驱动卡过载','急停故障','停止光电堵包']
+        var pieData = [
+                            {value:210, name:'无故障(正常)'},
+                            {value:31, name:'驱动卡过载'},
+                            {value:23, name:'急停故障'},
+                            {value:20, name:'停止光电堵包'}
+                      ]
+        drawPie(pieCate,pieData);
     })
 
-    $(".searchBox input").on("blur",function(){
-        $(".searchBox").removeClass("active");
+
+
+    var app = new Vue({
+          el: '#content',
+          data:{ 
+              title:'',
+              items:new Array(10)
+          },
+          mounted:function(){
+              console.log('=====')
+              this.title = '基本信息'
+          },
+          methods:{
+
+          }
     })
 
-    $(".optionList").on("click","li label",function(){
-        $(this).addClass("active").siblings().removeClass("active");
-    })
-})
+    //============================================================
+    // //JSONP 原理 处理跨域问题
+    // function addScriptTag(src) {
+    //   var script = document.createElement('script');
+    //   script.setAttribute("type","text/javascript");
+    //   script.src = src;
+    //   document.body.appendChild(script);
+    // }
+
+    // window.onload = function () {
+    //   addScriptTag('http://localhost/adg/indexData?callback=foo');
+    // }
+ 
+    //============================================================
+    // //jQuery跨域
+    // function GetData(data) {
+    //     console.log(JSON.stringify(data));
+    // }
+
+    // $.ajax({
+    //     type: "get",
+    //     url: "http://localhost/adg/indexData",
+    //     dataType: "jsonp",
+    //     jsonp: "callback",
+    //     jsonpCallback: "GetData",
+    //     success: function (data) {
+    //         console.log(data);
+    //     },
+    //     error: function (err) {
+    //         console.log(err)
+    //     }
+    // })
+
+    //============================================================
+    //  已经设置CROS
+    // var url = 'http://localhost/adg/indexData';
+    // Ajax(url,function(ret){
+    //    console.log(ret)
+    // })
+
 </script>
   </html>

@@ -71,6 +71,30 @@ router.get('/getOpenId', function(req, api_res) {
        })  
 })
 
+// //接口-首页  方式-get 参数-page(页码)   ==============跨域==========
+// router.get('/indexData', function(req,res) {
+//     console.log('/************************访问主页商品************************/')
+//     console.log('请求参数，'+ JSON.stringify(req.query))
+//      var pageSize = Number(req.query.pagesize) || 30;   //一页多少条
+//      var currentPage = Number(req.query.page) || 1;     //当前第几页
+//      var skipNum = (currentPage - 1) * pageSize;            //跳过页数
+//      var callback = req.query.callback;
+//      indexproductModel.find({}).skip(skipNum).limit(pageSize)
+//      .then(function(resdata){
+//          if(resdata.length){
+//             resData.msg = '成功';
+//             resData.data =  resdata;
+//             console.log('处理结果，'+resData.msg);
+//             res.end(callback +"("+JSON.stringify(resData)+")");
+//          }else{
+//             resData.state = false;
+//             resData.msg = '没有数据';
+//             resData.data =  resdata;
+//             console.log('处理结果，'+resData.msg)
+//             res.end(callback +"("+JSON.stringify(resData)+")");
+//          }
+//      })
+// })
 
 //接口-首页  方式-get 参数-page(页码)
 router.get('/indexData', function(req,res) {

@@ -16,9 +16,12 @@
         <link href="../v2/css/app.min.2.css" rel="stylesheet">
         <script src="../v2/vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="../plug/support.js"></script>
+        <script src="../plug/vue.all.js"></script>
         <script src="../plug/echarts.min.js"></script>
         <style>
+            [v-cloak]{ display:none!important; }
             #main{ padding-bottom:0; }
+            .logo{ padding-left:15px!important;  }
             #main .card .card-header{ padding:15px 25px 15px 15px; }
             .form-horizontal{ margin-top:15px; }
             #main .card .card-header .btn-gp{ margin-top:5px; }
@@ -87,25 +90,66 @@
         
         <section id="main" data-layout="layout-1">
             <!-- 左侧菜单开始 -->
+<!-- 左侧菜单开始 -->
               <aside id="sidebar" class="sidebar c-overflow">
                 <ul class="main-menu">
-                    <li class="active">
-                        <a href="index.html"><i class="zmdi zmdi-home"></i>门店数据总览</a>
+                    <li class="sub-menu active" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-laptop-mac"></i>系统首页</a>
+                        <ul>   
+                            <li>
+                                <a href="map.html">全国首页</a>
+                            </li>
+                            <li class="active">
+                                <a href="index.html">门店首页</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-storage"></i>设备监控</a>
+                        <ul>  
+                            <li class="">
+                                <a href="#">设备监控</a>
+                            </li> 
+                            <li class="">
+                                <a href="device_list.html">设备列表</a>
+                            </li>
+                            <li class="">
+                                <a href="cell_list.html">设备单元信息</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-storage"></i>设备故障</a>
+                        <ul>   
+                            <li class="">
+                                <a href="break_list.html">故障记录查询</a>
+                            </li>
+                            <li class="">
+                                <a href="index.html">故障分类统计</a>
+                            </li>
+                            <li class="">
+                                <a href="#">故障对比分析</a>
+                            </li>
+                        </ul>
+                    </li> 
+                    <li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-storage"></i>设备维保</a>
+                        <ul>   
+                            <li> 
+                                <a href="mend_list.html">设备维保记录</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="device_list.html"><i class="zmdi zmdi-storage"></i>设备列表</a>
+                        <a href="#"><i class="zmdi zmdi-usb"></i>设备报告</a>
                     </li>
                     <li>
-                        <a href="cell_list.html"><i class="zmdi zmdi-view-dashboard"></i>设备单元信息</a>
-                    </li>
-                    <li>
-                        <a href="break_list.html"><i class="zmdi zmdi-usb"></i>设备故障信息</a>
-                    </li>
-                    <li>
-                        <a href="mend_list.html"><i class="zmdi zmdi-assignment"></i>设备维保记录</a>
-                    </li>                    
+                        <a href="#"><i class="zmdi zmdi-usb"></i>报表查询</a>
+                    </li>                  
                 </ul>
             </aside>
+            <!--菜单结束  -->
             <!--菜单结束  -->
 
             <!--内容结束  -->
@@ -113,7 +157,7 @@
                 <div class="container">
                     <div class="card">
                         <div class="card-header">
-                           <label class="label-title">基本信息</label>
+                           <label class="label-title">{{title}}</label>
                         </div>
                         <div class="card-body product_main">
                             <div class="product_content">
@@ -167,63 +211,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>监控设备1</td>
-                                                <td>001</td>
-                                                <td>正常</td>
-                                                <td><a>查看实况画面</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>监控设备2</td>
-                                                <td>001</td>
-                                                <td>正常</td>
-                                                <td><a>查看实况画面</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>监控设备3</td>
-                                                <td>001</td>
-                                                <td>正常</td>
-                                                <td><a>查看实况画面</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>监控设备4</td>
-                                                <td>001</td>
-                                                <td>正常</td>
-                                                <td><a>查看实况画面</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>监控设备5</td>
-                                                <td>001</td>
-                                                <td>正常</td>
-                                                <td><a>查看实况画面</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>监控设备6</td>
-                                                <td>001</td>
-                                                <td>正常</td>
-                                                <td><a>查看实况画面</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>监控设备7</td>
-                                                <td>001</td>
-                                                <td>正常</td>
-                                                <td><a>查看实况画面</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>监控设备8</td>
-                                                <td>001</td>
-                                                <td>正常</td>
-                                                <td><a>查看实况画面</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>监控设备9</td>
-                                                <td>001</td>
-                                                <td>正常</td>
-                                                <td><a>查看实况画面</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>监控设备10</td>
-                                                <td>001</td>
+                                            <tr v-for="(item,index) in items">
+                                                <td>监控设备{{index}}</td>
+                                                <td>00{{index}}</td>
                                                 <td>正常</td>
                                                 <td><a>查看实况画面</a></td>
                                             </tr>
@@ -351,37 +341,14 @@
     </body>
     <script type="text/javascript">
     $(function(){
-        $("#main").css("min-height",$(window).height()-230+"px");//跳转默认的高度窗口
-
-        $(".searchBox input").on("focus",function(){
-            $(".searchBox").addClass("active");
-        })
-
-        $(".searchBox input").on("blur",function(){
-            $(".searchBox").removeClass("active");
-        })
-
-        $(".optionList").on("click","li label",function(){
-            $(this).addClass("active").siblings().removeClass("active");
-        })
-
-        var myChart = echarts.init(document.getElementById('chart'));
-        var myChart2 = echarts.init(document.getElementById('chart2'));
-        myChart.showLoading({color:'#fc9b37',text : ""});
-
-        drawBar();
-        drawPie();
-
-        function drawBar(){
-          var data1= ['2018.05','2018.06','2018.07','2018.08','2018.09','2018.10','2018.11','2018.12','2019.01','2019.02','2019.03','2019.04'];
-          var data2=[620, 732, 701, 734, 1090, 1130, 1120, 620, 732, 701, 734, 1090];
-          var data3=[62, 73, 70, 73, 109, 113, 112, 62, 73, 70, 73, 90];
+        $("#main").css("min-height",$(window).height()-230+"px");    //跳转默认的高度窗口
+        function drawBar(data1,data2,data3){
           var charttit='消费活力';
           option = {
             tooltip:{ 
                 trigger: 'axis',
-    
-                 axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+
+                 axisPointer : {             // 坐标轴指示器，坐标轴触发有效
                      type : 'shadow' ,       // 默认为直线，可选为：'line' | 'shadow'
                      shadowStyle:{
                          color:'rgba(0,0,0,0.04)'
@@ -432,7 +399,7 @@
            window.addEventListener('resize', function () {myChart.resize();})
         }
 
-        function drawPie(){
+        function drawPie(pieCate,pieData){
             option = {
                 tooltip : {
                     trigger: 'item',
@@ -441,7 +408,7 @@
                 legend: {
                     orient: 'vertical',
                     left: 'left',
-                    data: ['无故障(正常)','驱动卡过载','急停故障','停止光电堵包']
+                    data:pieCate
                 },
                 series : [
                     {
@@ -449,12 +416,7 @@
                         type: 'pie',
                         radius : '50%',
                         center: ['50%', '60%'],
-                        data:[
-                            {value:210, name:'无故障(正常)'},
-                            {value:31, name:'驱动卡过载'},
-                            {value:23, name:'急停故障'},
-                            {value:20, name:'停止光电堵包'}
-                        ],
+                        data:pieData,
                         itemStyle: {
                             emphasis: {
                                 shadowBlur: 10,
@@ -470,7 +432,81 @@
             window.addEventListener('resize', function () {myChart2.resize();})
         }
 
+        var myChart = echarts.init(document.getElementById('chart'));
+        var myChart2 = echarts.init(document.getElementById('chart2'));
+        myChart.showLoading({color:'#fc9b37',text : ""});
+        
+        var data1= ['2018.05','2018.06','2018.07','2018.08','2018.09','2018.10','2018.11','2018.12','2019.01','2019.02','2019.03','2019.04'];
+        var data2=[620, 732, 701, 734, 1090, 1130, 1120, 620, 732, 701, 734, 1090];
+        var data3=[62, 73, 70, 73, 109, 113, 112, 62, 73, 70, 73, 90];
+        drawBar(data1,data2,data3);
 
+        var pieCate = ['无故障(正常)','驱动卡过载','急停故障','停止光电堵包']
+        var pieData = [
+                            {value:210, name:'无故障(正常)'},
+                            {value:31, name:'驱动卡过载'},
+                            {value:23, name:'急停故障'},
+                            {value:20, name:'停止光电堵包'}
+                      ]
+        drawPie(pieCate,pieData);
     })
+
+
+
+    var app = new Vue({
+          el: '#content',
+          data:{ 
+              title:'',
+              items:new Array(10)
+          },
+          mounted:function(){
+              console.log('=====')
+              this.title = '基本信息'
+          },
+          methods:{
+
+          }
+    })
+
+    //============================================================
+    // //JSONP 原理 处理跨域问题
+    // function addScriptTag(src) {
+    //   var script = document.createElement('script');
+    //   script.setAttribute("type","text/javascript");
+    //   script.src = src;
+    //   document.body.appendChild(script);
+    // }
+
+    // window.onload = function () {
+    //   addScriptTag('http://localhost/adg/indexData?callback=foo');
+    // }
+ 
+    //============================================================
+    // //jQuery跨域
+    // function GetData(data) {
+    //     console.log(JSON.stringify(data));
+    // }
+
+    // $.ajax({
+    //     type: "get",
+    //     url: "http://localhost/adg/indexData",
+    //     dataType: "jsonp",
+    //     jsonp: "callback",
+    //     jsonpCallback: "GetData",
+    //     success: function (data) {
+    //         console.log(data);
+    //     },
+    //     error: function (err) {
+    //         console.log(err)
+    //     }
+    // })
+
+    //============================================================
+    //  已经设置CROS
+    // var url = 'http://localhost/adg/indexData';
+    // Ajax(url,function(ret){
+    //    console.log(ret)
+    // })
+
 </script>
   </html>

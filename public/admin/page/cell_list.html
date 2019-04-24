@@ -90,23 +90,62 @@
         
         <section id="main" data-layout="layout-1">
           	<!-- 左侧菜单开始 -->
-          	  <aside id="sidebar" class="sidebar c-overflow">
+              <aside id="sidebar" class="sidebar c-overflow">
                 <ul class="main-menu">
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-laptop-mac"></i>系统首页</a>
+                        <ul>   
+                            <li>
+                                <a href="map.html">全国首页</a>
+                            </li>
+                            <li>
+                                <a href="index.html">门店首页</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu active" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-storage"></i>设备监控</a>
+                        <ul>  
+                            <li class="">
+                                <a href="#">设备监控</a>
+                            </li> 
+                            <li class="">
+                                <a href="device_list.html">设备列表</a>
+                            </li>
+                            <li class="active">
+                                <a href="cell_list.html">设备单元信息</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-storage"></i>设备故障</a>
+                        <ul>   
+                            <li class="">
+                                <a href="break_list.html">故障记录查询</a>
+                            </li>
+                            <li class="">
+                                <a href="index.html">故障分类统计</a>
+                            </li>
+                            <li class="">
+                                <a href="#">故障对比分析</a>
+                            </li>
+                        </ul>
+                    </li> 
                     <li>
-                        <a href="index.html"><i class="zmdi zmdi-home"></i>门店数据总览</a>
+                    <li class="sub-menu" id="">
+                        <a href="javascript:;"><i class="zmdi zmdi-storage"></i>设备维保</a>
+                        <ul>   
+                            <li> 
+                                <a href="mend_list.html">设备维保记录</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="device_list.html"><i class="zmdi zmdi-storage"></i>设备列表</a>
-                    </li>
-                    <li class="active">
-                        <a href="cell_list.html"><i class="zmdi zmdi-view-dashboard"></i>设备单元信息</a>
+                        <a href="#"><i class="zmdi zmdi-usb"></i>设备报告</a>
                     </li>
                     <li>
-                        <a href="break_list.html"><i class="zmdi zmdi-usb"></i>设备故障信息</a>
-                    </li>
-                    <li>
-                        <a href="mend_list.html"><i class="zmdi zmdi-assignment"></i>设备维保记录</a>
-                    </li>                    
+                        <a href="#"><i class="zmdi zmdi-usb"></i>报表查询</a>
+                    </li>                  
                 </ul>
             </aside>
             <!--菜单结束  -->
