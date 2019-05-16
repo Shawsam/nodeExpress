@@ -62,7 +62,6 @@ app.use('/public',express.static('public'));
 //======== cookies配置 =========================//
 var User = require('./models/User.js');
 app.use(function(req, res, next) {
-  res.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
   req.cookies = new Cookies(req, res);
   req.userInfo = null;
 
