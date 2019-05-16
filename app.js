@@ -43,7 +43,6 @@ app.set('view cache', false);
 swig.setDefaults({cache: false})
 swig.setDefaults({ autoescape: false });
 
-
 app.set('trust proxy', 'loopback') // 指定唯一子网
 
 //静态文件托管
