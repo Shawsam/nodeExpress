@@ -16,7 +16,6 @@ router.use(function timeLog(req, res, next) {
   if(url.match(reg1) || url.match(reg2)){
       next();
   }else{
-      res.set('Content-Type', 'text/html');
       console.log('访问前台页面',url,',Time:',formatTime(Date.now()));
       next();
   }
