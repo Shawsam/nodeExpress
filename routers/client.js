@@ -17,10 +17,20 @@ router.use(function timeLog(req, res, next) {
       next();
   }else{
       console.log('访问前台页面',url,',Time:',formatTime(Date.now()));
+      res.header("Content-Type", "html/text;charset=utf-8");  
       next();
   }
 
 });
+
+// 定义网站主页的路由
+router.get('', function(req, res) {
+  res.render('web/index',{
+     title:'首页',
+     userInfo:req.userInfo
+  });
+});
+
 
 // 定义网站主页的路由
 router.get(/^\/(index)?$/, function(req, res) {
