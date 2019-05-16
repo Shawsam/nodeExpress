@@ -16,6 +16,7 @@ router.use(function timeLog(req, res, next) {
   if(url.match(reg1) || url.match(reg2)){
       next();
   }else{
+      res.set('Content-Type', 'text/html');
       console.log('访问前台页面',url,',Time:',formatTime(Date.now()));
       next();
   }
@@ -24,7 +25,6 @@ router.use(function timeLog(req, res, next) {
 
 // 定义网站主页的路由
 router.get(/^\/(index)?$/, function(req, res) {
-  res.set('Content-Type', 'text/html');
   res.render('web/index',{
   	 title:'首页',
   	 userInfo:req.userInfo
@@ -34,13 +34,11 @@ router.get(/^\/(index)?$/, function(req, res) {
 //ck抽奖
 router.get('/draw', function(req, res) {
    const id = req.query.id
-   res.set('Content-Type', 'text/html');
    res.render('web/ck_draw',{id:id})
 });
 
 //ck抽奖
 router.get('/drawData', function(req, res) {
-   res.set('Content-Type', 'text/html');
    res.render('web/ck_draw_data')
 });
 
@@ -48,7 +46,6 @@ router.get('/drawData', function(req, res) {
 router.get('/music', function(req, res) {
   Song.find({}).then(function(song){
     Singer.find({}).skip(3).limit(45).then(function(singer){
-      res.set('Content-Type', 'text/html');
       res.render('web/music',{
          title:'音乐',
          song:song,
@@ -62,7 +59,6 @@ router.get('/music', function(req, res) {
 router.get('/film', function(req, res) {
   FilmBanner.find({}).sort({createtime:1}).then(function(bannerList){
     console.log(bannerList);
-    res.set('Content-Type', 'text/html');
     res.render('web/film',{
        title:'电影',
        bannerList:bannerList
@@ -71,7 +67,6 @@ router.get('/film', function(req, res) {
 });
 
 router.get('/film_details', function(req, res) {
-  res.set('Content-Type', 'text/html');
   res.render('web/film_details',{
      title:'电影'
   })
@@ -85,7 +80,6 @@ router.get('/article', function(req, res) {
   const skipNum = (pageNo - 1) * pageSize;    //跳过页数
   Article.find({}).then(function(articleList){
     Article.find({}).skip(0).limit(pageSize).sort(sort).then(function(data){
-          res.set('Content-Type', 'text/html');
           res.render('web/article',{
              title:'文集',
              articleList:data,
@@ -100,7 +94,6 @@ router.get('/article', function(req, res) {
 router.get('/article_details', function(req, res) {
   var id = req.query.id;
   Article.findOne({id:id}).then(function(article){
-      res.set('Content-Type', 'text/html');
       res.render('web/article_details',{
          title:'文章详情',
          article:article
@@ -110,7 +103,6 @@ router.get('/article_details', function(req, res) {
 
 router.get('/picture', function(req, res) {
   Gallery.find({}).then(function(galleryList){
-    res.set('Content-Type', 'text/html');
     res.render('web/picture',{
        title:'画廊',
        galleryList:galleryList
@@ -121,7 +113,6 @@ router.get('/picture', function(req, res) {
 router.get('/picture_details', function(req, res) {
     var gallery_id = req.query.gallery_id;
     Gallery.findOne({gallery_id:gallery_id}).then(function(gallery){
-        res.set('Content-Type', 'text/html');
         res.render('web/picture_details',{
            title:'画廊详情',
            gallery:gallery
@@ -136,7 +127,6 @@ router.get('/blog', function(req, res) {
   const skipNum = (pageNo - 1) * pageSize;    //跳过页数
   Blog.find({}).then(function(blogList){
     Blog.find({}).skip(0).limit(pageSize).sort(sort).then(function(data){
-          res.set('Content-Type', 'text/html');
           res.render('web/blog',{
              title:'博客',
              blogList:data,
@@ -151,7 +141,6 @@ router.get('/blog', function(req, res) {
 router.get('/blog_details', function(req, res) {
   var id = req.query.id;
   Blog.findOne({id:id}).then(function(blog){
-      res.set('Content-Type', 'text/html');
       res.render('web/blog_details',{
          title:'博客详情',
          blog:blog
@@ -160,14 +149,12 @@ router.get('/blog_details', function(req, res) {
 });
 
 router.get('/work', function(req, res) {
-  res.set('Content-Type', 'text/html');
   res.render('web/work',{
      title:'作品'
   })
 });
 
 router.get('/login', function(req, res) {
-  res.set('Content-Type', 'text/html');
   res.render('web/login',{
      title:'登录/注册',
      userInfo:req.userInfo
